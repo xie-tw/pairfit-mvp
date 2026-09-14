@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#bg12)"/>
+  <text x="28" y="33" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="700">PF</text>
+  <text x="48" y="26" font-size="14" fill="#FAFAF9" font-weight="600">PairFit</text>
+  <text x="48" y="40" font-size="10" fill="#A8A29E">Move together · 一起动</text>
+  <defs><linearGradient id="bg12" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FB7185"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+
+  <text x="24" y="100" font-size="24" fill="#FAFAF9" font-weight="700">你好,伙伴</text>
+  <text x="24" y="124" font-size="14" fill="#D6D3D1">今天,两个人一起的计划。</text>
+
+  <g transform="translate(24, 152)">
+    <rect width="167" height="100" rx="12" fill="#1C1917" stroke="#292524" stroke-dasharray="4,4"/>
+    <text x="14" y="22" font-size="11" fill="#D6D3D1" font-weight="600">你的进度</text>
+    <text x="14" y="52" font-size="20" fill="#A8A29E" font-weight="700">—</text>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">设定目标开始记录</text>
+  </g>
+  <g transform="translate(199, 152)">
+    <rect width="167" height="100" rx="12" fill="#1C1917" stroke="#292524" stroke-dasharray="4,4"/>
+    <text x="14" y="22" font-size="11" fill="#D6D3D1" font-weight="600">伙伴的进度</text>
+    <text x="14" y="52" font-size="20" fill="#A8A29E" font-weight="700">—</text>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">绑定伙伴开启共享</text>
+  </g>
+
+  <text x="24" y="290" font-size="11" fill="#D6D3D1" font-weight="600">今日打卡</text>
+
+  <g transform="translate(24, 312)">
+    <rect width="342" height="180" rx="12" fill="#181615" stroke="#292524" stroke-dasharray="4,4"/>
+    <circle cx="171" cy="60" r="28" fill="#1C1917" stroke="#292524"/>
+    <text x="171" y="70" font-size="24" text-anchor="middle">🎯</text>
+    <text x="171" y="118" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">今天还没记录</text>
+    <text x="171" y="138" font-size="13" fill="#D6D3D1" text-anchor="middle">记录第一条,我们就能给你画曲线。</text>
+    <g transform="translate(115, 152)">
+      <rect width="112" height="36" rx="8" fill="#FB7185"/>
+      <text x="56" y="23" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">记一笔 →</text>
+    </g>
+  </g>
+
+  <rect x="0" y="780" width="390" height="64" fill="#1C1917" stroke="#292524"/>
+  <rect x="20" y="788" width="58" height="44" rx="12" fill="#FB7185" fill-opacity="0.15"/>
+  <text x="49" y="810" font-size="14" text-anchor="middle">🏠</text>
+  <text x="49" y="828" font-size="10" fill="#FB7185" text-anchor="middle" font-weight="500">首页</text>
+</svg>

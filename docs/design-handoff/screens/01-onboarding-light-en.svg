@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <!-- PairFit · Onboarding · Step 1 · Light · English -->
+  <!-- Tokens: surface=#FFFFFF, ink=#1C1917, brand=#FF6B6B, accent=#14B8A6, sunken=#F5F5F4 -->
+  <rect width="390" height="844" fill="#FAFAF9"/>
+
+  <!-- Top safe area -->
+  <rect x="0" y="0" width="390" height="44" fill="#FAFAF9"/>
+
+  <!-- Progress: 1 of 3 -->
+  <g transform="translate(24, 64)">
+    <circle cx="6" cy="6" r="6" fill="#FF6B6B"/>
+    <line x1="14" y1="6" x2="180" y2="6" stroke="#E7E5E4" stroke-width="2"/>
+    <line x1="200" y1="6" x2="366" y2="6" stroke="#E7E5E4" stroke-width="2"/>
+    <circle cx="194" cy="6" r="6" fill="#E7E5E4"/>
+    <circle cx="366" cy="6" r="6" fill="#E7E5E4"/>
+    <text x="0" y="32" font-size="12" fill="#57534E" font-weight="500">Step 1 of 3</text>
+  </g>
+
+  <!-- Title -->
+  <text x="24" y="148" font-size="24" fill="#1C1917" font-weight="700">What's your goal?</text>
+  <text x="24" y="174" font-size="14" fill="#57534E">Pick a direction to start.</text>
+
+  <!-- Direction card: Lose weight (selected, brand) -->
+  <g transform="translate(24, 210)">
+    <rect width="163" height="180" rx="16" fill="#FFFFFF" stroke="#FF6B6B" stroke-width="2"/>
+    <text x="81.5" y="60" font-size="40" text-anchor="middle" fill="#FF6B6B">↓</text>
+    <text x="81.5" y="110" font-size="18" text-anchor="middle" fill="#1C1917" font-weight="600">Lose</text>
+    <text x="81.5" y="132" font-size="18" text-anchor="middle" fill="#1C1917" font-weight="600">weight</text>
+    <text x="81.5" y="156" font-size="12" text-anchor="middle" fill="#FF6B6B" font-weight="500">Selected</text>
+  </g>
+
+  <!-- Direction card: Gain weight (teal) -->
+  <g transform="translate(203, 210)">
+    <rect width="163" height="180" rx="16" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="1"/>
+    <text x="81.5" y="60" font-size="40" text-anchor="middle" fill="#14B8A6">↑</text>
+    <text x="81.5" y="110" font-size="18" text-anchor="middle" fill="#1C1917" font-weight="600">Gain</text>
+    <text x="81.5" y="132" font-size="18" text-anchor="middle" fill="#1C1917" font-weight="600">weight</text>
+    <text x="81.5" y="156" font-size="12" text-anchor="middle" fill="#A8A29E" font-weight="500">Tap to pick</text>
+  </g>
+
+  <!-- Footer CTA -->
+  <g transform="translate(24, 750)">
+    <rect width="342" height="48" rx="8" fill="#FF6B6B"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">Next</text>
+  </g>
+
+  <!-- Annotation -->
+  <text x="195" y="824" font-size="10" fill="#A8A29E" text-anchor="middle">design-handoff/screens/01-onboarding-light-en</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <!-- PairFit · Login · Light · English -->
+  <rect width="390" height="844" fill="#FAFAF9"/>
+
+  <!-- Brand mark -->
+  <g transform="translate(167, 120)">
+    <rect width="56" height="56" rx="16" fill="url(#brandGrad5)"/>
+    <text x="28" y="36" font-size="18" fill="#FFFFFF" text-anchor="middle" font-weight="700">PF</text>
+    <defs>
+      <linearGradient id="brandGrad5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#FF6B6B"/>
+        <stop offset="100%" stop-color="#14B8A6"/>
+      </linearGradient>
+    </defs>
+  </g>
+
+  <text x="195" y="208" font-size="24" fill="#1C1917" text-anchor="middle" font-weight="700">Welcome back</text>
+  <text x="195" y="234" font-size="14" fill="#57534E" text-anchor="middle">Sign in to keep your streak going.</text>
+
+  <!-- Form -->
+  <g transform="translate(24, 280)">
+    <text x="0" y="20" font-size="14" fill="#1C1917" font-weight="500">Email <tspan fill="#FF6B6B">*</tspan></text>
+    <rect x="0" y="28" width="342" height="40" rx="8" fill="#FFFFFF" stroke="#FF6B6B" stroke-width="2"/>
+    <circle cx="20" cy="48" r="8" fill="#F5F5F4"/>
+    <text x="44" y="52" font-size="14" fill="#1C1917">mei@example.com</text>
+
+    <g transform="translate(0, 90)">
+      <text x="0" y="20" font-size="14" fill="#1C1917" font-weight="500">Password <tspan fill="#FF6B6B">*</tspan></text>
+      <text x="342" y="20" font-size="12" fill="#E11D48" text-anchor="end" font-weight="500">Forgot?</text>
+      <rect x="0" y="28" width="342" height="40" rx="8" fill="#FFFFFF" stroke="#E7E5E4"/>
+      <circle cx="20" cy="48" r="8" fill="#F5F5F4"/>
+      <text x="44" y="52" font-size="14" fill="#1C1917">••••••••</text>
+    </g>
+  </g>
+
+  <!-- Server error -->
+  <g transform="translate(24, 472)">
+    <rect width="342" height="44" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="16" y="28" font-size="13" fill="#991B1B">Email or password is incorrect.</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(24, 540)">
+    <rect width="342" height="48" rx="8" fill="#FF6B6B"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">Sign in</text>
+  </g>
+
+  <text x="195" y="624" font-size="14" fill="#57534E" text-anchor="middle">No account yet? <tspan fill="#E11D48" font-weight="500">Create one</tspan></text>
+
+  <text x="195" y="824" font-size="10" fill="#A8A29E" text-anchor="middle">05-login-light-en</text>
+</svg>

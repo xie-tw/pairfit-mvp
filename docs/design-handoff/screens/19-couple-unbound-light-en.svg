@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#FAFAF9"/>
+  <rect x="0" y="0" width="390" height="56" fill="#FFFFFF" fill-opacity="0.85" stroke="#E7E5E4"/>
+  <text x="195" y="36" font-size="16" fill="#1C1917" text-anchor="middle" font-weight="600">Couple</text>
+
+  <text x="24" y="100" font-size="24" fill="#1C1917" font-weight="700">Couple</text>
+  <text x="24" y="124" font-size="14" fill="#57534E">Bind, share and cheer each other on.</text>
+
+  <!-- Hero card with halo -->
+  <g transform="translate(24, 156)">
+    <defs>
+      <radialGradient id="halo19" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFE4E6" stop-opacity="0.8"/>
+        <stop offset="100%" stop-color="#FFE4E6" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="halo19b" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#CCFBF1" stop-opacity="0.8"/>
+        <stop offset="100%" stop-color="#CCFBF1" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="280" cy="40" r="100" fill="url(#halo19)"/>
+    <circle cx="80" cy="160" r="100" fill="url(#halo19b)"/>
+
+    <rect width="342" height="200" rx="16" fill="#FFFFFF" stroke="#E7E5E4"/>
+
+    <g transform="translate(40, 32)">
+      <rect width="48" height="48" rx="14" fill="url(#brandGrad19)"/>
+      <text x="24" y="34" font-size="20" text-anchor="middle" fill="#FFFFFF">💕</text>
+      <defs><linearGradient id="brandGrad19" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B6B"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+    </g>
+
+    <text x="40" y="116" font-size="18" fill="#1C1917" font-weight="700">Bind with your partner</text>
+    <text x="40" y="138" font-size="13" fill="#57534E">Pair up to share progress, coins and</text>
+    <text x="40" y="154" font-size="13" fill="#57534E">challenges.</text>
+
+    <g transform="translate(40, 168)">
+      <rect width="140" height="32" rx="6" fill="#FF6B6B"/>
+      <text x="70" y="22" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="600">Generate invite</text>
+    </g>
+    <g transform="translate(192, 168)">
+      <rect width="110" height="32" rx="6" fill="#FFFFFF" stroke="#D6D3D1"/>
+      <text x="55" y="22" font-size="13" fill="#1C1917" text-anchor="middle" font-weight="500">How it works</text>
+    </g>
+  </g>
+
+  <!-- 4 feature cards -->
+  <text x="24" y="396" font-size="11" fill="#57534E" font-weight="600">WHAT'S IN IT FOR YOU</text>
+  <g transform="translate(24, 412)">
+    <rect width="167" height="84" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="28" cy="32" r="16" fill="#F5F5F4"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🎯</text>
+    <text x="56" y="28" font-size="13" fill="#1C1917" font-weight="600">Shared goals</text>
+    <text x="56" y="46" font-size="11" fill="#57534E">Each partner keeps</text>
+    <text x="56" y="60" font-size="11" fill="#57534E">their own direction</text>
+  </g>
+  <g transform="translate(199, 412)">
+    <rect width="167" height="84" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="28" cy="32" r="16" fill="#F5F5F4"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🪙</text>
+    <text x="56" y="28" font-size="13" fill="#1C1917" font-weight="600">Coins & cheers</text>
+    <text x="56" y="46" font-size="11" fill="#57534E">Confirm wins with</text>
+    <text x="56" y="60" font-size="11" fill="#57534E">a coin tap</text>
+  </g>
+  <g transform="translate(24, 504)">
+    <rect width="167" height="84" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="28" cy="32" r="16" fill="#F5F5F4"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🎤</text>
+    <text x="56" y="28" font-size="13" fill="#1C1917" font-weight="600">Voice notes</text>
+    <text x="56" y="46" font-size="11" fill="#57534E">Long-press to</text>
+    <text x="56" y="60" font-size="11" fill="#57534E">dictate, we estimate</text>
+  </g>
+  <g transform="translate(199, 504)">
+    <rect width="167" height="84" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="28" cy="32" r="16" fill="#F5F5F4"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🔒</text>
+    <text x="56" y="28" font-size="13" fill="#1C1917" font-weight="600">Private & local</text>
+    <text x="56" y="46" font-size="11" fill="#57534E">All data stays on</text>
+    <text x="56" y="60" font-size="11" fill="#57534E">your device</text>
+  </g>
+
+  <!-- Tab bar -->
+  <rect x="0" y="780" width="390" height="64" fill="#FFFFFF" stroke="#E7E5E4"/>
+  <text x="195" y="810" font-size="14" text-anchor="middle" fill="#E11D48">💕</text>
+  <text x="195" y="828" font-size="10" fill="#E11D48" text-anchor="middle" font-weight="500">Couple</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#FAFAF9"/>
+  <rect x="0" y="0" width="390" height="56" fill="#FFFFFF" fill-opacity="0.85" stroke="#E7E5E4"/>
+  <text x="24" y="36" font-size="20" fill="#1C1917">←</text>
+  <text x="195" y="36" font-size="16" fill="#1C1917" text-anchor="middle" font-weight="600">Couple</text>
+
+  <text x="24" y="100" font-size="20" fill="#1C1917" font-weight="700">Share this code with your partner</text>
+  <text x="24" y="124" font-size="13" fill="#57534E">They enter it on their Couple page to bind.</text>
+
+  <!-- Big code card -->
+  <g transform="translate(24, 156)">
+    <rect width="342" height="240" rx="16" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="171" y="80" font-size="56" fill="#1C1917" text-anchor="middle" font-weight="700" letter-spacing="6">A2K9P7</text>
+    <line x1="40" y1="116" x2="302" y2="116" stroke="#E7E5E4"/>
+    <text x="171" y="142" font-size="13" fill="#57534E" text-anchor="middle">Expires in</text>
+    <text x="171" y="170" font-size="22" fill="#FF6B6B" text-anchor="middle" font-weight="700">23h 59m</text>
+    <g transform="translate(40, 188)">
+      <rect width="125" height="36" rx="8" fill="#F5F5F4"/>
+      <text x="62" y="23" font-size="13" fill="#1C1917" text-anchor="middle" font-weight="600">📋 Copy</text>
+    </g>
+    <g transform="translate(177, 188)">
+      <rect width="125" height="36" rx="8" fill="#FF6B6B"/>
+      <text x="62" y="23" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="600">↗ Share</text>
+    </g>
+  </g>
+
+  <text x="195" y="436" font-size="14" fill="#57534E" text-anchor="middle">Or enter your partner's code →</text>
+
+  <g transform="translate(24, 462)">
+    <rect width="342" height="60" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <rect x="20" y="14" width="38" height="32" rx="6" fill="#F5F5F4"/>
+    <text x="39" y="36" font-size="18" fill="#1C1917" text-anchor="middle" font-weight="700">A</text>
+    <rect x="68" y="14" width="38" height="32" rx="6" fill="#F5F5F4"/>
+    <text x="87" y="36" font-size="18" fill="#1C1917" text-anchor="middle" font-weight="700">2</text>
+    <rect x="116" y="14" width="38" height="32" rx="6" fill="#F5F5F4"/>
+    <text x="135" y="36" font-size="18" fill="#1C1917" text-anchor="middle" font-weight="700">K</text>
+    <rect x="164" y="14" width="38" height="32" rx="6" fill="#F5F5F4"/>
+    <text x="183" y="36" font-size="18" fill="#1C1917" text-anchor="middle" font-weight="700">9</text>
+    <rect x="212" y="14" width="38" height="32" rx="6" fill="#FFFFFF" stroke="#FF6B6B" stroke-width="2"/>
+    <text x="231" y="36" font-size="18" fill="#A8A29E" text-anchor="middle" font-weight="700">_</text>
+    <rect x="260" y="14" width="38" height="32" rx="6" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="279" y="36" font-size="18" fill="#A8A29E" text-anchor="middle" font-weight="700">_</text>
+  </g>
+
+  <g transform="translate(24, 760)">
+    <rect width="342" height="48" rx="8" fill="#FF6B6B"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">Bind</text>
+  </g>
+</svg>

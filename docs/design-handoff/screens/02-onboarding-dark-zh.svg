@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <!-- PairFit · Onboarding · Step 1 · Dark · 中文 -->
+  <!-- Tokens: bg-app=#0C0A09, surface=#1C1917, ink=#FAFAF9, brand=#FB7185, accent=#2DD4BF -->
+  <rect width="390" height="844" fill="#0C0A09"/>
+
+  <!-- Top safe area -->
+  <rect x="0" y="0" width="390" height="44" fill="#0C0A09"/>
+
+  <!-- Progress -->
+  <g transform="translate(24, 64)">
+    <circle cx="6" cy="6" r="6" fill="#FB7185"/>
+    <line x1="14" y1="6" x2="180" y2="6" stroke="#292524" stroke-width="2"/>
+    <line x1="200" y1="6" x2="366" y2="6" stroke="#292524" stroke-width="2"/>
+    <circle cx="194" cy="6" r="6" fill="#292524"/>
+    <circle cx="366" cy="6" r="6" fill="#292524"/>
+    <text x="0" y="32" font-size="12" fill="#D6D3D1" font-weight="500">第 1 步 / 共 3 步</text>
+  </g>
+
+  <!-- Title -->
+  <text x="24" y="148" font-size="24" fill="#FAFAF9" font-weight="700">你想达成什么目标?</text>
+  <text x="24" y="174" font-size="14" fill="#D6D3D1">先选一个方向,我们来帮你规划节奏。</text>
+
+  <!-- Direction card: 减肥 (selected, brand) -->
+  <g transform="translate(24, 210)">
+    <rect width="163" height="180" rx="16" fill="#1C1917" stroke="#FB7185" stroke-width="2"/>
+    <text x="81.5" y="60" font-size="40" text-anchor="middle" fill="#FB7185">↓</text>
+    <text x="81.5" y="110" font-size="18" text-anchor="middle" fill="#FAFAF9" font-weight="600">减肥</text>
+    <text x="81.5" y="156" font-size="12" text-anchor="middle" fill="#FB7185" font-weight="500">已选择</text>
+  </g>
+
+  <!-- Direction card: 增重 -->
+  <g transform="translate(203, 210)">
+    <rect width="163" height="180" rx="16" fill="#1C1917" stroke="#292524" stroke-width="1"/>
+    <text x="81.5" y="60" font-size="40" text-anchor="middle" fill="#2DD4BF">↑</text>
+    <text x="81.5" y="110" font-size="18" text-anchor="middle" fill="#FAFAF9" font-weight="600">增重</text>
+    <text x="81.5" y="156" font-size="12" text-anchor="middle" fill="#A8A29E" font-weight="500">点选</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(24, 750)">
+    <rect width="342" height="48" rx="8" fill="#FB7185"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">下一步</text>
+  </g>
+
+  <text x="195" y="824" font-size="10" fill="#A8A29E" text-anchor="middle">02-onboarding-dark-zh</text>
+</svg>

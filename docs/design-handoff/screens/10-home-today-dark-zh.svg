@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#brandGrad10)"/>
+  <text x="28" y="33" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="700">PF</text>
+  <text x="48" y="26" font-size="14" fill="#FAFAF9" font-weight="600">PairFit</text>
+  <text x="48" y="40" font-size="10" fill="#A8A29E">Move together · 一起动</text>
+  <defs><linearGradient id="brandGrad10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FB7185"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+
+  <text x="24" y="100" font-size="24" fill="#FAFAF9" font-weight="700">你好,伙伴</text>
+  <text x="24" y="124" font-size="14" fill="#D6D3D1">今天,两个人一起的计划。</text>
+  <g transform="translate(280, 90)">
+    <rect width="86" height="28" rx="14" fill="#1C1917" stroke="#292524"/>
+    <text x="14" y="20" font-size="12" fill="#FB7185">🔥</text>
+    <text x="34" y="20" font-size="12" fill="#FAFAF9" font-weight="500">连续 12 天</text>
+  </g>
+
+  <g transform="translate(24, 152)">
+    <rect width="167" height="100" rx="12" fill="#1C1917" stroke="#292524"/>
+    <text x="14" y="22" font-size="11" fill="#D6D3D1" font-weight="600">你的进度</text>
+    <text x="14" y="52" font-size="24" fill="#FAFAF9" font-weight="700">0.5<tspan font-size="14" fill="#A8A29E"> / 1.5 公斤</tspan></text>
+    <rect x="14" y="64" width="139" height="6" rx="3" fill="#292524"/>
+    <rect x="14" y="64" width="46" height="6" rx="3" fill="#FB7185"/>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">33% — 节奏 OK</text>
+    <circle cx="148" cy="22" r="14" fill="#FB7185" fill-opacity="0.15"/>
+    <text x="148" y="27" font-size="14" text-anchor="middle">📉</text>
+  </g>
+  <g transform="translate(199, 152)">
+    <rect width="167" height="100" rx="12" fill="#1C1917" stroke="#292524"/>
+    <text x="14" y="22" font-size="11" fill="#D6D3D1" font-weight="600">伙伴的进度</text>
+    <text x="14" y="52" font-size="24" fill="#FAFAF9" font-weight="700">2.1<tspan font-size="14" fill="#A8A29E"> / 3.0 公里</tspan></text>
+    <rect x="14" y="64" width="139" height="6" rx="3" fill="#292524"/>
+    <rect x="14" y="64" width="98" height="6" rx="3" fill="#2DD4BF"/>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">70% — 连续 2 天</text>
+    <circle cx="148" cy="22" r="14" fill="#2DD4BF" fill-opacity="0.15"/>
+    <text x="148" y="27" font-size="14" text-anchor="middle">📈</text>
+  </g>
+
+  <text x="24" y="290" font-size="11" fill="#D6D3D1" font-weight="600">今日打卡</text>
+  <text x="366" y="290" font-size="11" fill="#FB7185" text-anchor="end" font-weight="500">查看全部 →</text>
+
+  <g transform="translate(24, 308)">
+    <rect width="167" height="96" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="32" cy="32" r="16" fill="#FB7185" fill-opacity="0.15"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">📊</text>
+    <text x="58" y="28" font-size="14" fill="#FAFAF9" font-weight="600">体重</text>
+    <text x="58" y="46" font-size="13" fill="#D6D3D1">65.5 公斤</text>
+    <text x="14" y="80" font-size="12" fill="#FB7185" font-weight="500">更新 →</text>
+  </g>
+  <g transform="translate(199, 308)">
+    <rect width="167" height="96" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="32" cy="32" r="16" fill="#FB7185" fill-opacity="0.15"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">🍱</text>
+    <text x="58" y="28" font-size="14" fill="#FAFAF9" font-weight="600">饮食</text>
+    <text x="58" y="46" font-size="13" fill="#D6D3D1">820 千卡</text>
+    <text x="14" y="80" font-size="12" fill="#FB7185" font-weight="500">更新 →</text>
+  </g>
+  <g transform="translate(24, 412)">
+    <rect width="167" height="96" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="32" cy="32" r="16" fill="#2DD4BF" fill-opacity="0.15"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">🏃</text>
+    <text x="58" y="28" font-size="14" fill="#FAFAF9" font-weight="600">运动</text>
+    <text x="58" y="46" font-size="13" fill="#D6D3D1">30 分钟 · 300 千卡</text>
+    <text x="14" y="80" font-size="12" fill="#FB7185" font-weight="500">更新 →</text>
+  </g>
+
+  <circle cx="350" cy="700" r="32" fill="#FB7185"/>
+  <text x="350" y="710" font-size="22" text-anchor="middle">🎤</text>
+
+  <rect x="0" y="780" width="390" height="64" fill="#1C1917" stroke="#292524"/>
+  <rect x="20" y="788" width="58" height="44" rx="12" fill="#FB7185" fill-opacity="0.15"/>
+  <text x="49" y="810" font-size="14" text-anchor="middle">🏠</text>
+  <text x="49" y="828" font-size="10" fill="#FB7185" text-anchor="middle" font-weight="500">首页</text>
+  <text x="127" y="810" font-size="14" text-anchor="middle" fill="#A8A29E">📝</text>
+  <text x="127" y="828" font-size="10" fill="#A8A29E" text-anchor="middle">记录</text>
+  <text x="195" y="810" font-size="14" text-anchor="middle" fill="#A8A29E">💕</text>
+  <text x="195" y="828" font-size="10" fill="#A8A29E" text-anchor="middle">情侣</text>
+  <text x="263" y="810" font-size="14" text-anchor="middle" fill="#A8A29E">📈</text>
+  <text x="263" y="828" font-size="10" fill="#A8A29E" text-anchor="middle">趋势</text>
+  <text x="331" y="810" font-size="14" text-anchor="middle" fill="#A8A29E">👤</text>
+  <text x="331" y="828" font-size="10" fill="#A8A29E" text-anchor="middle">我的</text>
+</svg>

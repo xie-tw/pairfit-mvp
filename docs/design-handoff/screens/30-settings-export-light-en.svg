@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#FAFAF9"/>
+  <rect x="0" y="0" width="390" height="56" fill="#FFFFFF" fill-opacity="0.85" stroke="#E7E5E4"/>
+  <text x="24" y="36" font-size="20" fill="#1C1917">←</text>
+  <text x="195" y="36" font-size="16" fill="#1C1917" text-anchor="middle" font-weight="600">Settings</text>
+
+  <text x="24" y="100" font-size="20" fill="#1C1917" font-weight="700">Settings</text>
+  <text x="24" y="124" font-size="13" fill="#57534E">Units, language, data and privacy.</text>
+
+  <!-- Preferences -->
+  <text x="24" y="170" font-size="11" fill="#57534E" font-weight="600">PREFERENCES</text>
+
+  <g transform="translate(24, 184)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">⚖️</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Weight unit</text>
+    <text x="322" y="34" font-size="13" fill="#57534E" text-anchor="end">Kilograms (kg)  ›</text>
+  </g>
+  <g transform="translate(24, 248)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">🌐</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Language</text>
+    <text x="322" y="34" font-size="13" fill="#57534E" text-anchor="end">English  ›</text>
+  </g>
+
+  <!-- Data -->
+  <text x="24" y="338" font-size="11" fill="#57534E" font-weight="600">DATA</text>
+
+  <g transform="translate(24, 352)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">📤</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Export my data</text>
+    <circle cx="296" cy="28" r="12" fill="none" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="296" cy="28" r="8" fill="#3B82F6" opacity="0.3"/>
+    <text x="296" y="33" font-size="11" fill="#3B82F6" text-anchor="middle" font-weight="600">↓</text>
+  </g>
+  <g transform="translate(24, 416)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">🗑️</text>
+    <text x="48" y="34" font-size="14" fill="#EF4444" font-weight="500">Clear all data</text>
+    <text x="322" y="34" font-size="13" fill="#EF4444" text-anchor="end">›</text>
+  </g>
+
+  <!-- Privacy -->
+  <text x="24" y="506" font-size="11" fill="#57534E" font-weight="600">PRIVACY</text>
+
+  <g transform="translate(24, 520)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">🔒</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Data is local-only</text>
+    <text x="322" y="34" font-size="13" fill="#57534E" text-anchor="end">Learn more  ›</text>
+  </g>
+
+  <!-- About -->
+  <text x="24" y="610" font-size="11" fill="#57534E" font-weight="600">ABOUT</text>
+
+  <g transform="translate(24, 624)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">ℹ️</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Version</text>
+    <text x="322" y="34" font-size="13" fill="#57534E" text-anchor="end">v0.1.0 (MVP)</text>
+  </g>
+  <g transform="translate(24, 688)">
+    <rect width="342" height="56" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="20" y="34" font-size="16">📜</text>
+    <text x="48" y="34" font-size="14" fill="#1C1917" font-weight="500">Privacy policy</text>
+    <text x="322" y="34" font-size="13" fill="#57534E" text-anchor="end">›</text>
+  </g>
+</svg>

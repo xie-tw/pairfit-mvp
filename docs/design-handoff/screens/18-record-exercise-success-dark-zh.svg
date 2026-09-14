@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <text x="24" y="36" font-size="20" fill="#FAFAF9">←</text>
+  <text x="195" y="36" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">运动</text>
+
+  <text x="24" y="100" font-size="20" fill="#FAFAF9" font-weight="700">运动记录完成!</text>
+
+  <g transform="translate(24, 132)">
+    <rect width="342" height="160" rx="16" fill="#1C1917" stroke="#292524"/>
+    <circle cx="44" cy="44" r="24" fill="#2DD4BF" fill-opacity="0.15"/>
+    <text x="44" y="52" font-size="28" text-anchor="middle">🏃</text>
+    <text x="84" y="40" font-size="16" fill="#FAFAF9" font-weight="600">跑步</text>
+    <text x="84" y="58" font-size="13" fill="#D6D3D1">30 分钟 · 中等强度</text>
+    <line x1="20" y1="84" x2="322" y2="84" stroke="#292524"/>
+    <text x="20" y="118" font-size="12" fill="#D6D3D1">估算消耗</text>
+    <text x="322" y="120" font-size="22" fill="#EF4444" text-anchor="end" font-weight="700">− 300 千卡</text>
+    <text x="20" y="142" font-size="11" fill="#A8A29E">14:32 · 语音输入</text>
+  </g>
+
+  <!-- Toast at top -->
+  <g transform="translate(64, 320)">
+    <rect width="262" height="44" rx="12" fill="#1C1917" stroke="#10B981"/>
+    <circle cx="22" cy="22" r="10" fill="#10B981"/>
+    <text x="22" y="27" font-size="12" fill="#FFFFFF" text-anchor="middle">✓</text>
+    <text x="44" y="20" font-size="13" fill="#FAFAF9" font-weight="600">运动已记录</text>
+    <text x="44" y="36" font-size="11" fill="#D6D3D1">Coins +5 · Aki 收到通知</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(24, 700)">
+    <rect width="342" height="48" rx="8" fill="#2DD4BF"/>
+    <text x="171" y="30" font-size="16" fill="#0C0A09" text-anchor="middle" font-weight="600">完成,回首页</text>
+  </g>
+</svg>

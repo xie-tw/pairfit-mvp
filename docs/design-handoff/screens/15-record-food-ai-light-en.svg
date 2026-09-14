@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#FAFAF9"/>
+  <rect x="0" y="0" width="390" height="56" fill="#FFFFFF" fill-opacity="0.85" stroke="#E7E5E4"/>
+  <text x="24" y="36" font-size="20" fill="#1C1917">←</text>
+  <text x="195" y="36" font-size="16" fill="#1C1917" text-anchor="middle" font-weight="600">Food</text>
+
+  <text x="24" y="100" font-size="20" fill="#1C1917" font-weight="700">Here's what we think you ate</text>
+
+  <!-- Transcript pill -->
+  <g transform="translate(24, 124)">
+    <rect width="342" height="36" rx="18" fill="#FFE4E6"/>
+    <text x="171" y="22" font-size="13" fill="#1C1917" text-anchor="middle">"I had chicken rice and milk tea"</text>
+  </g>
+
+  <!-- Estimate card -->
+  <g transform="translate(24, 180)">
+    <rect width="342" height="280" rx="16" fill="#FFFFFF" stroke="#E7E5E4"/>
+
+    <!-- Item 1 -->
+    <g transform="translate(0, 16)">
+      <text x="20" y="32" font-size="22">🍗</text>
+      <text x="56" y="28" font-size="14" fill="#1C1917" font-weight="600">Chicken rice</text>
+      <text x="56" y="46" font-size="11" fill="#57534E">30g protein · 70g carbs · 18g fat</text>
+      <text x="322" y="32" font-size="14" fill="#1C1917" text-anchor="end" font-weight="600">550 kcal</text>
+    </g>
+    <line x1="20" y1="76" x2="322" y2="76" stroke="#E7E5E4"/>
+
+    <!-- Item 2 -->
+    <g transform="translate(0, 90)">
+      <text x="20" y="32" font-size="22">🥤</text>
+      <text x="56" y="28" font-size="14" fill="#1C1917" font-weight="600">Milk tea</text>
+      <text x="56" y="46" font-size="11" fill="#57534E">6g protein · 50g carbs · 8g fat</text>
+      <text x="322" y="32" font-size="14" fill="#1C1917" text-anchor="end" font-weight="600">250 kcal</text>
+    </g>
+    <line x1="20" y1="156" x2="322" y2="156" stroke="#E7E5E4"/>
+
+    <!-- Total -->
+    <g transform="translate(0, 168)">
+      <text x="20" y="32" font-size="14" fill="#57534E" font-weight="600">Total</text>
+      <text x="322" y="34" font-size="24" fill="#1C1917" text-anchor="end" font-weight="700">800 kcal</text>
+    </g>
+    <line x1="20" y1="216" x2="322" y2="216" stroke="#E7E5E4"/>
+
+    <!-- AI badge -->
+    <g transform="translate(20, 232)">
+      <text x="0" y="14" font-size="13" fill="#14B8A6">✨</text>
+      <text x="16" y="14" font-size="12" fill="#57534E">AI estimate · 82% confident · <tspan fill="#E11D48" font-weight="500">Edit</tspan></text>
+    </g>
+  </g>
+
+  <!-- Disclaimer -->
+  <text x="195" y="486" font-size="11" fill="#A8A29E" text-anchor="middle">Estimate is ±25%. Tap any item to adjust.</text>
+
+  <!-- CTA -->
+  <g transform="translate(24, 530)">
+    <rect width="342" height="48" rx="8" fill="#14B8A6"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">Save 800 kcal</text>
+  </g>
+  <text x="195" y="600" font-size="13" fill="#57534E" text-anchor="middle">Try again</text>
+</svg>

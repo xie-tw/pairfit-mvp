@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <text x="195" y="36" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">情侣</text>
+
+  <text x="24" y="100" font-size="24" fill="#FAFAF9" font-weight="700">情侣</text>
+  <text x="24" y="124" font-size="14" fill="#D6D3D1">绑定、分享、为彼此加油。</text>
+
+  <g transform="translate(24, 156)">
+    <defs>
+      <radialGradient id="halo20" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FB7185" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#FB7185" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="halo20b" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="280" cy="40" r="100" fill="url(#halo20)"/>
+    <circle cx="80" cy="160" r="100" fill="url(#halo20b)"/>
+
+    <rect width="342" height="200" rx="16" fill="#1C1917" stroke="#292524"/>
+
+    <g transform="translate(40, 32)">
+      <rect width="48" height="48" rx="14" fill="url(#brandGrad20)"/>
+      <text x="24" y="34" font-size="20" text-anchor="middle" fill="#FFFFFF">💕</text>
+      <defs><linearGradient id="brandGrad20" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FB7185"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+    </g>
+
+    <text x="40" y="116" font-size="18" fill="#FAFAF9" font-weight="700">绑定你的伙伴</text>
+    <text x="40" y="138" font-size="13" fill="#D6D3D1">绑定后共享进度、虚拟币和挑战。</text>
+
+    <g transform="translate(40, 168)">
+      <rect width="140" height="32" rx="6" fill="#FB7185"/>
+      <text x="70" y="22" font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="600">生成邀请码</text>
+    </g>
+    <g transform="translate(192, 168)">
+      <rect width="110" height="32" rx="6" fill="transparent" stroke="#444040"/>
+      <text x="55" y="22" font-size="13" fill="#FAFAF9" text-anchor="middle" font-weight="500">了解玩法</text>
+    </g>
+  </g>
+
+  <text x="24" y="396" font-size="11" fill="#D6D3D1" font-weight="600">你能得到什么</text>
+  <g transform="translate(24, 412)">
+    <rect width="167" height="84" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="28" cy="32" r="16" fill="#181615"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🎯</text>
+    <text x="56" y="28" font-size="13" fill="#FAFAF9" font-weight="600">双向目标</text>
+    <text x="56" y="46" font-size="11" fill="#A8A29E">一人减,一人增,</text>
+    <text x="56" y="60" font-size="11" fill="#A8A29E">系统公平计分</text>
+  </g>
+  <g transform="translate(199, 412)">
+    <rect width="167" height="84" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="28" cy="32" r="16" fill="#181615"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🪙</text>
+    <text x="56" y="28" font-size="13" fill="#FAFAF9" font-weight="600">虚拟币奖惩</text>
+    <text x="56" y="46" font-size="11" fill="#A8A29E">确认小目标,</text>
+    <text x="56" y="60" font-size="11" fill="#A8A29E">币进币出都同步</text>
+  </g>
+  <g transform="translate(24, 504)">
+    <rect width="167" height="84" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="28" cy="32" r="16" fill="#181615"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🎤</text>
+    <text x="56" y="28" font-size="13" fill="#FAFAF9" font-weight="600">语音优先</text>
+    <text x="56" y="46" font-size="11" fill="#A8A29E">长按说话,</text>
+    <text x="56" y="60" font-size="11" fill="#A8A29E">AI 自动估算</text>
+  </g>
+  <g transform="translate(199, 504)">
+    <rect width="167" height="84" rx="12" fill="#1C1917" stroke="#292524"/>
+    <circle cx="28" cy="32" r="16" fill="#181615"/>
+    <text x="28" y="38" font-size="18" text-anchor="middle">🔒</text>
+    <text x="56" y="28" font-size="13" fill="#FAFAF9" font-weight="600">本地优先</text>
+    <text x="56" y="46" font-size="11" fill="#A8A29E">数据存本机,</text>
+    <text x="56" y="60" font-size="11" fill="#A8A29E">隐私有保障</text>
+  </g>
+
+  <rect x="0" y="780" width="390" height="64" fill="#1C1917" stroke="#292524"/>
+  <text x="195" y="810" font-size="14" text-anchor="middle" fill="#FB7185">💕</text>
+  <text x="195" y="828" font-size="10" fill="#FB7185" text-anchor="middle" font-weight="500">情侣</text>
+</svg>

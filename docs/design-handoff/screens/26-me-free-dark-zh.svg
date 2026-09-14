@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <text x="195" y="36" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">我的</text>
+
+  <text x="24" y="100" font-size="24" fill="#FAFAF9" font-weight="700">我的</text>
+  <text x="24" y="124" font-size="14" fill="#D6D3D1">资料、设置与订阅。</text>
+
+  <!-- Account card -->
+  <g transform="translate(24, 156)">
+    <rect width="342" height="80" rx="12" fill="#1C1917" stroke="#292524"/>
+    <defs>
+      <linearGradient id="av26" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#FB7185"/>
+        <stop offset="100%" stop-color="#2DD4BF"/>
+      </linearGradient>
+    </defs>
+    <circle cx="40" cy="40" r="24" fill="url(#av26)"/>
+    <text x="40" y="48" font-size="22" text-anchor="middle">🦊</text>
+    <text x="76" y="36" font-size="14" fill="#FAFAF9" font-weight="600">Mei</text>
+    <text x="76" y="56" font-size="12" fill="#A8A29E">mei@example.com</text>
+    <g transform="translate(264, 28)">
+      <rect width="48" height="22" rx="11" fill="#292524"/>
+      <text x="24" y="15" font-size="11" fill="#D6D3D1" text-anchor="middle">免费版</text>
+    </g>
+    <text x="322" y="48" font-size="14" fill="#A8A29E" text-anchor="end">›</text>
+  </g>
+
+  <!-- Theme -->
+  <g transform="translate(24, 256)">
+    <rect width="342" height="76" rx="12" fill="#1C1917" stroke="#292524"/>
+    <text x="20" y="26" font-size="11" fill="#D6D3D1" font-weight="600">主题</text>
+    <g transform="translate(20, 36)">
+      <rect width="302" height="32" rx="8" fill="#181615"/>
+      <rect x="206" y="2" width="92" height="28" rx="6" fill="#1C1917" stroke="#292524"/>
+      <text x="63" y="20" font-size="13" fill="#A8A29E" text-anchor="middle">浅色</text>
+      <text x="151" y="20" font-size="13" fill="#FAFAF9" text-anchor="middle" font-weight="600">深色</text>
+      <text x="251" y="20" font-size="13" fill="#A8A29E" text-anchor="middle">跟随</text>
+    </g>
+  </g>
+
+  <!-- Language -->
+  <g transform="translate(24, 352)">
+    <rect width="342" height="76" rx="12" fill="#1C1917" stroke="#292524"/>
+    <text x="20" y="26" font-size="11" fill="#D6D3D1" font-weight="600">语言</text>
+    <g transform="translate(20, 36)">
+      <rect width="302" height="32" rx="8" fill="#181615"/>
+      <rect x="2" y="2" width="148" height="28" rx="6" fill="#1C1917" stroke="#292524"/>
+      <text x="76" y="20" font-size="13" fill="#FAFAF9" text-anchor="middle" font-weight="600">English</text>
+      <text x="227" y="20" font-size="13" fill="#A8A29E" text-anchor="middle">中文</text>
+    </g>
+  </g>
+
+  <!-- Settings list -->
+  <g transform="translate(24, 448)">
+    <rect width="342" height="240" rx="12" fill="#1C1917" stroke="#292524"/>
+    <line x1="0" y1="60" x2="342" y2="60" stroke="#292524"/>
+    <line x1="0" y1="120" x2="342" y2="120" stroke="#292524"/>
+    <line x1="0" y1="180" x2="342" y2="180" stroke="#292524"/>
+
+    <text x="20" y="38" font-size="20" fill="#FB7185">👑</text>
+    <text x="52" y="38" font-size="14" fill="#FAFAF9" font-weight="500">订阅</text>
+    <g transform="translate(282, 22)">
+      <rect width="40" height="20" rx="6" fill="url(#proBadge26)"/>
+      <text x="20" y="14" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="600">Pro</text>
+      <defs><linearGradient id="proBadge26" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FB7185"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+    </g>
+    <text x="322" y="38" font-size="14" fill="#A8A29E" text-anchor="end">›</text>
+
+    <text x="20" y="98" font-size="20" fill="#D6D3D1">⚙️</text>
+    <text x="52" y="98" font-size="14" fill="#FAFAF9" font-weight="500">设置</text>
+    <text x="322" y="98" font-size="14" fill="#A8A29E" text-anchor="end">›</text>
+
+    <text x="20" y="158" font-size="20" fill="#D6D3D1">✨</text>
+    <text x="52" y="158" font-size="14" fill="#FAFAF9" font-weight="500">更新内容</text>
+    <text x="322" y="158" font-size="14" fill="#A8A29E" text-anchor="end">›</text>
+
+    <text x="20" y="218" font-size="20" fill="#D6D3D1">🌍</text>
+    <text x="52" y="218" font-size="14" fill="#FAFAF9" font-weight="500">帮助与反馈</text>
+    <text x="322" y="218" font-size="14" fill="#A8A29E" text-anchor="end">›</text>
+  </g>
+</svg>

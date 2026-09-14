@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <text x="24" y="36" font-size="20" fill="#FAFAF9">←</text>
+  <text x="195" y="36" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">体重</text>
+
+  <!-- Celebration overlay -->
+  <rect x="0" y="0" width="390" height="844" fill="#000000" fill-opacity="0.5"/>
+  <g transform="translate(195, 380)">
+    <circle cx="0" cy="0" r="80" fill="#FB7185" fill-opacity="0.2"/>
+    <circle cx="0" cy="0" r="56" fill="#FB7185"/>
+    <text x="0" y="20" font-size="56" text-anchor="middle">🎉</text>
+  </g>
+  <g transform="translate(56, 460)">
+    <rect width="278" height="100" rx="16" fill="#1C1917" stroke="#292524"/>
+    <text x="139" y="36" font-size="20" fill="#FAFAF9" text-anchor="middle" font-weight="700">第一条记录完成!</text>
+    <text x="139" y="62" font-size="13" fill="#D6D3D1" text-anchor="middle">你已超越 80% 的首次用户</text>
+    <text x="139" y="84" font-size="12" fill="#FB7185" text-anchor="middle" font-weight="500">继续保持 →</text>
+  </g>
+
+  <!-- Underlying page (dimmed) -->
+  <text x="24" y="100" font-size="20" fill="#FAFAF9" font-weight="700" opacity="0.5">记录今日体重</text>
+  <g transform="translate(24, 152)" opacity="0.3">
+    <rect width="342" height="180" rx="16" fill="#1C1917" stroke="#292524"/>
+    <text x="171" y="100" font-size="56" fill="#FAFAF9" text-anchor="middle" font-weight="700">65.5<tspan font-size="20" fill="#A8A29E"> kg</tspan></text>
+  </g>
+  <g transform="translate(24, 600)" opacity="0.5">
+    <rect width="342" height="48" rx="8" fill="#FB7185"/>
+    <text x="171" y="30" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="600">保存 65.5 公斤</text>
+  </g>
+</svg>

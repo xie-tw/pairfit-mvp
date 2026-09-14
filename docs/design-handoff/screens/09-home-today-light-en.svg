@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#FAFAF9"/>
+  <!-- TopBar -->
+  <rect x="0" y="0" width="390" height="56" fill="#FFFFFF" fill-opacity="0.85" stroke="#E7E5E4"/>
+  <rect x="16" y="16" width="24" height="24" rx="8" fill="url(#brandGrad9)"/>
+  <text x="28" y="33" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="700">PF</text>
+  <text x="48" y="26" font-size="14" fill="#1C1917" font-weight="600">PairFit</text>
+  <text x="48" y="40" font-size="10" fill="#A8A29E">Move together · 一起动</text>
+  <defs><linearGradient id="brandGrad9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B6B"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient></defs>
+
+  <!-- PageHeader -->
+  <text x="24" y="100" font-size="24" fill="#1C1917" font-weight="700">Hi, partner</text>
+  <text x="24" y="124" font-size="14" fill="#57534E">Today's plan for both of you.</text>
+  <g transform="translate(280, 90)">
+    <rect width="86" height="28" rx="14" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="14" y="20" font-size="12" fill="#FF6B6B">🔥</text>
+    <text x="34" y="20" font-size="12" fill="#1C1917" font-weight="500">Streak 12</text>
+  </g>
+
+  <!-- Progress cards -->
+  <g transform="translate(24, 152)">
+    <rect width="167" height="100" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="14" y="22" font-size="11" fill="#57534E" font-weight="600">YOUR PROGRESS</text>
+    <text x="14" y="52" font-size="24" fill="#1C1917" font-weight="700">0.5<tspan font-size="14" fill="#A8A29E"> / 1.5 kg</tspan></text>
+    <rect x="14" y="64" width="139" height="6" rx="3" fill="#F5F5F4"/>
+    <rect x="14" y="64" width="46" height="6" rx="3" fill="#FF6B6B"/>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">33% — on track</text>
+    <circle cx="148" cy="22" r="14" fill="#FFE4E6"/>
+    <text x="148" y="27" font-size="14" text-anchor="middle">📉</text>
+  </g>
+  <g transform="translate(199, 152)">
+    <rect width="167" height="100" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <text x="14" y="22" font-size="11" fill="#57534E" font-weight="600">PARTNER'S PROGRESS</text>
+    <text x="14" y="52" font-size="24" fill="#1C1917" font-weight="700">2.1<tspan font-size="14" fill="#A8A29E"> / 3.0 km</tspan></text>
+    <rect x="14" y="64" width="139" height="6" rx="3" fill="#F5F5F4"/>
+    <rect x="14" y="64" width="98" height="6" rx="3" fill="#14B8A6"/>
+    <text x="14" y="88" font-size="11" fill="#A8A29E">70% — 2 day streak</text>
+    <circle cx="148" cy="22" r="14" fill="#CCFBF1"/>
+    <text x="148" y="27" font-size="14" text-anchor="middle">📈</text>
+  </g>
+
+  <!-- Today section -->
+  <text x="24" y="290" font-size="11" fill="#57534E" font-weight="600">TODAY'S CHECK-IN</text>
+  <text x="366" y="290" font-size="11" fill="#E11D48" text-anchor="end" font-weight="500">View all →</text>
+
+  <!-- 3 module cards -->
+  <g transform="translate(24, 308)">
+    <rect width="167" height="96" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="32" cy="32" r="16" fill="#FFE4E6"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">📊</text>
+    <text x="58" y="28" font-size="14" fill="#1C1917" font-weight="600">Weight</text>
+    <text x="58" y="46" font-size="13" fill="#57534E">65.5 kg</text>
+    <text x="14" y="80" font-size="12" fill="#E11D48" font-weight="500">Update →</text>
+  </g>
+  <g transform="translate(199, 308)">
+    <rect width="167" height="96" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="32" cy="32" r="16" fill="#FFE4E6"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">🍱</text>
+    <text x="58" y="28" font-size="14" fill="#1C1917" font-weight="600">Food</text>
+    <text x="58" y="46" font-size="13" fill="#57534E">820 kcal</text>
+    <text x="14" y="80" font-size="12" fill="#E11D48" font-weight="500">Update →</text>
+  </g>
+  <g transform="translate(24, 412)">
+    <rect width="167" height="96" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="32" cy="32" r="16" fill="#CCFBF1"/>
+    <text x="32" y="38" font-size="18" text-anchor="middle">🏃</text>
+    <text x="58" y="28" font-size="14" fill="#1C1917" font-weight="600">Workout</text>
+    <text x="58" y="46" font-size="13" fill="#57534E">30 min · 300 kcal</text>
+    <text x="14" y="80" font-size="12" fill="#E11D48" font-weight="500">Update →</text>
+  </g>
+
+  <!-- Couple ribbon -->
+  <g transform="translate(24, 524)">
+    <rect width="342" height="64" rx="12" fill="#FFFFFF" stroke="#E7E5E4"/>
+    <circle cx="32" cy="32" r="20" fill="#FFE4E6"/>
+    <text x="32" y="38" font-size="20" text-anchor="middle">🦊</text>
+    <text x="60" y="28" font-size="13" fill="#1C1917" font-weight="600">Mei + Aki</text>
+    <text x="60" y="48" font-size="12" fill="#57534E">🪙 211 · 42 days together</text>
+    <rect x="240" y="18" width="86" height="28" rx="14" fill="#FF6B6B"/>
+    <text x="283" y="36" font-size="12" fill="#FFFFFF" text-anchor="middle" font-weight="600">Cheer →</text>
+  </g>
+
+  <!-- Floating voice button -->
+  <circle cx="350" cy="700" r="32" fill="#FF6B6B"/>
+  <text x="350" y="710" font-size="22" text-anchor="middle">🎤</text>
+
+  <!-- TabBar -->
+  <rect x="0" y="780" width="390" height="64" fill="#FFFFFF" stroke="#E7E5E4"/>
+  <rect x="20" y="788" width="58" height="44" rx="12" fill="#FFE4E6"/>
+  <text x="49" y="810" font-size="14" text-anchor="middle">🏠</text>
+  <text x="49" y="828" font-size="10" fill="#E11D48" text-anchor="middle" font-weight="500">Home</text>
+  <text x="127" y="810" font-size="14" text-anchor="middle" fill="#57534E">📝</text>
+  <text x="127" y="828" font-size="10" fill="#57534E" text-anchor="middle">Records</text>
+  <text x="195" y="810" font-size="14" text-anchor="middle" fill="#57534E">💕</text>
+  <text x="195" y="828" font-size="10" fill="#57534E" text-anchor="middle">Couple</text>
+  <text x="263" y="810" font-size="14" text-anchor="middle" fill="#57534E">📈</text>
+  <text x="263" y="828" font-size="10" fill="#57534E" text-anchor="middle">Trends</text>
+  <text x="331" y="810" font-size="14" text-anchor="middle" fill="#57534E">👤</text>
+  <text x="331" y="828" font-size="10" fill="#57534E" text-anchor="middle">Me</text>
+
+  <text x="195" y="824" font-size="9" fill="#A8A29E" text-anchor="middle" opacity="0">.</text>
+</svg>

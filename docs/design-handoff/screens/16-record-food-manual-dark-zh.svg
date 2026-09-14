@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" font-family="Inter, system-ui, sans-serif">
+  <rect width="390" height="844" fill="#0C0A09"/>
+  <rect x="0" y="0" width="390" height="56" fill="#1C1917" fill-opacity="0.85" stroke="#292524"/>
+  <text x="24" y="36" font-size="20" fill="#FAFAF9">←</text>
+  <text x="195" y="36" font-size="16" fill="#FAFAF9" text-anchor="middle" font-weight="600">饮食</text>
+
+  <!-- Warning banner -->
+  <g transform="translate(24, 80)">
+    <rect width="342" height="56" rx="12" fill="#FEF3C7"/>
+    <text x="20" y="26" font-size="13" fill="#92400E" font-weight="600">AI 没赶上</text>
+    <text x="20" y="46" font-size="12" fill="#92400E">你可以手动填一下,数字就是最终记录。</text>
+  </g>
+
+  <text x="24" y="170" font-size="20" fill="#FAFAF9" font-weight="700">手动输入</text>
+
+  <g transform="translate(24, 200)">
+    <text x="0" y="14" font-size="13" fill="#FAFAF9" font-weight="500">食物名称</text>
+    <rect x="0" y="22" width="342" height="40" rx="8" fill="#1C1917" stroke="#292524"/>
+    <text x="14" y="46" font-size="14" fill="#FAFAF9">鸡腿饭</text>
+
+    <text x="0" y="86" font-size="13" fill="#FAFAF9" font-weight="500">卡路里 (kcal)</text>
+    <rect x="0" y="94" width="342" height="40" rx="8" fill="#1C1917" stroke="#FB7185" stroke-width="2"/>
+    <text x="14" y="118" font-size="14" fill="#FAFAF9">550</text>
+
+    <text x="0" y="170" font-size="13" fill="#FB7185" font-weight="500">+ 再加一项</text>
+  </g>
+
+  <g transform="translate(24, 700)">
+    <rect width="342" height="48" rx="8" fill="#2DD4BF"/>
+    <text x="171" y="30" font-size="16" fill="#0C0A09" text-anchor="middle" font-weight="600">保存 550 千卡</text>
+  </g>
+</svg>
