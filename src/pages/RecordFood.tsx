@@ -96,7 +96,7 @@ export function RecordFoodPage() {
   const startEstimate = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) {
-      toast({ variant: 'error', message: t('record.food.emptyInput') });
+      toast({ variant: 'error', message: t('record.emptyInput') });
       return;
     }
     setTranscript(trimmed);
@@ -120,7 +120,7 @@ export function RecordFoodPage() {
       setPreviewConfidence(fallback.confidence);
       setAiSource(fallback.source);
       const messageKey =
-        error.code === 'timeout' ? 'record.food.errors.aiTimeout' : 'record.food.errors.aiGeneric';
+        error.code === 'timeout' ? 'record.errors.aiTimeout' : 'record.errors.aiGeneric';
       toast({ variant: 'info', message: t(messageKey) });
     } else {
       setPreviewItems(result.data.items);
@@ -183,7 +183,7 @@ export function RecordFoodPage() {
       return;
     }
     if (previewItems.length === 0) {
-      toast({ variant: 'error', message: t('record.food.emptyPreview') });
+      toast({ variant: 'error', message: t('record.emptyPreview') });
       return;
     }
     addRecord({
@@ -197,13 +197,13 @@ export function RecordFoodPage() {
     });
     setCelebrating(true);
     window.setTimeout(() => setCelebrating(false), 1400);
-    toast({ variant: 'success', message: t('record.food.savedToast', { value: Math.round(previewTotal) }) });
+    toast({ variant: 'success', message: t('record.savedToast', { value: Math.round(previewTotal) }) });
     reset();
   };
 
   const voiceExampleKey = i18n.language.startsWith('zh')
-    ? 'record.food.voiceExampleZh'
-    : 'record.food.voiceExampleEn';
+    ? 'record.voiceExampleZh'
+    : 'record.voiceExampleEn';
 
   return (
     <div className="animate-fade-in">
@@ -335,20 +335,20 @@ function InputStage({
 
       <div className="w-full">
         <p className="text-center text-sm font-semibold text-[rgb(var(--fg-primary))]">
-          {t('record.food.inputPrompt')}
+          {t('record.inputPrompt')}
         </p>
         <p className="mt-1 text-center text-xs text-[rgb(var(--fg-secondary))]">
-          {t('record.food.inputSubPrompt')}
+          {t('record.inputSubPrompt')}
         </p>
       </div>
 
       {isManual ? (
         <form onSubmit={onManualSubmit} className="w-full">
           <Input
-            label={t('record.food.manualLabel')}
+            label={t('record.manualLabel')}
             value={manualText}
             onChange={(e) => setManualText(e.target.value)}
-            placeholder={t('record.food.manualPlaceholder')}
+            placeholder={t('record.manualPlaceholder')}
             leadingIcon={<Keyboard className="size-4" aria-hidden />}
           />
           <Button
@@ -360,7 +360,7 @@ function InputStage({
             disabled={!manualText.trim()}
             loading={false}
           >
-            {t('record.food.estimateAction')}
+            {t('record.estimateAction')}
           </Button>
           <button
             type="button"
@@ -368,7 +368,7 @@ function InputStage({
             className="mt-2 inline-flex w-full items-center justify-center gap-1 text-xs text-[rgb(var(--fg-secondary))] hover:text-brand-600"
           >
             <Mic className="size-3" aria-hidden />
-            {t('record.food.switchToVoice')}
+            {t('record.switchToVoice')}
           </button>
         </form>
       ) : (
@@ -389,7 +389,7 @@ function InputStage({
             className="mt-2 inline-flex items-center gap-1 text-xs text-[rgb(var(--fg-secondary))] hover:text-brand-600"
           >
             <Keyboard className="size-3" aria-hidden />
-            {t('record.food.switchToManual')}
+            {t('record.switchToManual')}
           </button>
         </div>
       )}
@@ -403,13 +403,13 @@ function EstimatingState({ transcript }: { transcript: string }) {
     <div className="flex flex-col items-center gap-3 py-2">
       <Loader2 className="size-10 animate-spin text-brand-500" aria-hidden />
       <p className="text-sm font-semibold text-[rgb(var(--fg-primary))]">
-        {t('record.food.estimating')}
+        {t('record.estimating')}
       </p>
       <p className="max-w-[20rem] text-center text-xs text-[rgb(var(--fg-secondary))]">
         {transcript ? `“${transcript}”` : ''}
       </p>
       <p className="text-[10px] uppercase tracking-wide text-[rgb(var(--fg-subtle))]">
-        {t('record.food.estimatingHint')}
+        {t('record.estimatingHint')}
       </p>
     </div>
   );
@@ -458,12 +458,12 @@ function PreviewState({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <p className="text-sm font-semibold text-[rgb(var(--fg-primary))]">
-          {t('record.food.previewTitle')}
+          {t('record.previewTitle')}
         </p>
         {source ? (
           <span className="inline-flex items-center gap-1 rounded-full bg-[rgb(var(--bg-sunken))] px-2 py-0.5 text-[10px] font-medium text-[rgb(var(--fg-secondary))]">
             <Sparkles className="size-3" aria-hidden />
-            {t(source === 'openai' ? 'record.food.sourceOpenai' : 'record.food.sourceHeuristic')}
+            {t(source === 'openai' ? 'record.sourceOpenai' : 'record.sourceHeuristic')}
           </span>
         ) : null}
       </div>
@@ -482,7 +482,7 @@ function PreviewState({
           onClick={onSave}
           leadingIcon={<Sparkles className="size-4" aria-hidden />}
         >
-          {t('record.food.saveCta', { value: Math.round(totalCalories) })}
+          {t('record.saveCta', { value: Math.round(totalCalories) })}
         </Button>
         <Button
           type="button"
@@ -491,7 +491,7 @@ function PreviewState({
           onClick={onTryAgain}
           leadingIcon={<RefreshCw className="size-4" aria-hidden />}
         >
-          {t('record.food.tryAgain')}
+          {t('record.tryAgain')}
         </Button>
       </div>
     </div>
@@ -509,13 +509,13 @@ function EmptyResultState({ transcript, onManual }: { transcript: string; onManu
         <AlertTriangle className="size-6" />
       </div>
       <p className="text-sm font-semibold text-[rgb(var(--fg-primary))]">
-        {t('record.food.emptyResultTitle')}
+        {t('record.emptyResultTitle')}
       </p>
       <p className="max-w-[24rem] text-center text-xs text-[rgb(var(--fg-secondary))]">
-        {t('record.food.emptyResultBody', { text: transcript || '—' })}
+        {t('record.emptyResultBody', { text: transcript || '—' })}
       </p>
       <Button type="button" variant="primary" size="md" onClick={onManual} leadingIcon={<Keyboard className="size-4" aria-hidden />}>
-        {t('record.food.switchToManual')}
+        {t('record.switchToManual')}
       </Button>
     </div>
   );
@@ -538,7 +538,7 @@ function TodaySummary({ records, goalKcal }: TodaySummaryProps) {
   return (
     <Card raised>
       <div className="flex items-baseline justify-between">
-        <p className="pf-section-title">{t('record.food.todayTitle')}</p>
+        <p className="pf-section-title">{t('record.todayTitle')}</p>
         <p className="text-[11px] text-[rgb(var(--fg-subtle))]">{t('common.today')}</p>
       </div>
       <p className="mt-2 text-3xl font-bold tracking-tight text-[rgb(var(--fg-primary))]">
@@ -547,8 +547,8 @@ function TodaySummary({ records, goalKcal }: TodaySummaryProps) {
       </p>
       <p className="mt-1 text-xs text-[rgb(var(--fg-secondary))]">
         {goalKcal
-          ? t('record.food.todayOfTarget', { target: Math.round(goalKcal) })
-          : t('record.food.todayNoTarget')}
+          ? t('record.todayOfTarget', { target: Math.round(goalKcal) })
+          : t('record.todayNoTarget')}
       </p>
       {goalKcal ? (
         <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[rgb(var(--bg-sunken))]">
@@ -570,11 +570,11 @@ function TodayHistory({ records }: { records: FoodRecord[] }) {
   if (records.length === 0) {
     return (
       <section className="mt-6">
-        <h2 className="pf-section-title mb-3">{t('record.food.historyTitle')}</h2>
+        <h2 className="pf-section-title mb-3">{t('record.historyTitle')}</h2>
         <EmptyState
           emoji="🍱"
-          title={t('record.food.historyEmpty')}
-          description={t('record.food.historyEmptyHint')}
+          title={t('record.historyEmpty')}
+          description={t('record.historyEmptyHint')}
         />
       </section>
     );
@@ -582,7 +582,7 @@ function TodayHistory({ records }: { records: FoodRecord[] }) {
 
   return (
     <section className="mt-6 space-y-4">
-      <h2 className="pf-section-title">{t('record.food.historyTitle')}</h2>
+      <h2 className="pf-section-title">{t('record.historyTitle')}</h2>
       {slotOrder.map((slot) => {
         const list = groups[slot];
         if (list.length === 0) return null;
@@ -591,7 +591,7 @@ function TodayHistory({ records }: { records: FoodRecord[] }) {
           <div key={slot}>
             <div className="mb-2 flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-wide text-[rgb(var(--fg-secondary))]">
-                {t(`record.food.meal_${slot}`)}
+                {t(`record.meal_${slot}`)}
               </p>
               <p className="text-xs font-medium text-[rgb(var(--fg-subtle))]">
                 {Math.round(slotTotal)} kcal
@@ -608,7 +608,7 @@ function TodayHistory({ records }: { records: FoodRecord[] }) {
         );
       })}
       <p className="text-center text-[11px] text-[rgb(var(--fg-subtle))]">
-        {t('record.food.servingHint', { locale: i18n.language.startsWith('zh') ? 'zh' : 'en' })}
+        {t('record.servingHint', { locale: i18n.language.startsWith('zh') ? 'zh' : 'en' })}
       </p>
     </section>
   );

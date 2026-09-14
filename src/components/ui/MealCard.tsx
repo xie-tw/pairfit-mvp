@@ -101,10 +101,10 @@ export function MealCard({
             type="button"
             onClick={onEditEstimate}
             className="pf-press inline-flex items-center gap-1 rounded-full bg-[rgb(var(--bg-sunken))] px-2 py-1 text-[10px] font-medium text-[rgb(var(--fg-secondary))] hover:bg-[rgb(var(--border-default))]"
-            aria-label={t('record.food.editEstimate')}
+            aria-label={t('record.editEstimate')}
           >
             <Pencil className="size-3" aria-hidden />
-            {t('record.food.editEstimate')}
+            {t('record.editEstimate')}
           </button>
         ) : null}
       </header>
@@ -123,7 +123,7 @@ export function MealCard({
       <div className="mt-3 space-y-3 border-t border-[rgb(var(--border-default))] pt-3">
         <div className="flex items-baseline justify-between">
           <span className="text-xs font-medium uppercase tracking-wide text-[rgb(var(--fg-secondary))]">
-            {t('record.food.totalLabel')}
+            {t('record.totalLabel')}
           </span>
           <span className="text-xl font-bold tabular-nums text-[rgb(var(--fg-primary))]">
             {Math.round(record.totalCalories)}
@@ -150,8 +150,8 @@ export function MealCard({
             )}
             aria-label={
               lowConfidence
-                ? t('record.food.confidenceA11yLow', { pct: Math.round(record.aiConfidence * 100) })
-                : t('record.food.confidenceA11y', { pct: Math.round(record.aiConfidence * 100) })
+                ? t('record.confidenceA11yLow', { pct: Math.round(record.aiConfidence * 100) })
+                : t('record.confidenceA11y', { pct: Math.round(record.aiConfidence * 100) })
             }
           >
             {lowConfidence ? (
@@ -159,11 +159,11 @@ export function MealCard({
             ) : (
               <Sparkles className="size-3" aria-hidden />
             )}
-            {t('record.food.aiEstimate')} · {Math.round(record.aiConfidence * 100)}%
+            {t('record.aiEstimate')} · {Math.round(record.aiConfidence * 100)}%
           </span>
           {lowConfidence ? (
             <span className="text-[10px] text-[rgb(var(--fg-secondary))]">
-              {t('record.food.lowConfidenceHint')}
+              {t('record.lowConfidenceHint')}
             </span>
           ) : null}
         </div>
@@ -192,7 +192,7 @@ function ItemRow({ item, editable, onEdit }: ItemRowProps) {
         )}
         aria-label={
           editable
-            ? t('record.food.editItemA11y', { name: item.name })
+            ? t('record.editItemA11y', { name: item.name })
             : item.name
         }
       >

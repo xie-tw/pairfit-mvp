@@ -112,7 +112,7 @@ export function LoginPage() {
               to="/forgot-password"
               className="text-xs font-medium text-brand-600 hover:underline dark:text-brand-300"
             >
-              {t('auth.forgot')}
+              {t('auth.forgotLink')}
             </Link>
           }
         />

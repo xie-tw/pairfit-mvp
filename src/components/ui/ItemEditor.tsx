@@ -41,7 +41,7 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
   const add = () => {
     setDraft((prev) => [
       ...prev,
-      { name: t('record.food.newItemName', { n: prev.length + 1 }), calories: 0, p: 0, c: 0, f: 0 },
+      { name: t('record.newItemName', { n: prev.length + 1 }), calories: 0, p: 0, c: 0, f: 0 },
     ]);
   };
 
@@ -49,7 +49,7 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
     const cleaned = draft
       .map((item, i) => ({
         ...item,
-        name: item.name.trim() || t('record.food.newItemName', { n: i + 1 }),
+        name: item.name.trim() || t('record.newItemName', { n: i + 1 }),
         calories: clampNonNeg(Number.parseFloat(String(item.calories))),
         p: clampNonNeg(Number.parseFloat(String(item.p))),
         c: clampNonNeg(Number.parseFloat(String(item.c))),
@@ -68,20 +68,20 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
     <Modal
       open
       onClose={onClose}
-      title={t('record.food.editorTitle')}
+      title={t('record.editorTitle')}
       footer={
         <>
           <Button variant="ghost" onClick={onClose}>
             {t('common.cancel')}
           </Button>
           <Button variant="primary" onClick={save} disabled={draft.length === 0}>
-            {t('record.food.editorSave', { value: Math.round(totalCalories) })}
+            {t('record.editorSave', { value: Math.round(totalCalories) })}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
-        <p className="text-xs text-[rgb(var(--fg-secondary))]">{t('record.food.editorSubtitle')}</p>
+        <p className="text-xs text-[rgb(var(--fg-secondary))]">{t('record.editorSubtitle')}</p>
 
         <ul className="space-y-3">
           {draft.map((item, idx) => (
@@ -91,16 +91,16 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
             >
               <div className="mb-2 flex items-start gap-2">
                 <Input
-                  label={t('record.food.foodName')}
+                  label={t('record.foodName')}
                   value={item.name}
                   onChange={(e) => update(idx, { name: e.target.value })}
-                  placeholder={t('record.food.foodNamePlaceholder')}
+                  placeholder={t('record.foodNamePlaceholder')}
                   className="flex-1"
                 />
                 <button
                   type="button"
                   onClick={() => remove(idx)}
-                  aria-label={t('record.food.removeItem')}
+                  aria-label={t('record.removeItem')}
                   className="pf-press mt-7 inline-flex size-9 flex-shrink-0 items-center justify-center rounded-md border border-[rgb(var(--border-default))] text-[rgb(var(--fg-secondary))] hover:bg-danger-soft hover:text-danger"
                 >
                   <Trash2 className="size-4" aria-hidden />
@@ -108,7 +108,7 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
               </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 <Input
-                  label={t('record.food.kcal')}
+                  label={t('record.kcal')}
                   type="number"
                   inputMode="decimal"
                   step="1"
@@ -149,7 +149,7 @@ export function ItemEditor({ items, onChange, onClose }: ItemEditorProps) {
         </ul>
 
         <Button type="button" variant="outline" onClick={add} block leadingIcon={<Plus className="size-4" aria-hidden />}>
-          {t('record.food.addItem')}
+          {t('record.addItem')}
         </Button>
       </div>
     </Modal>

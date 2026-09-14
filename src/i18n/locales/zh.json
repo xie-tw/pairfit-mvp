@@ -524,7 +524,8 @@
       "invalidCredentials": "邮箱或密码不正确。"
     },
     "footerDisclaimer": "继续操作即表示同意 PairFit 的本地优先存储方案,数据在云同步上线前都只保留在你的设备上。",
-    "skipToHome": "直接进入首页(预览)"
+    "skipToHome": "直接进入首页(预览)",
+    "forgotLink": "忘记密码?"
   },
   "profile": {
     "title": "个人资料",
@@ -636,5 +637,10 @@
   "notFound": {
     "title": "页面没找到",
     "body": "你访问的路由还没实现。"
+  },
+  "goal": {
+    "directionLose": "减重",
+    "directionGain": "增重",
+    "notSet": "尚未设定目标"
   }
 }

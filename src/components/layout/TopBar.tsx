@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Globe, LogOut, Moon, Monitor, Sun, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthStore, useCurrentUser, signOut } from '../../store/auth';
+import { useCurrentUser, signOut } from '../../store/auth';
 import { useLocaleStore, type LocaleCode } from '../../store/locale';
 import { useThemeStore } from '../../store/theme';
 import { cn } from '../../lib/utils';
@@ -15,6 +15,14 @@ import { cn } from '../../lib/utils';
  *     dropdown with "Profile" + "Sign out" when signed in; when signed
  *     out, an inline "Sign in" pill is shown instead.
  *   - The brand locale/theme toggles stay where they were.
+ *
+ * BUG-FIX-3: auth state is sourced exclusively from `useCurrentUser()`,
+ * which reads the persisted `useAuthPointer`. The previous dual-check
+ * (`useAuthStore.currentUserId && useCurrentUser()`) silently fell back to
+ * the "Sign in" pill after a page reload because `useAuthStore.currentUserId`
+ * is intentionally not persisted (its `partialize` only writes `users`).
+ * Relying on `useCurrentUser()` alone keeps the menu in sync across the
+ * full login → reload → logout cycle.
  */
 export function TopBar() {
   const { t } = useTranslation();
@@ -23,7 +31,6 @@ export function TopBar() {
   const locale = useLocaleStore((s) => s.locale);
   const setLocale = useLocaleStore((s) => s.setLocale);
   const user = useCurrentUser();
-  const currentUserId = useAuthStore((s) => s.currentUserId);
 
   const themeIcon =
     mode === 'dark' ? <Moon className="size-4" aria-hidden /> :
@@ -68,7 +75,7 @@ export function TopBar() {
           icon={themeIcon}
         />
         <div className="ml-1 h-6 w-px bg-[rgb(var(--border-default))]" aria-hidden />
-        {currentUserId && user ? <UserMenu user={user} /> : <SignInPill />}
+        {user ? <UserMenu user={user} /> : <SignInPill />}
       </div>
     </header>
   );

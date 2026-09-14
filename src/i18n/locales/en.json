@@ -524,7 +524,8 @@
       "invalidCredentials": "Email or password is incorrect."
     },
     "footerDisclaimer": "By continuing you agree to PairFit's local-first storage. Your data stays on this device until cloud sync lands.",
-    "skipToHome": "Skip to home (preview)"
+    "skipToHome": "Skip to home (preview)",
+    "forgotLink": "Forgot?"
   },
   "profile": {
     "title": "Profile",
@@ -636,5 +637,10 @@
   "notFound": {
     "title": "Page not found",
     "body": "The route you tried doesn't exist yet."
+  },
+  "goal": {
+    "directionLose": "Lose weight",
+    "directionGain": "Gain weight",
+    "notSet": "No goal set yet"
   }
 }
