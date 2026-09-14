@@ -163,12 +163,21 @@ const config: Config = {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.6' },
         },
+        // Cheer / PF-6 — emoji floater travels from bottom-center up
+        // past the top edge with a slight scale + fade.
+        'float-up': {
+          '0%': { opacity: '0', transform: 'translate(-50%, 0) scale(0.8)' },
+          '15%': { opacity: '1', transform: 'translate(-50%, -8px) scale(1)' },
+          '85%': { opacity: '1', transform: 'translate(-50%, -160px) scale(1)' },
+          '100%': { opacity: '0', transform: 'translate(-50%, -200px) scale(0.95)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 220ms cubic-bezier(0.25, 1, 0.5, 1)',
         'slide-up': 'slide-up 280ms cubic-bezier(0.25, 1, 0.5, 1)',
         shimmer: 'shimmer 2s linear infinite',
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+        'float-up': 'float-up 1.8s cubic-bezier(0.33, 1, 0.68, 1) forwards',
       },
     },
   },
