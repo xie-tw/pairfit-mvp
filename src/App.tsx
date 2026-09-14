@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
 import { HomePage } from './pages/Home';
 import { RecordsPage } from './pages/Records';
+import { RecordWeightPage } from './pages/RecordWeight';
 import { CouplePage } from './pages/Couple';
 import { TrendsPage } from './pages/Trends';
 import { MePage } from './pages/Me';
@@ -10,21 +11,26 @@ import { LoginPage } from './pages/Login';
 import { RegisterPage } from './pages/Register';
 import { ForgotPasswordPage } from './pages/ForgotPassword';
 import { ProfilePage } from './pages/Profile';
-import { OnboardingPlaceholderPage } from './pages/OnboardingPlaceholder';
+import { OnboardingPage } from './pages/Onboarding';
 import { RequireAuth } from './components/auth/RequireAuth';
+import { ToastViewport } from './components/ui/Toast';
 import { bindSystemThemeListener, useThemeStore } from './store/theme';
 
 /**
  * App root. Sets up routing and binds a system-preference listener so the
  * resolved theme updates live when the user changes their OS settings.
  *
- * Routes (PF-1 + PF-2):
+ * Routes (PF-1 + PF-2 + PF-3):
  *   - `/` … `/me`            — public tabs (AppShell + tab bar)
  *   - `/login`               — public auth shell (no tab bar)
  *   - `/register`            — public auth shell (no tab bar)
  *   - `/forgot-password`     — public auth shell (no tab bar)
- *   - `/onboarding`          — public celebration after signup
+ *   - `/onboarding`          — public goal-setting flow (PF-3)
+ *   - `/records/weight`      — protected (RequireAuth)
  *   - `/profile`             — protected (RequireAuth)
+ *
+ * The ToastViewport is mounted at the very top of the tree so any page
+ * can push toasts without owning the layout.
  */
 export default function App() {
   useEffect(() => {
@@ -35,42 +41,57 @@ export default function App() {
   }, []);
 
   return (
-    <Routes>
-      {/* Auth flow routes — rendered bare, no tab bar / top bar. */}
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-      <Route path="/onboarding" element={<OnboardingPlaceholderPage />} />
+    <>
+      <ToastViewport />
+      <Routes>
+        {/* Auth flow routes — rendered bare, no tab bar / top bar. */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/onboarding" element={<OnboardingPage />} />
 
-      {/* Protected route — same chrome but auth-guarded. */}
-      <Route
-        path="/profile"
-        element={
-          <RequireAuth>
+        {/* Protected route — same chrome but auth-guarded. */}
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <ProfilePage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+
+        {/* Protected weight-logging sub-route — records tab redirects here. */}
+        <Route
+          path="/records/weight"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <RecordWeightPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+
+        {/* Default app shell — tabs and all. */}
+        <Route
+          path="*"
+          element={
             <AppShell>
-              <ProfilePage />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/records" element={<RecordsPage />} />
+                <Route path="/couple" element={<CouplePage />} />
+                <Route path="/trends" element={<TrendsPage />} />
+                <Route path="/me" element={<MePage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
             </AppShell>
-          </RequireAuth>
-        }
-      />
-
-      {/* Default app shell — tabs and all. */}
-      <Route
-        path="*"
-        element={
-          <AppShell>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/records" element={<RecordsPage />} />
-              <Route path="/couple" element={<CouplePage />} />
-              <Route path="/trends" element={<TrendsPage />} />
-              <Route path="/me" element={<MePage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </AppShell>
-        }
-      />
-    </Routes>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

@@ -17,7 +17,25 @@
     "dark": "Dark",
     "system": "System",
     "comingSoon": "Coming soon",
-    "empty": "Nothing here yet"
+    "empty": "Nothing here yet",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "next": "Next",
+    "back": "Back",
+    "edit": "Edit",
+    "continue": "Continue",
+    "retry": "Try again",
+    "kg": "kg",
+    "lb": "lb",
+    "optional": "optional",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "{{count}}d ago",
+    "justNow": "just now",
+    "error": "Something went wrong",
+    "success": "Success"
   },
   "home": {
     "title": "Hi, partner",
@@ -25,7 +43,16 @@
     "youProgress": "Your progress",
     "partnerProgress": "Partner's progress",
     "todayGoal": "Today's goal",
-    "viewAll": "View all"
+    "viewAll": "View all",
+    "setGoalCta": "Set your goal",
+    "noGoalTitle": "Set a goal to start tracking",
+    "noGoalBody": "Tell PairFit where you're headed and we'll chart the path.",
+    "currentVsGoal": "Current {{current}} · Goal {{target}} {{unit}}",
+    "remaining": "{{amount}} {{unit}} to go",
+    "logWeight": "Log weight",
+    "weightCardTitle": "Weight",
+    "weightEmpty": "No reading yet today",
+    "weightLatest": "Latest reading"
   },
   "records": {
     "title": "Records",
@@ -34,15 +61,59 @@
     "meals": "Meals",
     "workouts": "Workouts"
   },
+  "record": {
+    "weightTitle": "Log weight",
+    "weightSubtitle": "Type or hold the mic — your call.",
+    "inputLabel": "Weight",
+    "inputPlaceholder": "e.g. 65.5",
+    "saveAction": "Save reading",
+    "savedToast": "Reading saved — nice work.",
+    "historyTitle": "Recent readings",
+    "historyEmpty": "No readings yet. Log one to start your curve.",
+    "invalidNumber": "Enter a number between 20 and 500.",
+    "outOfRange": "That's outside the supported range.",
+    "voiceEmpty": "I didn't catch a number. Try again?",
+    "voiceNoSpeech": "Didn't hear anything. Try again?",
+    "voiceDenied": "Mic access is off. Enable it in your browser settings, or type instead.",
+    "voiceNetwork": "Network hiccup — try typing instead.",
+    "voiceUnsupported": "This browser doesn't support voice input. Type to log a reading."
+  },
+  "weight": {
+    "entry": "{{value}} {{unit}}",
+    "source_voice": "voice",
+    "source_manual": "manual",
+    "ago": "Logged {{time}}"
+  },
+  "voice": {
+    "press_to_speak": "Hold to record",
+    "release_to_stop": "Release to stop",
+    "listening": "Listening…",
+    "not_understood": "Didn't catch that. Say it again?",
+    "not_supported": "Voice isn't supported in this browser.",
+    "denied": "We need microphone access for voice input.",
+    "no_speech": "Didn't hear anything. Try again?"
+  },
+  "trends": {
+    "title": "Trends",
+    "subtitle": "Track your weight, calories and workouts.",
+    "weightTitle": "Weight curve",
+    "weightSubtitle": "Daily readings with your goal as a reference.",
+    "empty": "Log a reading to see your trend line.",
+    "window7": "7d",
+    "window30": "30d",
+    "window90": "90d",
+    "goalDifference": "{{diff}} {{unit}} to go",
+    "goalReached": "Goal reached 🎉",
+    "aheadOfPace": "Ahead of pace",
+    "behindPace": "Behind pace",
+    "onPace": "On pace",
+    "noGoal": "Set a goal to project your curve."
+  },
   "couple": {
     "title": "Couple",
     "subtitle": "Bind, share and cheer each other on.",
     "bind": "Bind with partner",
     "bindHint": "Pair up to share progress, coins and challenges."
-  },
-  "trends": {
-    "title": "Trends",
-    "subtitle": "Charts and streaks coming soon."
   },
   "me": {
     "title": "Me",
@@ -54,10 +125,39 @@
     "signedOutTitle": "You're signed out",
     "signedOutBody": "Sign in to sync your data across devices.",
     "whatsNew": "What's new",
-    "help": "Help & feedback"
+    "help": "Help & feedback",
+    "editGoal": "Edit my goal"
   },
   "tabs": {
     "a11y": "{{name}} tab"
+  },
+  "onboarding": {
+    "stepLabel": "Step {{step}} of {{total}}",
+    "directionTitle": "Pick your direction",
+    "directionSubtitle": "Lose or gain — we'll chart a path either way.",
+    "loseTitle": "Lose weight",
+    "loseBody": "Drop the pounds at a steady, healthy pace.",
+    "gainTitle": "Gain weight",
+    "gainBody": "Add mass with a calorie surplus + training plan.",
+    "weightsTitle": "Starting & target weight",
+    "weightsSubtitle": "We'll plan a realistic curve between these two.",
+    "startWeight": "Starting weight",
+    "targetWeight": "Target weight",
+    "weeklyRate": "Weekly pace",
+    "previewTitle": "Here's your plan",
+    "previewSubtitle": "Adjust any number — the date updates live.",
+    "weeklyPaceValue": "{{value}} {{unit}} / week",
+    "targetDateLabel": "Estimated target date",
+    "completeCta": "Lock it in",
+    "validation": {
+      "loseDirection": "For 'lose', your target needs to be at least 1 {{unit}} below your start.",
+      "gainDirection": "For 'gain', your target needs to be at least 1 {{unit}} above your start.",
+      "outOfRange": "Pick a weight between 20 and 500 {{unit}}.",
+      "rateMismatch": "Pick a pace that matches your direction."
+    },
+    "celebrateTitle": "Goal locked in 🎯",
+    "celebrateBody": "Your first reading will start the curve.",
+    "startLogging": "Log my first reading"
   },
   "auth": {
     "signIn": "Sign in",
@@ -140,14 +240,5 @@
     "signOutHint": "Sign out clears your session on this device. Your data stays on disk.",
     "signedInAs": "Signed in as {{email}}",
     "userMenu": "{{name}}'s account menu"
-  },
-  "onboarding": {
-    "title": "Welcome, {{name}}",
-    "subtitle": "Your account is ready. One more step and you're in.",
-    "heroTitle": "Account created 🎉",
-    "heroBody": "The full goal-setting flow ships in the next milestone. For now, poke around the app — you can always come back.",
-    "arrivesIn": "Full onboarding arrives in {{issue}}",
-    "exploreApp": "Explore the app",
-    "editProfile": "Edit my profile"
   }
 }

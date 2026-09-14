@@ -17,7 +17,25 @@
     "dark": "深色",
     "system": "跟随系统",
     "comingSoon": "敬请期待",
-    "empty": "还没有内容"
+    "empty": "还没有内容",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "confirm": "确认",
+    "next": "下一步",
+    "back": "返回",
+    "edit": "编辑",
+    "continue": "继续",
+    "retry": "再试一次",
+    "kg": "公斤",
+    "lb": "磅",
+    "optional": "可选",
+    "today": "今天",
+    "yesterday": "昨天",
+    "daysAgo": "{{count}} 天前",
+    "justNow": "刚刚",
+    "error": "出错了",
+    "success": "完成"
   },
   "home": {
     "title": "你好,伙伴",
@@ -25,7 +43,16 @@
     "youProgress": "你的进度",
     "partnerProgress": "伙伴的进度",
     "todayGoal": "今日目标",
-    "viewAll": "查看全部"
+    "viewAll": "查看全部",
+    "setGoalCta": "设定目标",
+    "noGoalTitle": "设定目标,开始记录",
+    "noGoalBody": "告诉我们你的方向,我们来给你画曲线。",
+    "currentVsGoal": "当前 {{current}} · 目标 {{target}} {{unit}}",
+    "remaining": "还差 {{amount}} {{unit}}",
+    "logWeight": "记体重",
+    "weightCardTitle": "体重",
+    "weightEmpty": "今天还没有记录",
+    "weightLatest": "最近一次"
   },
   "records": {
     "title": "记录",
@@ -34,15 +61,59 @@
     "meals": "饮食",
     "workouts": "运动"
   },
+  "record": {
+    "weightTitle": "记录体重",
+    "weightSubtitle": "输入数字,或长按麦克风。",
+    "inputLabel": "体重",
+    "inputPlaceholder": "例如 65.5",
+    "saveAction": "保存记录",
+    "savedToast": "已保存 — 干得漂亮。",
+    "historyTitle": "最近记录",
+    "historyEmpty": "还没有记录,记一条就开始画曲线。",
+    "invalidNumber": "请输入 20–500 之间的数字。",
+    "outOfRange": "这个数字超出可记录的范围。",
+    "voiceEmpty": "没识别出数字,再说一次?",
+    "voiceNoSpeech": "没听到声音,再试一次?",
+    "voiceDenied": "麦克风权限未开启。请在浏览器里打开权限,或改用键盘输入。",
+    "voiceNetwork": "网络好像断了,试试键盘输入。",
+    "voiceUnsupported": "当前浏览器不支持语音,请用键盘输入。"
+  },
+  "weight": {
+    "entry": "{{value}} {{unit}}",
+    "source_voice": "语音",
+    "source_manual": "手动",
+    "ago": "{{time}} 记录"
+  },
+  "voice": {
+    "press_to_speak": "长按说话",
+    "release_to_stop": "松手停止",
+    "listening": "正在听…",
+    "not_understood": "没听清,再说一次?",
+    "not_supported": "当前浏览器不支持语音输入。",
+    "denied": "需要麦克风权限才能语音输入。",
+    "no_speech": "没听到声音,再试一次?"
+  },
+  "trends": {
+    "title": "趋势",
+    "subtitle": "体重、卡路里和运动,一张图看完。",
+    "weightTitle": "体重曲线",
+    "weightSubtitle": "每日记录 + 目标参考线。",
+    "empty": "记录第一条体重,开始画曲线。",
+    "window7": "7 天",
+    "window30": "30 天",
+    "window90": "90 天",
+    "goalDifference": "还差 {{diff}} {{unit}}",
+    "goalReached": "已达成目标 🎉",
+    "aheadOfPace": "快于计划",
+    "behindPace": "慢于计划",
+    "onPace": "节奏正常",
+    "noGoal": "先设定目标,再来看预测曲线。"
+  },
   "couple": {
     "title": "情侣",
     "subtitle": "绑定、分享、为彼此加油。",
     "bind": "绑定伙伴",
     "bindHint": "绑定后共享进度、虚拟币和挑战。"
-  },
-  "trends": {
-    "title": "趋势",
-    "subtitle": "图表与连续打卡,即将上线。"
   },
   "me": {
     "title": "我的",
@@ -54,10 +125,39 @@
     "signedOutTitle": "尚未登录",
     "signedOutBody": "登录后可在多设备同步你的数据。",
     "whatsNew": "更新内容",
-    "help": "帮助与反馈"
+    "help": "帮助与反馈",
+    "editGoal": "修改我的目标"
   },
   "tabs": {
     "a11y": "{{name}} 标签"
+  },
+  "onboarding": {
+    "stepLabel": "第 {{step}} / {{total}} 步",
+    "directionTitle": "选你的方向",
+    "directionSubtitle": "减肥 / 增重,我们都会画曲线。",
+    "loseTitle": "减肥",
+    "loseBody": "稳步、健康地减到目标体重。",
+    "gainTitle": "增重",
+    "gainBody": "通过热量盈余 + 训练,逐步增加体重。",
+    "weightsTitle": "起始体重和目标体重",
+    "weightsSubtitle": "我们在这两个数字之间画一条合理的曲线。",
+    "startWeight": "起始体重",
+    "targetWeight": "目标体重",
+    "weeklyRate": "每周节奏",
+    "previewTitle": "这就是你的计划",
+    "previewSubtitle": "改任意数字,预计达成日期会实时更新。",
+    "weeklyPaceValue": "每周 {{value}} {{unit}}",
+    "targetDateLabel": "预计达成日期",
+    "completeCta": "锁定目标",
+    "validation": {
+      "loseDirection": "减肥方向:目标体重至少比起始体重少 1 {{unit}}。",
+      "gainDirection": "增重方向:目标体重至少比起始体重多 1 {{unit}}。",
+      "outOfRange": "请输入 20–500 之间的体重。",
+      "rateMismatch": "请选择一个与方向匹配的节奏。"
+    },
+    "celebrateTitle": "目标已锁定 🎯",
+    "celebrateBody": "记下第一条体重,曲线就开始画了。",
+    "startLogging": "去记第一条体重"
   },
   "auth": {
     "signIn": "登录",
@@ -140,14 +240,5 @@
     "signOutHint": "退出登录会清除本设备的登录状态,数据仍保留在本机。",
     "signedInAs": "已登录:{{email}}",
     "userMenu": "{{name}} 的账号菜单"
-  },
-  "onboarding": {
-    "title": "欢迎你,{{name}}",
-    "subtitle": "账号已就绪,再走一步就可以开始啦。",
-    "heroTitle": "账号已创建 🎉",
-    "heroBody": "完整的目标设定流程会在下一个里程碑上线。你可以先到处逛逛,随时回来。",
-    "arrivesIn": "完整引导将在 {{issue}} 上线",
-    "exploreApp": "去逛逛 App",
-    "editProfile": "编辑个人资料"
   }
 }

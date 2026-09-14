@@ -1,24 +1,49 @@
 import { Dumbbell, Scale, Utensils } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
-import { EmptyState } from '../components/ui/EmptyState';
 import { PageHeader } from '../components/ui/PageHeader';
+import { cn } from '../lib/utils';
 
 const RECORD_TYPES: Array<{
   key: 'weight' | 'meals' | 'workouts';
   icon: LucideIcon;
-  comingSoon: string;
+  to: string;
+  hint: string;
+  comingSoon: boolean;
+  accent: 'brand' | 'accent' | 'warning';
 }> = [
-  { key: 'weight', icon: Scale, comingSoon: 'Log a weight reading — wired in PF-3.' },
-  { key: 'meals', icon: Utensils, comingSoon: 'Voice-driven meal logging — wired in PF-3 + PF-4.' },
-  { key: 'workouts', icon: Dumbbell, comingSoon: 'Activity logging — wired in PF-3.' },
+  {
+    key: 'weight',
+    icon: Scale,
+    to: '/records/weight',
+    hint: 'Log a weight reading — manual or by voice.',
+    comingSoon: false,
+    accent: 'brand',
+  },
+  {
+    key: 'meals',
+    icon: Utensils,
+    to: '/records/food',
+    hint: 'Voice-driven meal logging — wired in PF-4.',
+    comingSoon: true,
+    accent: 'warning',
+  },
+  {
+    key: 'workouts',
+    icon: Dumbbell,
+    to: '/records/exercise',
+    hint: 'Activity logging — wired in PF-5.',
+    comingSoon: true,
+    accent: 'accent',
+  },
 ];
 
 /**
  * Records tab — entry point for the three logging flows (weight / meals /
- * workouts). PF-1 ships only the route + navigation cards; real input UI
- * arrives in PF-3.
+ * workouts). PF-3 wires the weight route up; meals + workouts route to
+ * a placeholder card so navigation doesn't dead-end before PF-4/5 land.
  */
 export function RecordsPage() {
   const { t } = useTranslation();
@@ -27,30 +52,58 @@ export function RecordsPage() {
       <PageHeader title={t('records.title')} subtitle={t('records.subtitle')} />
 
       <div className="grid gap-3 sm:grid-cols-3">
-        {RECORD_TYPES.map(({ key, icon: Icon, comingSoon }) => (
-          <Card key={key} className="pf-press cursor-pointer">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-brand-100 text-brand-600 dark:bg-brand-500/15 dark:text-brand-300">
-                <Icon className="size-5" aria-hidden />
-              </div>
-              <div className="min-w-0">
-                <h2 className="text-sm font-semibold text-[rgb(var(--fg-primary))]">
-                  {t(`records.${key}`)}
-                </h2>
-                <p className="text-xs text-[rgb(var(--fg-secondary))]">{comingSoon}</p>
-              </div>
-            </div>
-          </Card>
+        {RECORD_TYPES.map(({ key, icon: Icon, to, hint, comingSoon, accent }) => (
+          <RecordCard
+            key={key}
+            to={to}
+            icon={<Icon className="size-5" aria-hidden />}
+            title={t(`records.${key}`)}
+            hint={hint}
+            comingSoon={comingSoon}
+            accent={accent}
+          />
         ))}
       </div>
-
-      <div className="mt-6">
-        <EmptyState
-          emoji="📒"
-          title={t('common.empty')}
-          description="Your recent logs will appear here. Start by tapping one of the cards above."
-        />
-      </div>
     </div>
+  );
+}
+
+interface RecordCardProps {
+  to: string;
+  icon: React.ReactNode;
+  title: string;
+  hint: string;
+  comingSoon: boolean;
+  accent: 'brand' | 'accent' | 'warning';
+}
+
+function RecordCard({ to, icon, title, hint, comingSoon, accent }: RecordCardProps) {
+  const accentClass = {
+    brand: 'bg-brand-100 text-brand-600 dark:bg-brand-500/15 dark:text-brand-300',
+    accent: 'bg-accent-100 text-accent-600 dark:bg-accent-500/15 dark:text-accent-300',
+    warning: 'bg-warning/15 text-warning-foreground dark:bg-warning/20 dark:text-warning',
+  }[accent];
+
+  return (
+    <Link to={to} className="block">
+      <Card className="pf-press h-full">
+        <div className="flex items-start gap-3">
+          <div className={cn('flex size-10 flex-shrink-0 items-center justify-center rounded-lg', accentClass)}>
+            {icon}
+          </div>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-sm font-semibold text-[rgb(var(--fg-primary))]">{title}</h2>
+            <p className="mt-0.5 text-xs text-[rgb(var(--fg-secondary))]">{hint}</p>
+            {comingSoon ? (
+              <span className="pf-chip mt-2 text-[10px]">soon</span>
+            ) : (
+              <span className="pf-chip mt-2 text-[10px] bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
+                ready
+              </span>
+            )}
+          </div>
+        </div>
+      </Card>
+    </Link>
   );
 }

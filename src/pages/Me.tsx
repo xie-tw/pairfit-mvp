@@ -1,4 +1,4 @@
-import { ChevronRight, Cog, Crown, Globe, Languages, LogIn, Moon, Sparkles, Sun, User as UserIcon } from 'lucide-react';
+import { ChevronRight, Cog, Crown, Globe, Languages, LogIn, Moon, Sparkles, Sun, Target, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
@@ -6,6 +6,7 @@ import { PageHeader } from '../components/ui/PageHeader';
 import { useAuthStore, useCurrentUser, type LocalePref } from '../store/auth';
 import { useLocaleStore, type LocaleCode } from '../store/locale';
 import { useThemeStore } from '../store/theme';
+import { useGoalStore } from '../store/goal';
 import { cn } from '../lib/utils';
 
 /**
@@ -24,6 +25,7 @@ export function MePage() {
   const mode = useThemeStore((s) => s.mode);
   const setMode = useThemeStore((s) => s.setMode);
   const updateProfile = useAuthStore((s) => s.updateProfile);
+  const goal = useGoalStore((s) => s.goal);
 
   const initial = (user?.displayName.trim()[0] ?? 'P').toUpperCase();
 
@@ -131,7 +133,16 @@ export function MePage() {
 
       {/* Other rows */}
       <nav className="mt-4 pf-surface divide-y divide-[rgb(var(--border-default))] rounded-xl" aria-label="Settings">
-        <Row icon={<Crown className="size-5 text-brand-500" />} title={t('me.subscription')} trailing={<Badge>Pro</Badge>} />
+        {goal ? (
+          <Link to="/onboarding" className="block">
+            <Row icon={<Target className="size-5 text-brand-500" />} title={t('me.editGoal')} />
+          </Link>
+        ) : (
+          <Link to="/onboarding" className="block">
+            <Row icon={<Target className="size-5 text-brand-500" />} title={t('home.setGoalCta')} />
+          </Link>
+        )}
+        <Row icon={<Crown className="size-5 text-accent-500" />} title={t('me.subscription')} trailing={<Badge>Pro</Badge>} />
         <Row icon={<Cog className="size-5" />} title={t('me.settings')} />
         <Row icon={<Sparkles className="size-5" />} title={t('me.whatsNew')} />
         <Row icon={<Languages className="size-5" />} title={t('me.help')} />
