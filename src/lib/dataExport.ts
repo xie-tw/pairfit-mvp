@@ -24,6 +24,10 @@ import { deobfuscate } from './storage';
  * Every `localStorage` key PairFit owns. Unknown keys are left alone
  * (e.g. Vercel's `__vercel` markers, browser extension state) so wiping
  * doesn't brick the page.
+ *
+ * PF-8 added the weekly-report cache and partner-data hook so an export
+ * needs to sweep those too — the previous list silently dropped them,
+ * which made re-imports on a fresh device lose the cached AI summary.
  */
 export const KNOWN_KEYS: readonly string[] = [
   'pairfit:users',
@@ -33,7 +37,11 @@ export const KNOWN_KEYS: readonly string[] = [
   'pairfit:goal',
   'pairfit:weights',
   'pairfit:food',
+  'pairfit:exercise',
   'pairfit:couple',
+  'pairfit:invite',
+  'pairfit:cheers',
+  'pairfit:weeklyReport',
   'pairfit:notifications',
   'pairfit:i18nLng',
 ];
@@ -92,21 +100,36 @@ export function snapshotAllData(): SnapshotPayload {
 /**
  * Build a download for the snapshot and click it. Uses a transient anchor
  * so no global state is left behind; the URL is revoked after the click.
+ *
+ * File name follows the PRD §4 export spec:
+ *   `pairfit-export-{userId}-{YYYY-MM-DD}.json`
+ * Falls back to `pairfit-export-anon-{date}.json` when no user is signed
+ * in so the file is still uniquely named.
  */
 export function downloadSnapshot(): void {
   const payload = snapshotAllData();
   const json = JSON.stringify(payload, null, 2);
   const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+  const stamp = new Date().toISOString().slice(0, 10);
+  const userId = currentUserIdFromPayload(payload) ?? 'anon';
   const a = document.createElement('a');
   a.href = url;
-  a.download = `pairfit-export-${stamp}.json`;
+  a.download = `pairfit-export-${userId}-${stamp}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   // Yield a tick so Safari has time to start the download before revoke.
   setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+/** Pull the current user's id from the obfuscated `pairfit:users` slot. */
+function currentUserIdFromPayload(payload: SnapshotPayload): string | null {
+  const authRaw = payload.data['pairfit:auth'];
+  if (!authRaw || typeof authRaw !== 'object') return null;
+  const auth = authRaw as { state?: { currentUserId?: unknown } };
+  const id = auth.state?.currentUserId;
+  return typeof id === 'string' && id.length > 0 ? id : null;
 }
 
 /**

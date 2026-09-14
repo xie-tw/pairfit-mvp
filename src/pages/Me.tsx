@@ -144,6 +144,16 @@ export function MePage() {
             <Row icon={<Target className="size-5 text-brand-500" />} title={t('home.setGoalCta')} />
           </Link>
         )}
+        {/* Manual trigger for the AI weekly report — opens the Trends
+            page where the user can generate / refresh the report card.
+            PRD §4 calls this out as the My-page entry point. */}
+        <Link to="/trends" className="block">
+          <Row
+            icon={<Sparkles className="size-5 text-accent-500" />}
+            title={t('me.aiReportCardTitle')}
+            subtitle={t('me.aiReportCardHint')}
+          />
+        </Link>
         <Link to="/subscription" className="block">
           <Row
             icon={<Crown className="size-5 text-accent-500" />}
@@ -165,9 +175,11 @@ interface RowProps {
   icon: React.ReactNode;
   title: string;
   trailing?: React.ReactNode;
+  /** Optional muted line under the title — used by the AI report row. */
+  subtitle?: string;
 }
 
-function Row({ icon, title, trailing }: RowProps) {
+function Row({ icon, title, trailing, subtitle }: RowProps) {
   return (
     <button
       type="button"
@@ -178,7 +190,14 @@ function Row({ icon, title, trailing }: RowProps) {
       )}
     >
       <span aria-hidden>{icon}</span>
-      <span className="flex-1 text-sm font-medium text-[rgb(var(--fg-primary))]">{title}</span>
+      <span className="flex-1 text-sm font-medium text-[rgb(var(--fg-primary))]">
+        {title}
+        {subtitle ? (
+          <span className="mt-0.5 block text-xs font-normal text-[rgb(var(--fg-secondary))]">
+            {subtitle}
+          </span>
+        ) : null}
+      </span>
       {trailing ?? <ChevronRight className="size-4 text-[rgb(var(--fg-subtle))]" aria-hidden />}
     </button>
   );
