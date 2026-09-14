@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AppShell } from './components/layout/AppShell';
 import { HomePage } from './pages/Home';
 import { RecordsPage } from './pages/Records';
@@ -96,14 +97,15 @@ export default function App() {
 }
 
 function NotFound() {
+  const { t } = useTranslation();
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
       <span className="mb-3 text-5xl" aria-hidden>
         🧭
       </span>
-      <h1 className="text-2xl font-bold text-[rgb(var(--fg-primary))]">Page not found</h1>
+      <h1 className="text-2xl font-bold text-[rgb(var(--fg-primary))]">{t('notFound.title')}</h1>
       <p className="mt-1 text-sm text-[rgb(var(--fg-secondary))]">
-        The route you tried doesn't exist yet.
+        {t('notFound.body')}
       </p>
     </div>
   );

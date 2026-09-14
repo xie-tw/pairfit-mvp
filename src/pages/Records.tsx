@@ -6,11 +6,14 @@ import { Card } from '../components/ui/Card';
 import { PageHeader } from '../components/ui/PageHeader';
 import { cn } from '../lib/utils';
 
+type RecordKey = 'weight' | 'meals' | 'workouts';
+type HintKey = 'weightHint' | 'mealsHint' | 'workoutsHint';
+
 const RECORD_TYPES: Array<{
-  key: 'weight' | 'meals' | 'workouts';
+  key: RecordKey;
   icon: LucideIcon;
   to: string;
-  hint: string;
+  hintKey: HintKey;
   comingSoon: boolean;
   accent: 'brand' | 'accent' | 'warning';
 }> = [
@@ -18,7 +21,7 @@ const RECORD_TYPES: Array<{
     key: 'weight',
     icon: Scale,
     to: '/records/weight',
-    hint: 'Log a weight reading — manual or by voice.',
+    hintKey: 'weightHint',
     comingSoon: false,
     accent: 'brand',
   },
@@ -26,7 +29,7 @@ const RECORD_TYPES: Array<{
     key: 'meals',
     icon: Utensils,
     to: '/records/food',
-    hint: 'Voice-driven meal logging — wired in PF-4.',
+    hintKey: 'mealsHint',
     comingSoon: true,
     accent: 'warning',
   },
@@ -34,7 +37,7 @@ const RECORD_TYPES: Array<{
     key: 'workouts',
     icon: Dumbbell,
     to: '/records/exercise',
-    hint: 'Activity logging — wired in PF-5.',
+    hintKey: 'workoutsHint',
     comingSoon: true,
     accent: 'accent',
   },
@@ -52,13 +55,13 @@ export function RecordsPage() {
       <PageHeader title={t('records.title')} subtitle={t('records.subtitle')} />
 
       <div className="grid gap-3 sm:grid-cols-3">
-        {RECORD_TYPES.map(({ key, icon: Icon, to, hint, comingSoon, accent }) => (
+        {RECORD_TYPES.map(({ key, icon: Icon, to, hintKey, comingSoon, accent }) => (
           <RecordCard
             key={key}
             to={to}
             icon={<Icon className="size-5" aria-hidden />}
             title={t(`records.${key}`)}
-            hint={hint}
+            hint={t(`records.${hintKey}`)}
             comingSoon={comingSoon}
             accent={accent}
           />
@@ -78,6 +81,7 @@ interface RecordCardProps {
 }
 
 function RecordCard({ to, icon, title, hint, comingSoon, accent }: RecordCardProps) {
+  const { t } = useTranslation();
   const accentClass = {
     brand: 'bg-brand-100 text-brand-600 dark:bg-brand-500/15 dark:text-brand-300',
     accent: 'bg-accent-100 text-accent-600 dark:bg-accent-500/15 dark:text-accent-300',
@@ -95,10 +99,10 @@ function RecordCard({ to, icon, title, hint, comingSoon, accent }: RecordCardPro
             <h2 className="text-sm font-semibold text-[rgb(var(--fg-primary))]">{title}</h2>
             <p className="mt-0.5 text-xs text-[rgb(var(--fg-secondary))]">{hint}</p>
             {comingSoon ? (
-              <span className="pf-chip mt-2 text-[10px]">soon</span>
+              <span className="pf-chip mt-2 text-[10px]">{t('records.chipSoon')}</span>
             ) : (
               <span className="pf-chip mt-2 text-[10px] bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
-                ready
+                {t('records.chipReady')}
               </span>
             )}
           </div>

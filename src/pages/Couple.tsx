@@ -41,7 +41,7 @@ export function CouplePage() {
                 {t('couple.bind')}
               </Button>
               <Button variant="outline" size="md" leadingIcon={<Sparkles className="size-4" />}>
-                How it works
+                {t('couple.howItWorks')}
               </Button>
             </div>
           </div>
@@ -50,23 +50,23 @@ export function CouplePage() {
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <FeatureCard
-          title="Shared goals"
-          description="Each partner keeps their own direction — weight-loss vs. weight-gain — and the system scores both fairly."
+          title={t('couple.featureSharedGoalsTitle')}
+          description={t('couple.featureSharedGoalsBody')}
           emoji="🎯"
         />
         <FeatureCard
-          title="Coins & cheers"
-          description="Confirm small wins with a coin tap. Streaks show up in your shared feed."
+          title={t('couple.featureCoinsTitle')}
+          description={t('couple.featureCoinsBody')}
           emoji="🪙"
         />
         <FeatureCard
-          title="Voice notes"
-          description="Long-press to dictate. We estimate calories and reply in chat."
+          title={t('couple.featureVoiceTitle')}
+          description={t('couple.featureVoiceBody')}
           emoji="🎤"
         />
         <FeatureCard
-          title="Private & local"
-          description="All data stays on your device until cloud sync lands in v1.1."
+          title={t('couple.featurePrivateTitle')}
+          description={t('couple.featurePrivateBody')}
           emoji="🔒"
         />
       </div>

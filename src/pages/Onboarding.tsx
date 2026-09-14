@@ -380,7 +380,7 @@ function DirectionStep({
           accent="brand"
           title={t('onboarding.loseTitle')}
           body={t('onboarding.loseBody')}
-          preview="- 0.5 kg / week"
+          preview={t('onboarding.losePreview', { value: '0.5', unit: 'kg' })}
         />
         <DirectionCard
           selected={value === 'gain'}
@@ -389,7 +389,7 @@ function DirectionStep({
           accent="accent"
           title={t('onboarding.gainTitle')}
           body={t('onboarding.gainBody')}
-          preview="+ 0.3 kg / week"
+          preview={t('onboarding.gainPreview', { value: '0.3', unit: 'kg' })}
         />
       </div>
     </div>
@@ -634,7 +634,7 @@ function PreviewStep({
 
       {recentCount > 0 ? (
         <div className="text-xs text-[rgb(var(--fg-secondary))]">
-          ✓ {t('weight.ago', { time: `${recentCount} ${recentCount === 1 ? 'reading' : 'readings'}` })}
+          ✓ {t('weight.ago', { time: t('common.reading', { count: recentCount }) })}
         </div>
       ) : (
         <EmptyState

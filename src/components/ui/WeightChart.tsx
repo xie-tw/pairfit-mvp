@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   CartesianGrid,
   Line,
@@ -66,6 +67,7 @@ export function WeightChart({
   className,
   hideGoal = false,
 }: WeightChartProps) {
+  const { t } = useTranslation();
   const data = useMemo(() => buildSeries(records, goalCurve, unit, windowDays), [
     records,
     goalCurve,
@@ -89,7 +91,7 @@ export function WeightChart({
           className,
         )}
       >
-        <span>No data yet — log a reading to start your curve.</span>
+        <span>{t('trends.emptyChart')}</span>
       </div>
     );
   }
@@ -128,7 +130,7 @@ export function WeightChart({
               strokeDasharray="6 4"
               strokeOpacity={0.6}
               label={{
-                value: 'Goal',
+                value: t('trends.seriesGoal'),
                 position: 'right',
                 fill: 'rgb(var(--fg-secondary))',
                 fontSize: 10,
@@ -149,7 +151,7 @@ export function WeightChart({
               activeDot={false}
               isAnimationActive={false}
               connectNulls
-              name="Goal"
+              name={t('trends.seriesGoal')}
             />
           ) : null}
           <Line
@@ -162,7 +164,7 @@ export function WeightChart({
             connectNulls
             isAnimationActive
             animationDuration={400}
-            name="Weight"
+            name={t('trends.seriesWeight')}
           />
         </LineChart>
       </ResponsiveContainer>

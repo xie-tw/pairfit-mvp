@@ -1,4 +1,5 @@
 import { CheckCircle2, Info, AlertCircle, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useToastStore, type Toast as ToastItem } from '../../store/toast';
 import { cn } from '../../lib/utils';
 
@@ -39,6 +40,7 @@ export function ToastViewport() {
 }
 
 function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: () => void }) {
+  const { t } = useTranslation();
   const { variant, message, action } = toast;
   const Icon = variant === 'success' ? CheckCircle2 : variant === 'error' ? AlertCircle : Info;
   return (
@@ -69,7 +71,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: () => vo
       <button
         type="button"
         onClick={onDismiss}
-        aria-label="Dismiss"
+        aria-label={t('common.dismiss')}
         className="-mr-1 -mt-1 rounded-md p-1 text-current opacity-70 hover:opacity-100"
       >
         <X className="size-3.5" aria-hidden />

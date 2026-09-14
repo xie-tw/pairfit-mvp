@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ChevronLeft, Scale } from 'lucide-react';
+import { AlertTriangle, ChevronLeft, Scale } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { EmptyState } from '../components/ui/EmptyState';
@@ -21,6 +21,7 @@ import {
 import { formatWeight } from '../lib/units';
 import { toast } from '../store/toast';
 import { cn } from '../lib/utils';
+import type { VoiceErrorCode } from '../lib/voice';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -35,9 +36,10 @@ const WEIGHT_MAX = 500;
  *   2. Long-press `VoiceButton` — once we have a parsed number, we drop
  *      it into the input. The user can still edit / re-save.
  *
- * Below the entry block we render a 30-day sparkline + the most recent
- * 7 readings, so the page doubles as a "history" view after the user
- * has logged a few times.
+ * BUG-FIX-1: when the user denies microphone permission, `VoiceButton`
+ * degrades itself; we additionally surface a small "mic blocked" hint
+ * card pointing at browser settings, and the toast stops firing on
+ * repeated presses (the button owns the deduping).
  */
 export function RecordWeightPage() {
   const { t, i18n } = useTranslation();
@@ -51,6 +53,7 @@ export function RecordWeightPage() {
   const [draft, setDraft] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [celebrating, setCelebrating] = useState(false);
+  const [micDenied, setMicDenied] = useState(false);
 
   const sortedDesc = useMemo(() => sortByDateDesc(records), [records]);
   const recent = useMemo(() => sortedDesc.slice(0, RECENT_WEIGHT_LIMIT), [sortedDesc]);
@@ -99,17 +102,30 @@ export function RecordWeightPage() {
     submit(parsed, 'voice');
   };
 
-  const onVoiceError = (code: string) => {
-    const map: Record<string, string> = {
+  const onVoiceError = (code: VoiceErrorCode) => {
+    const map: Record<VoiceErrorCode, string> = {
       'no-speech': t('record.voiceNoSpeech'),
       'no-match': t('record.voiceEmpty'),
       'not-allowed': t('record.voiceDenied'),
       'not-supported': t('record.voiceUnsupported'),
       network: t('record.voiceNetwork'),
       'audio-capture': t('record.voiceDenied'),
+      aborted: t('voice.not_understood'),
+      unknown: t('voice.not_understood'),
     };
+    // Once the user has denied the mic, raise the inline hint card so the
+    // page is self-explanatory even after the toast fades. VoiceButton
+    // itself deduplicates the toast for `not-allowed`, but other errors
+    // are still useful as one-off feedback.
+    if (code === 'not-allowed' || code === 'audio-capture') {
+      setMicDenied(true);
+    }
     toast({ variant: 'error', message: map[code] ?? t('voice.not_understood') });
   };
+
+  const voiceExampleKey = i18n.language.startsWith('zh')
+    ? 'record.voiceExampleZh'
+    : 'record.voiceExampleEn';
 
   return (
     <div className="animate-fade-in">
@@ -185,11 +201,27 @@ export function RecordWeightPage() {
               {t('voice.press_to_speak')}
             </p>
             <p className="max-w-[16rem] text-center text-[11px] leading-relaxed text-[rgb(var(--fg-subtle))]">
-              {i18n.language.startsWith('zh')
-                ? '例:"今天 65.5 公斤" 或"今天 144 磅"'
-                : 'e.g. "today 65.5 kg" or "today 144 lb"'}
+              {t(voiceExampleKey)}
             </p>
           </div>
+
+          {micDenied ? (
+            <div
+              role="status"
+              className="mt-2 flex w-full items-start gap-2 rounded-lg border border-warning/40 bg-warning-soft px-3 py-2 text-xs text-[rgb(var(--fg-primary))] dark:bg-warning/15"
+            >
+              <AlertTriangle className="mt-0.5 size-4 flex-shrink-0 text-warning" aria-hidden />
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold">{t('record.voiceDeniedHintTitle')}</p>
+                <p className="mt-0.5 leading-relaxed text-[rgb(var(--fg-secondary))]">
+                  {t('record.voiceDeniedHintBody')}
+                </p>
+                <p className="mt-1 text-[10px] leading-relaxed text-[rgb(var(--fg-subtle))]">
+                  {t('record.voiceSettingsTip')}
+                </p>
+              </div>
+            </div>
+          ) : null}
         </div>
       </Card>
 
@@ -238,7 +270,7 @@ export function RecordWeightPage() {
 
 function HistoryRow({ record }: { record: WeightRecord }) {
   const { t } = useTranslation();
-  const time = useMemo(() => relativeTime(record.recordedAt), [record.recordedAt]);
+  const time = useMemo(() => relativeTime(record.recordedAt, t), [record.recordedAt, t]);
   return (
     <li className="flex items-center gap-3 px-4 py-3">
       <div
@@ -259,12 +291,14 @@ function HistoryRow({ record }: { record: WeightRecord }) {
   );
 }
 
-function relativeTime(ts: number): string {
+type Translator = (key: string, options?: Record<string, unknown>) => string;
+
+function relativeTime(ts: number, t: Translator): string {
   const delta = Date.now() - ts;
-  if (delta < MS_PER_DAY) return 'today';
-  if (delta < 2 * MS_PER_DAY) return 'yesterday';
+  if (delta < MS_PER_DAY) return t('weight.timeToday');
+  if (delta < 2 * MS_PER_DAY) return t('weight.timeYesterday');
   const days = Math.floor(delta / MS_PER_DAY);
-  if (days < 7) return `${days}d ago`;
-  if (days < 30) return `${Math.floor(days / 7)}w ago`;
+  if (days < 7) return t('weight.timeDaysAgo', { count: days });
+  if (days < 30) return t('weight.timeWeeksAgo', { count: Math.floor(days / 7) });
   return new Date(ts).toLocaleDateString();
 }

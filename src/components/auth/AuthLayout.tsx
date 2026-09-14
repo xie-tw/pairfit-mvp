@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Shared shell for register / login / forgot-password routes.
@@ -20,6 +21,7 @@ export function AuthLayout({
   children: ReactNode;
   footer?: ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="animate-fade-in flex min-h-[calc(100vh-3.5rem-4rem)] flex-col items-stretch justify-center">
       <header className="mb-6 flex flex-col items-center gap-3 text-center">
@@ -44,11 +46,10 @@ export function AuthLayout({
       ) : null}
 
       <p className="mt-6 text-center text-[11px] leading-relaxed text-[rgb(var(--fg-subtle))]">
-        By continuing you agree to PairFit's local-first storage. Your data
-        stays on this device until cloud sync lands.
+        {t('auth.footerDisclaimer')}
         <br />
         <Link to="/" className="mt-1 inline-block underline-offset-2 hover:underline">
-          Skip to home (preview)
+          {t('auth.skipToHome')}
         </Link>
       </p>
     </div>

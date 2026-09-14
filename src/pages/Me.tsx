@@ -132,7 +132,7 @@ export function MePage() {
       </Card>
 
       {/* Other rows */}
-      <nav className="mt-4 pf-surface divide-y divide-[rgb(var(--border-default))] rounded-xl" aria-label="Settings">
+      <nav className="mt-4 pf-surface divide-y divide-[rgb(var(--border-default))] rounded-xl" aria-label={t('me.settingsAriaLabel')}>
         {goal ? (
           <Link to="/onboarding" className="block">
             <Row icon={<Target className="size-5 text-brand-500" />} title={t('me.editGoal')} />
@@ -142,7 +142,7 @@ export function MePage() {
             <Row icon={<Target className="size-5 text-brand-500" />} title={t('home.setGoalCta')} />
           </Link>
         )}
-        <Row icon={<Crown className="size-5 text-accent-500" />} title={t('me.subscription')} trailing={<Badge>Pro</Badge>} />
+        <Row icon={<Crown className="size-5 text-accent-500" />} title={t('me.subscription')} trailing={<Badge>{t('me.proBadge')}</Badge>} />
         <Row icon={<Cog className="size-5" />} title={t('me.settings')} />
         <Row icon={<Sparkles className="size-5" />} title={t('me.whatsNew')} />
         <Row icon={<Languages className="size-5" />} title={t('me.help')} />

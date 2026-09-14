@@ -108,7 +108,7 @@ export function ProfilePage() {
               {t('profile.signedInAs', { email: user.email })}
             </p>
           </div>
-          <span className="pf-chip">Free tier</span>
+          <span className="pf-chip">{t('me.freeTier')}</span>
         </div>
       </Card>
 

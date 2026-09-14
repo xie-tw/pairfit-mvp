@@ -62,7 +62,7 @@ export function HomePage() {
             className="pf-press inline-flex items-center gap-1.5 rounded-full border border-[rgb(var(--border-default))] bg-[rgb(var(--bg-surface))] px-3 py-1.5 text-xs font-medium text-[rgb(var(--fg-primary))] hover:bg-[rgb(var(--bg-sunken))]"
           >
             <Flame className="size-3.5 text-brand-500" aria-hidden />
-            <span>Streak</span>
+            <span>{t('home.streak')}</span>
             <Sparkles className="size-3.5 text-[rgb(var(--fg-subtle))]" aria-hidden />
           </button>
         }
@@ -235,7 +235,7 @@ function GoalFooter({ goal }: { goal: import('../store/goal').Goal }) {
   const target = new Date(goal.targetDate).toLocaleDateString();
   return (
     <p className="mt-1 text-[11px] text-[rgb(var(--fg-subtle))]">
-      Plan: {pace} · ETA {target}
+      {t('home.planFooter', { pace, date: target })}
     </p>
   );
 }
@@ -256,10 +256,10 @@ function PartnerCard() {
             {t('home.partnerProgress')}
           </p>
           <p className="mt-1 text-sm font-semibold text-[rgb(var(--fg-primary))]">
-            Bind a partner to share progress
+            {t('home.partnerBindPrompt')}
           </p>
           <p className="text-xs text-[rgb(var(--fg-secondary))]">
-            Coming in PF-6.
+            {t('home.partnerComingSoon')}
           </p>
         </div>
       </div>

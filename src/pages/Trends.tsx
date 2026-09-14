@@ -84,6 +84,17 @@ export function TrendsPage() {
     };
   }, [goal, records, unit]);
 
+  // BUG-FIX-1 (follow-up): pace status → i18n key. The previous
+  // implementation keyed the "behind" branch to `behindOfPace` (a key
+  // that doesn't exist); map each branch to its real key explicitly so
+  // the lookup never goes stale again.
+  const paceKey =
+    stats?.pace === 'ahead'
+      ? 'trends.aheadOfPace'
+      : stats?.pace === 'behind'
+        ? 'trends.behindPace'
+        : 'trends.onPace';
+
   return (
     <div className="animate-fade-in">
       <PageHeader title={t('trends.title')} subtitle={t('trends.subtitle')} />
@@ -142,7 +153,7 @@ export function TrendsPage() {
           icon={<TrendingDown className="size-5" aria-hidden />}
           label={stats ? t('trends.goalDifference', { diff: stats.remainingDisplay.toFixed(1), unit }) : t('home.weightEmpty')}
           value={stats ? (stats.remainingKg < 0.05 ? t('trends.goalReached') : `${stats.remainingDisplay.toFixed(1)} ${unit}`) : '—'}
-          sublabel={stats ? `${stats.weeksLeft.toFixed(1)} weeks` : ''}
+          sublabel={stats ? t('trends.weeksLeft', { count: stats.weeksLeft.toFixed(1) }) : ''}
         />
         <StatCard
           tone={stats?.pace === 'behind' ? 'warning' : stats?.pace === 'ahead' ? 'success' : 'accent'}
@@ -151,15 +162,15 @@ export function TrendsPage() {
             stats?.pace === 'ahead' ? <TrendingUp className="size-5" aria-hidden /> :
             <Flame className="size-5" aria-hidden />
           }
-          label={stats ? t(`trends.${stats.pace === 'on' ? 'onPace' : stats.pace + 'OfPace'}`) : ''}
+          label={stats ? t(paceKey) : ''}
           value=""
         />
         <StatCard
           tone="accent"
           icon={<Calendar className="size-5" aria-hidden />}
-          label={goal ? `ETA` : ''}
+          label={goal ? t('trends.etaLabel') : ''}
           value={goal ? new Date(goal.targetDate).toLocaleDateString() : '—'}
-          sublabel={goal ? `Plan: ${Math.abs(goal.weeklyRate)} ${goal.unit}/wk` : ''}
+          sublabel={goal ? t('trends.planLine', { value: Math.abs(goal.weeklyRate), unit: goal.unit }) : ''}
         />
       </div>
     </div>

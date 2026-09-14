@@ -34,8 +34,14 @@
     "yesterday": "Yesterday",
     "daysAgo": "{{count}}d ago",
     "justNow": "just now",
+    "weeksAgo": "{{count}}w ago",
+    "reading_one": "reading",
+    "reading_other": "readings",
+    "weeks": "{{count}} weeks",
+    "week": "{{count}} week",
     "error": "Something went wrong",
-    "success": "Success"
+    "success": "Success",
+    "dismiss": "Dismiss"
   },
   "home": {
     "title": "Hi, partner",
@@ -52,14 +58,23 @@
     "logWeight": "Log weight",
     "weightCardTitle": "Weight",
     "weightEmpty": "No reading yet today",
-    "weightLatest": "Latest reading"
+    "weightLatest": "Latest reading",
+    "streak": "Streak",
+    "planFooter": "Plan: {{pace}} · ETA {{date}}",
+    "partnerBindPrompt": "Bind a partner to share progress",
+    "partnerComingSoon": "Coming in PF-6."
   },
   "records": {
     "title": "Records",
     "subtitle": "Track weight, meals and workouts.",
     "weight": "Weight",
     "meals": "Meals",
-    "workouts": "Workouts"
+    "workouts": "Workouts",
+    "weightHint": "Log a weight reading — manual or by voice.",
+    "mealsHint": "Voice-driven meal logging — wired in PF-4.",
+    "workoutsHint": "Activity logging — wired in PF-5.",
+    "chipReady": "ready",
+    "chipSoon": "soon"
   },
   "record": {
     "weightTitle": "Log weight",
@@ -76,13 +91,23 @@
     "voiceNoSpeech": "Didn't hear anything. Try again?",
     "voiceDenied": "Mic access is off. Enable it in your browser settings, or type instead.",
     "voiceNetwork": "Network hiccup — try typing instead.",
-    "voiceUnsupported": "This browser doesn't support voice input. Type to log a reading."
+    "voiceUnsupported": "This browser doesn't support voice input. Type to log a reading.",
+    "voiceExampleZh": "例:\"今天 65.5 公斤\" 或\"今天 144 磅\"",
+    "voiceExampleEn": "e.g. \"today 65.5 kg\" or \"today 144 lb\"",
+    "voiceDeniedHintTitle": "Microphone is blocked",
+    "voiceDeniedHintBody": "Open your browser's site settings and allow microphone access. You can still type a reading below.",
+    "voiceRetry": "Try mic again",
+    "voiceSettingsTip": "Tip: site settings usually live behind the lock icon in the address bar."
   },
   "weight": {
     "entry": "{{value}} {{unit}}",
     "source_voice": "voice",
     "source_manual": "manual",
-    "ago": "Logged {{time}}"
+    "ago": "Logged {{time}}",
+    "timeToday": "today",
+    "timeYesterday": "yesterday",
+    "timeDaysAgo": "{{count}}d ago",
+    "timeWeeksAgo": "{{count}}w ago"
   },
   "voice": {
     "press_to_speak": "Hold to record",
@@ -91,7 +116,9 @@
     "not_understood": "Didn't catch that. Say it again?",
     "not_supported": "Voice isn't supported in this browser.",
     "denied": "We need microphone access for voice input.",
-    "no_speech": "Didn't hear anything. Try again?"
+    "no_speech": "Didn't hear anything. Try again?",
+    "deniedLabel": "Mic blocked",
+    "deniedActionLabel": "Open settings"
   },
   "trends": {
     "title": "Trends",
@@ -99,6 +126,7 @@
     "weightTitle": "Weight curve",
     "weightSubtitle": "Daily readings with your goal as a reference.",
     "empty": "Log a reading to see your trend line.",
+    "emptyChart": "No data yet — log a reading to start your curve.",
     "window7": "7d",
     "window30": "30d",
     "window90": "90d",
@@ -107,13 +135,28 @@
     "aheadOfPace": "Ahead of pace",
     "behindPace": "Behind pace",
     "onPace": "On pace",
-    "noGoal": "Set a goal to project your curve."
+    "noGoal": "Set a goal to project your curve.",
+    "weeksLeft": "{{count}} weeks left",
+    "weekLeft": "{{count}} week left",
+    "etaLabel": "ETA",
+    "planLine": "Plan: {{value}} {{unit}}/wk",
+    "seriesGoal": "Goal",
+    "seriesWeight": "Weight"
   },
   "couple": {
     "title": "Couple",
     "subtitle": "Bind, share and cheer each other on.",
     "bind": "Bind with partner",
-    "bindHint": "Pair up to share progress, coins and challenges."
+    "bindHint": "Pair up to share progress, coins and challenges.",
+    "howItWorks": "How it works",
+    "featureSharedGoalsTitle": "Shared goals",
+    "featureSharedGoalsBody": "Each partner keeps their own direction — weight-loss vs. weight-gain — and the system scores both fairly.",
+    "featureCoinsTitle": "Coins & cheers",
+    "featureCoinsBody": "Confirm small wins with a coin tap. Streaks show up in your shared feed.",
+    "featureVoiceTitle": "Voice notes",
+    "featureVoiceBody": "Long-press to dictate. We estimate calories and reply in chat.",
+    "featurePrivateTitle": "Private & local",
+    "featurePrivateBody": "All data stays on your device until cloud sync lands in v1.1."
   },
   "me": {
     "title": "Me",
@@ -126,7 +169,9 @@
     "signedOutBody": "Sign in to sync your data across devices.",
     "whatsNew": "What's new",
     "help": "Help & feedback",
-    "editGoal": "Edit my goal"
+    "editGoal": "Edit my goal",
+    "proBadge": "Pro",
+    "settingsAriaLabel": "Settings"
   },
   "tabs": {
     "a11y": "{{name}} tab"
@@ -139,6 +184,8 @@
     "loseBody": "Drop the pounds at a steady, healthy pace.",
     "gainTitle": "Gain weight",
     "gainBody": "Add mass with a calorie surplus + training plan.",
+    "losePreview": "- {{value}} {{unit}} / week",
+    "gainPreview": "+ {{value}} {{unit}} / week",
     "weightsTitle": "Starting & target weight",
     "weightsSubtitle": "We'll plan a realistic curve between these two.",
     "startWeight": "Starting weight",
@@ -234,7 +281,9 @@
       },
       "emailTaken": "That email is already registered. Try signing in.",
       "invalidCredentials": "Email or password is incorrect."
-    }
+    },
+    "footerDisclaimer": "By continuing you agree to PairFit's local-first storage. Your data stays on this device until cloud sync lands.",
+    "skipToHome": "Skip to home (preview)"
   },
   "profile": {
     "title": "Profile",
@@ -250,5 +299,13 @@
     "signOutHint": "Sign out clears your session on this device. Your data stays on disk.",
     "signedInAs": "Signed in as {{email}}",
     "userMenu": "{{name}}'s account menu"
+  },
+  "avatarPicker": {
+    "ariaLabel": "Choose an avatar",
+    "useInitialTitle": "Use initial"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The route you tried doesn't exist yet."
   }
 }

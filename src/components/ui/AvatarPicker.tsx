@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { cn } from '../../lib/utils';
 
 /**
@@ -20,9 +21,10 @@ interface AvatarPickerProps {
 }
 
 export function AvatarPicker({ value, fallbackInitial, onChange, className }: AvatarPickerProps) {
+  const { t } = useTranslation();
   return (
     <div className={cn('flex flex-col gap-2', className)}>
-      <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Choose an avatar">
+      <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t('avatarPicker.ariaLabel')}>
         <button
           type="button"
           role="radio"
@@ -35,7 +37,7 @@ export function AvatarPicker({ value, fallbackInitial, onChange, className }: Av
               ? 'border-brand-500 bg-brand-100 text-brand-600 ring-2 ring-brand-500/30 dark:bg-brand-500/20 dark:text-brand-300'
               : 'border-[rgb(var(--border-default))] bg-[rgb(var(--bg-surface))] text-[rgb(var(--fg-primary))] hover:bg-[rgb(var(--bg-sunken))]',
           )}
-          title="Use initial"
+          title={t('avatarPicker.useInitialTitle')}
         >
           {fallbackInitial || '?'}
         </button>

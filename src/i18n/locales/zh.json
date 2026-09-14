@@ -34,8 +34,14 @@
     "yesterday": "昨天",
     "daysAgo": "{{count}} 天前",
     "justNow": "刚刚",
+    "weeksAgo": "{{count}} 周前",
+    "reading_one": "条记录",
+    "reading_other": "条记录",
+    "weeks": "{{count}} 周",
+    "week": "{{count}} 周",
     "error": "出错了",
-    "success": "完成"
+    "success": "完成",
+    "dismiss": "关闭"
   },
   "home": {
     "title": "你好,伙伴",
@@ -52,14 +58,23 @@
     "logWeight": "记体重",
     "weightCardTitle": "体重",
     "weightEmpty": "今天还没有记录",
-    "weightLatest": "最近一次"
+    "weightLatest": "最近一次",
+    "streak": "连续打卡",
+    "planFooter": "计划:每周 {{pace}} · 预计 {{date}} 达成",
+    "partnerBindPrompt": "绑定伙伴,共享进度",
+    "partnerComingSoon": "PF-6 即将上线。"
   },
   "records": {
     "title": "记录",
     "subtitle": "记录体重、饮食和运动。",
     "weight": "体重",
     "meals": "饮食",
-    "workouts": "运动"
+    "workouts": "运动",
+    "weightHint": "支持数字输入或语音记体重。",
+    "mealsHint": "语音记录饮食 — PF-4 上线。",
+    "workoutsHint": "运动记录 — PF-5 上线。",
+    "chipReady": "可用",
+    "chipSoon": "敬请期待"
   },
   "record": {
     "weightTitle": "记录体重",
@@ -76,13 +91,23 @@
     "voiceNoSpeech": "没听到声音,再试一次?",
     "voiceDenied": "麦克风权限未开启。请在浏览器里打开权限,或改用键盘输入。",
     "voiceNetwork": "网络好像断了,试试键盘输入。",
-    "voiceUnsupported": "当前浏览器不支持语音,请用键盘输入。"
+    "voiceUnsupported": "当前浏览器不支持语音,请用键盘输入。",
+    "voiceExampleZh": "例:\"今天 65.5 公斤\" 或\"今天 144 磅\"",
+    "voiceExampleEn": "e.g. \"today 65.5 kg\" or \"today 144 lb\"",
+    "voiceDeniedHintTitle": "麦克风被关闭了",
+    "voiceDeniedHintBody": "请打开浏览器的站点设置,允许使用麦克风。下方可以直接输入体重。",
+    "voiceRetry": "再试一次麦克风",
+    "voiceSettingsTip": "小贴士:大多数浏览器的站点设置在地址栏左侧的锁形图标里。"
   },
   "weight": {
     "entry": "{{value}} {{unit}}",
     "source_voice": "语音",
     "source_manual": "手动",
-    "ago": "{{time}} 记录"
+    "ago": "{{time}} 记录",
+    "timeToday": "今天",
+    "timeYesterday": "昨天",
+    "timeDaysAgo": "{{count}} 天前",
+    "timeWeeksAgo": "{{count}} 周前"
   },
   "voice": {
     "press_to_speak": "长按说话",
@@ -91,7 +116,9 @@
     "not_understood": "没听清,再说一次?",
     "not_supported": "当前浏览器不支持语音输入。",
     "denied": "需要麦克风权限才能语音输入。",
-    "no_speech": "没听到声音,再试一次?"
+    "no_speech": "没听到声音,再试一次?",
+    "deniedLabel": "麦克风已关闭",
+    "deniedActionLabel": "打开设置"
   },
   "trends": {
     "title": "趋势",
@@ -99,6 +126,7 @@
     "weightTitle": "体重曲线",
     "weightSubtitle": "每日记录 + 目标参考线。",
     "empty": "记录第一条体重,开始画曲线。",
+    "emptyChart": "还没有数据 — 记一条体重,曲线就开始画了。",
     "window7": "7 天",
     "window30": "30 天",
     "window90": "90 天",
@@ -107,13 +135,28 @@
     "aheadOfPace": "快于计划",
     "behindPace": "慢于计划",
     "onPace": "节奏正常",
-    "noGoal": "先设定目标,再来看预测曲线。"
+    "noGoal": "先设定目标,再来看预测曲线。",
+    "weeksLeft": "还剩 {{count}} 周",
+    "weekLeft": "还剩 {{count}} 周",
+    "etaLabel": "预计达成",
+    "planLine": "计划:每周 {{value}} {{unit}}",
+    "seriesGoal": "目标",
+    "seriesWeight": "体重"
   },
   "couple": {
     "title": "情侣",
     "subtitle": "绑定、分享、为彼此加油。",
     "bind": "绑定伙伴",
-    "bindHint": "绑定后共享进度、虚拟币和挑战。"
+    "bindHint": "绑定后共享进度、虚拟币和挑战。",
+    "howItWorks": "玩法说明",
+    "featureSharedGoalsTitle": "各自的目标",
+    "featureSharedGoalsBody": "伙伴之间可以一个减肥、一个增重,系统按各自的目标公平打分。",
+    "featureCoinsTitle": "虚拟币与点赞",
+    "featureCoinsBody": "轻点虚拟币确认小成就,连续打卡会出现在双方的动态里。",
+    "featureVoiceTitle": "语音记录",
+    "featureVoiceBody": "长按语音输入,我们自动估算卡路里,顺便在聊天里回复。",
+    "featurePrivateTitle": "本地私密",
+    "featurePrivateBody": "在云同步上线前,所有数据都只存在你这台设备上。"
   },
   "me": {
     "title": "我的",
@@ -126,7 +169,9 @@
     "signedOutBody": "登录后可在多设备同步你的数据。",
     "whatsNew": "更新内容",
     "help": "帮助与反馈",
-    "editGoal": "修改我的目标"
+    "editGoal": "修改我的目标",
+    "proBadge": "Pro",
+    "settingsAriaLabel": "设置"
   },
   "tabs": {
     "a11y": "{{name}} 标签"
@@ -139,6 +184,8 @@
     "loseBody": "稳步、健康地减到目标体重。",
     "gainTitle": "增重",
     "gainBody": "通过热量盈余 + 训练,逐步增加体重。",
+    "losePreview": "每周减 {{value}} {{unit}}",
+    "gainPreview": "每周增 {{value}} {{unit}}",
     "weightsTitle": "起始体重和目标体重",
     "weightsSubtitle": "我们在这两个数字之间画一条合理的曲线。",
     "startWeight": "起始体重",
@@ -234,7 +281,9 @@
       },
       "emailTaken": "这个邮箱已经注册过了,试试登录。",
       "invalidCredentials": "邮箱或密码不正确。"
-    }
+    },
+    "footerDisclaimer": "继续操作即表示同意 PairFit 的本地优先存储方案,数据在云同步上线前都只保留在你的设备上。",
+    "skipToHome": "直接进入首页(预览)"
   },
   "profile": {
     "title": "个人资料",
@@ -250,5 +299,13 @@
     "signOutHint": "退出登录会清除本设备的登录状态,数据仍保留在本机。",
     "signedInAs": "已登录:{{email}}",
     "userMenu": "{{name}} 的账号菜单"
+  },
+  "avatarPicker": {
+    "ariaLabel": "选择一个头像",
+    "useInitialTitle": "用首字母"
+  },
+  "notFound": {
+    "title": "页面没找到",
+    "body": "你访问的路由还没实现。"
   }
 }
