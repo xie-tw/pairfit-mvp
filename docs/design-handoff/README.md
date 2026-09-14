@@ -14,9 +14,10 @@
 2. **[design-tokens.json](./design-tokens.json)** — 设计 token 总表(JSON,可在 `tailwind.config.ts` 直接复用)
 3. **[information-architecture.md](./information-architecture.md)** — 信息架构 / 导航结构 / 用户旅程(Mermaid)
 4. **[interaction-spec.md](./interaction-spec.md)** — 全局动效 / 反馈 / 异常态规则
-5. **[components/](./components/)** — 每个 UI 组件的规格(18 个组件)
-6. **[pages/](./pages/)** — 每个页面的规格(15 个页面)
-7. **[screens/](./screens/)** — 视觉原型 SVG(每个页面 × 主题 ≈ 30 张)
+5. **[flows-and-navigation.md](./flows-and-navigation.md)** — 多步骤流程统一规范(上一步 / 取消 / 键盘 / 进度指示器)
+6. **[components/](./components/)** — 每个 UI 组件的规格(18 个组件)
+7. **[pages/](./pages/)** — 每个页面的规格(15 个页面)
+8. **[screens/](./screens/)** — 视觉原型 SVG(每个页面 × 主题 ≈ 30 张)
 
 ---
 

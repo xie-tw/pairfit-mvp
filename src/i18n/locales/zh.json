@@ -157,7 +157,17 @@
     },
     "celebrateTitle": "目标已锁定 🎯",
     "celebrateBody": "记下第一条体重,曲线就开始画了。",
-    "startLogging": "去记第一条体重"
+    "startLogging": "去记第一条体重",
+    "backCta": "返回",
+    "previousStepCta": "上一步",
+    "cancelCta": "取消",
+    "exitConfirm": {
+      "title": "要退出目标设定吗?",
+      "body": "当前填写的内容会被丢弃。随时可以在「我的」里重新开始。",
+      "keepEditing": "继续填",
+      "confirmExit": "放弃并离开"
+    },
+    "exitDestHint": "按 Esc 可取消并返回「我的」。"
   },
   "auth": {
     "signIn": "登录",

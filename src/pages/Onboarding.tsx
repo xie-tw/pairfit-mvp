@@ -1,7 +1,19 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowDown, ArrowUp, Calendar, ChevronRight, Sparkles, Target, TrendingDown, TrendingUp } from 'lucide-react';
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  Calendar,
+  ChevronRight,
+  Sparkles,
+  Target,
+  TrendingDown,
+  TrendingUp,
+  X,
+} from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { EmptyState } from '../components/ui/EmptyState';
@@ -60,11 +72,56 @@ export function OnboardingPage() {
   );
   const [weeklyRate, setWeeklyRate] = useState<WeeklyRate>(goal?.weeklyRate ?? -0.5);
   const [error, setError] = useState<string | null>(null);
+  // Confirm dialog: shown before the user bails out mid-flow. We use a
+  // single state flag (`confirmingExit`) rather than a Modal ref so the
+  // confirm lives in the same render tree as the page it gates.
+  const [confirmingExit, setConfirmingExit] = useState(false);
 
   // "Now" is captured once per mount so subsequent re-renders don't drift.
   // Lint picks this up as the only pure-source for "current time" reads in
   // the component body; downstream `previewGoal` derives from it.
   const [now] = useState(() => Date.now());
+
+  // Keyboard shortcuts — Esc cancels (with confirm), ← goes back one step,
+  // → advances one step. We deliberately skip the arrow keys when the
+  // user is typing into an `<input>` so they can still nudge a cursor
+  // around inside the weights form. The browser already handles the
+  // native "← = back in history" gesture on a global level, so we only
+  // capture it when the event target is the body / a non-form element.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (confirmingExit) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          cancelExit();
+        }
+        return;
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        requestExit();
+        return;
+      }
+      const target = e.target as HTMLElement | null;
+      const inForm =
+        target?.tagName === 'INPUT' ||
+        target?.tagName === 'TEXTAREA' ||
+        target?.isContentEditable;
+      if (inForm) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goBack();
+      } else if (e.key === 'ArrowRight') {
+        if (step < 3) {
+          e.preventDefault();
+          advance();
+        }
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step, confirmingExit]);
 
   // Filter weekly-rate options to match the user's direction. The PRD
   // locks these six presets, but showing +0.3 / +0.5 to a "lose" user
@@ -156,8 +213,25 @@ export function OnboardingPage() {
 
   const goBack = () => {
     setError(null);
-    if (step === 1) return;
+    if (step === 1) {
+      // Step 1 has no previous step — surface the same exit confirm as
+      // the X button so the user always sees one cancellation path.
+      requestExit();
+      return;
+    }
     setStep((s) => (s === 4 ? 3 : ((s - 1) as Step)));
+  };
+
+  // Cancel destination — `/me` is always reachable for signed-in users
+  // (and visible even when signed out per `IA.md`). Home is the
+  // alternate so we fall back there when the user has no session yet.
+  const exitPath = user ? '/me' : '/';
+
+  const requestExit = () => setConfirmingExit(true);
+  const cancelExit = () => setConfirmingExit(false);
+  const confirmExit = () => {
+    setConfirmingExit(false);
+    navigate(exitPath);
   };
 
   const onComplete = () => {
@@ -172,6 +246,19 @@ export function OnboardingPage() {
       <PageHeader
         title={user ? t('onboarding.directionTitle', { name: user.displayName }) : t('onboarding.directionTitle')}
         subtitle={user ? undefined : t('onboarding.directionSubtitle')}
+        trailing={
+          step < 4 ? (
+            <button
+              type="button"
+              onClick={requestExit}
+              aria-label={t('onboarding.cancelCta')}
+              title={t('onboarding.exitDestHint')}
+              className="inline-flex size-9 items-center justify-center rounded-full text-[rgb(var(--fg-secondary))] transition-colors hover:bg-[rgb(var(--bg-sunken))] hover:text-[rgb(var(--fg-primary))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--bg-app))]"
+            >
+              <X className="size-5" aria-hidden />
+            </button>
+          ) : null
+        }
       />
 
       {/* Step indicator — only render for steps 1–3. */}
@@ -229,14 +316,21 @@ export function OnboardingPage() {
 
       {step < 4 ? (
         <div className="mt-6 flex items-center justify-between gap-3">
+          {/* Step 1 has no in-flow "previous" — surface the exit confirm
+              instead. Steps 2 & 3 step back within the flow. */}
           <Button
             variant="ghost"
             size="md"
             onClick={goBack}
-            disabled={step === 1}
-            className={step === 1 ? 'invisible' : ''}
+            leadingIcon={
+              step === 1 ? (
+                <ArrowLeft className="size-4" aria-hidden />
+              ) : (
+                <ArrowRight className="size-4 rotate-180" aria-hidden />
+              )
+            }
           >
-            {t('common.back')}
+            {step === 1 ? t('onboarding.backCta') : t('onboarding.previousStepCta')}
           </Button>
           <Button
             variant="primary"
@@ -248,6 +342,13 @@ export function OnboardingPage() {
             {step === 3 ? t('onboarding.completeCta') : t('common.continue')}
           </Button>
         </div>
+      ) : null}
+
+      {confirmingExit ? (
+        <ExitConfirmDialog
+          onCancel={cancelExit}
+          onConfirm={confirmExit}
+        />
       ) : null}
     </div>
   );
@@ -627,4 +728,63 @@ function formatDate(ts: number, locale: string): string {
 function localeToTag(locale: string): string {
   if (locale.toLowerCase().startsWith('zh')) return 'zh-CN';
   return 'en-US';
+}
+
+/**
+ * ExitConfirmDialog — minimal in-place confirm modal used by the
+ * Onboarding flow before the user bails out. Lives next to the page it
+ * gates because it has no other consumers yet; once another multi-step
+ * flow (PF-4 food, PF-6 couple bind, …) needs the same pattern, lift it
+ * into `components/ui/ConfirmDialog.tsx`. The global rule for those
+ * future flows is documented in `docs/design-handoff/flows-and-navigation.md`.
+ *
+ * Kept dependency-free: a backdrop, a centered card, two buttons. No
+ * focus-trap or portal — the page is full-screen so there's nowhere
+ * else for focus to go, and Esc is already handled at the page level.
+ */
+function ExitConfirmDialog({
+  onCancel,
+  onConfirm,
+}: {
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  const { t } = useTranslation();
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="onboarding-exit-title"
+      className="fixed inset-0 z-50 flex items-end justify-center px-4 pb-6 pt-12 sm:items-center sm:p-6"
+    >
+      <button
+        type="button"
+        aria-label={t('onboarding.exitConfirm.keepEditing')}
+        onClick={onCancel}
+        className="absolute inset-0 bg-[rgb(var(--bg-app))]/70 backdrop-blur-sm"
+      />
+      <Card
+        raised
+        className="relative w-full max-w-sm animate-slide-up"
+      >
+        <h2
+          id="onboarding-exit-title"
+          className="text-base font-semibold text-[rgb(var(--fg-primary))]"
+        >
+          {t('onboarding.exitConfirm.title')}
+        </h2>
+        <p className="mt-1.5 text-sm text-[rgb(var(--fg-secondary))]">
+          {t('onboarding.exitConfirm.body')}
+        </p>
+        <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          <Button variant="ghost" size="md" onClick={onCancel}>
+            {t('onboarding.exitConfirm.keepEditing')}
+          </Button>
+          <Button variant="danger" size="md" onClick={onConfirm}>
+            {t('onboarding.exitConfirm.confirmExit')}
+          </Button>
+        </div>
+      </Card>
+    </div>
+  );
 }

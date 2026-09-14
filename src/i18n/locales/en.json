@@ -157,7 +157,17 @@
     },
     "celebrateTitle": "Goal locked in 🎯",
     "celebrateBody": "Your first reading will start the curve.",
-    "startLogging": "Log my first reading"
+    "startLogging": "Log my first reading",
+    "backCta": "Back",
+    "previousStepCta": "Previous",
+    "cancelCta": "Cancel",
+    "exitConfirm": {
+      "title": "Leave goal setting?",
+      "body": "Your draft progress will be discarded. You can restart any time from the Me tab.",
+      "keepEditing": "Keep editing",
+      "confirmExit": "Discard & leave"
+    },
+    "exitDestHint": "Press Esc to cancel and return to Me."
   },
   "auth": {
     "signIn": "Sign in",
