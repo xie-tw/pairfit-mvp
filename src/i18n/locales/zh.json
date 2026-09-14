@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "PairFit",
+    "tagline": "一起动,一起赢"
+  },
+  "nav": {
+    "home": "首页",
+    "records": "记录",
+    "couple": "情侣",
+    "trends": "趋势",
+    "me": "我的"
+  },
+  "common": {
+    "language": "语言",
+    "theme": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "comingSoon": "敬请期待",
+    "empty": "还没有内容"
+  },
+  "home": {
+    "title": "你好,伙伴",
+    "subtitle": "今天,两个人一起的计划。",
+    "youProgress": "你的进度",
+    "partnerProgress": "伙伴的进度",
+    "todayGoal": "今日目标",
+    "viewAll": "查看全部"
+  },
+  "records": {
+    "title": "记录",
+    "subtitle": "记录体重、饮食和运动。",
+    "weight": "体重",
+    "meals": "饮食",
+    "workouts": "运动"
+  },
+  "couple": {
+    "title": "情侣",
+    "subtitle": "绑定、分享、为彼此加油。",
+    "bind": "绑定伙伴",
+    "bindHint": "绑定后共享进度、虚拟币和挑战。"
+  },
+  "trends": {
+    "title": "趋势",
+    "subtitle": "图表与连续打卡,即将上线。"
+  },
+  "me": {
+    "title": "我的",
+    "subtitle": "资料、设置与订阅。",
+    "profile": "个人资料",
+    "settings": "设置",
+    "subscription": "订阅"
+  },
+  "tabs": {
+    "a11y": "{{name}} 标签"
+  }
+}

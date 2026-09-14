@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------------------------------
+ * PairFit · Global styles
+ *
+ * Design tokens are exposed as CSS variables so non-Tailwind contexts
+ * (e.g. inline SVG fills, third-party widgets) can stay on-brand.
+ * -------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    /* Light surface tokens — warm, paper-like. */
+    --bg-app: 250 250 249; /* surface.raised */
+    --bg-surface: 255 255 255; /* surface.DEFAULT */
+    --bg-sunken: 245 245 244; /* surface.sunken */
+    --bg-elevated: 255 255 255;
+
+    --fg-primary: 28 25 23; /* ink.DEFAULT */
+    --fg-secondary: 87 83 78; /* ink.muted */
+    --fg-subtle: 168 162 158; /* ink.subtle */
+    --fg-on-brand: 255 255 255;
+
+    --border-default: 231 229 228;
+    --border-strong: 214 211 209;
+    --border-subtle: 245 245 244;
+
+    --brand-rgb: 255 107 107;
+    --accent-rgb: 20 184 166;
+  }
+
+  .dark {
+    /* Dark surface tokens — soft near-black, not pitch. */
+    --bg-app: 12 10 9;
+    --bg-surface: 28 25 23;
+    --bg-sunken: 24 22 21;
+    --bg-elevated: 41 37 36;
+
+    --fg-primary: 250 250 249;
+    --fg-secondary: 214 211 209;
+    --fg-subtle: 168 162 158;
+    --fg-on-brand: 255 255 255;
+
+    --border-default: 41 37 36;
+    --border-strong: 68 64 64;
+    --border-subtle: 28 25 23;
+
+    --brand-rgb: 251 113 133; /* slightly brighter on dark */
+    --accent-rgb: 45 212 191;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-[rgb(var(--bg-app))] text-[rgb(var(--fg-primary))] font-sans antialiased;
+    /* Tabular numerals look better in stat UIs. */
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+  }
+
+  /* Visible focus ring for keyboard users only. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500/60 ring-offset-2 ring-offset-[rgb(var(--bg-app))];
+  }
+
+  /* Slimmer scrollbar to keep the native-app feel. */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-[rgb(var(--border-strong))];
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--fg-subtle));
+  }
+}
+
+@layer components {
+  /* Surface helpers — semantic cards/panels that respond to dark mode. */
+  .pf-surface {
+    @apply bg-[rgb(var(--bg-surface))] border border-[rgb(var(--border-default))];
+  }
+  .pf-surface-raised {
+    @apply bg-[rgb(var(--bg-elevated))] border border-[rgb(var(--border-default))] shadow-sm;
+  }
+  .pf-surface-sunken {
+    @apply bg-[rgb(var(--bg-sunken))];
+  }
+
+  /* Pill chip — used for tags, statuses, language switcher. */
+  .pf-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1
+      text-xs font-medium bg-[rgb(var(--bg-sunken))]
+      text-[rgb(var(--fg-secondary))] border border-[rgb(var(--border-default))];
+  }
+
+  /* Section title used inside pages. */
+  .pf-section-title {
+    @apply text-xs font-semibold uppercase tracking-[0.08em] text-[rgb(var(--fg-secondary))];
+  }
+}
+
+@layer utilities {
+  /* Press-feedback for tappable elements. */
+  .pf-press {
+    @apply transition-transform duration-150 ease-out active:scale-[0.98];
+  }
+
+  /* Skeleton loader — gentle shimmer, no spinners. */
+  .pf-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--bg-sunken)) 0%,
+      rgb(var(--border-default)) 50%,
+      rgb(var(--bg-sunken)) 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded-md;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

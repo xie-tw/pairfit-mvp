@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "PairFit",
+    "tagline": "Move together. Win together."
+  },
+  "nav": {
+    "home": "Home",
+    "records": "Records",
+    "couple": "Couple",
+    "trends": "Trends",
+    "me": "Me"
+  },
+  "common": {
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "comingSoon": "Coming soon",
+    "empty": "Nothing here yet"
+  },
+  "home": {
+    "title": "Hi, partner",
+    "subtitle": "Today's plan for both of you.",
+    "youProgress": "Your progress",
+    "partnerProgress": "Partner's progress",
+    "todayGoal": "Today's goal",
+    "viewAll": "View all"
+  },
+  "records": {
+    "title": "Records",
+    "subtitle": "Track weight, meals and workouts.",
+    "weight": "Weight",
+    "meals": "Meals",
+    "workouts": "Workouts"
+  },
+  "couple": {
+    "title": "Couple",
+    "subtitle": "Bind, share and cheer each other on.",
+    "bind": "Bind with partner",
+    "bindHint": "Pair up to share progress, coins and challenges."
+  },
+  "trends": {
+    "title": "Trends",
+    "subtitle": "Charts and streaks coming soon."
+  },
+  "me": {
+    "title": "Me",
+    "subtitle": "Profile, settings and subscription.",
+    "profile": "Profile",
+    "settings": "Settings",
+    "subscription": "Subscription"
+  },
+  "tabs": {
+    "a11y": "{{name}} tab"
+  }
+}
