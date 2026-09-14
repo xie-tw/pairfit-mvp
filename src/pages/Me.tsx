@@ -58,7 +58,9 @@ export function MePage() {
                 <p className="truncate text-sm text-[rgb(var(--fg-secondary))]">{user.email}</p>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className="pf-chip">{t('me.freeTier')}</span>
+                <span className={user.isPro ? 'pf-chip pf-chip-pro' : 'pf-chip'}>
+                  {user.isPro ? t('me.proBadge') : t('me.freeTier')}
+                </span>
                 <ChevronRight className="size-4 text-[rgb(var(--fg-subtle))]" aria-hidden />
               </div>
             </div>
@@ -142,8 +144,16 @@ export function MePage() {
             <Row icon={<Target className="size-5 text-brand-500" />} title={t('home.setGoalCta')} />
           </Link>
         )}
-        <Row icon={<Crown className="size-5 text-accent-500" />} title={t('me.subscription')} trailing={<Badge>{t('me.proBadge')}</Badge>} />
-        <Row icon={<Cog className="size-5" />} title={t('me.settings')} />
+        <Link to="/subscription" className="block">
+          <Row
+            icon={<Crown className="size-5 text-accent-500" />}
+            title={t('me.subscription')}
+            trailing={user?.isPro ? <Badge>{t('me.proBadge')}</Badge> : undefined}
+          />
+        </Link>
+        <Link to="/settings" className="block">
+          <Row icon={<Cog className="size-5" />} title={t('me.settings')} />
+        </Link>
         <Row icon={<Sparkles className="size-5" />} title={t('me.whatsNew')} />
         <Row icon={<Languages className="size-5" />} title={t('me.help')} />
       </nav>

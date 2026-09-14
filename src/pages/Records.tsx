@@ -30,7 +30,7 @@ const RECORD_TYPES: Array<{
     icon: Utensils,
     to: '/records/food',
     hintKey: 'mealsHint',
-    comingSoon: true,
+    comingSoon: false,
     accent: 'warning',
   },
   {
@@ -38,15 +38,15 @@ const RECORD_TYPES: Array<{
     icon: Dumbbell,
     to: '/records/exercise',
     hintKey: 'workoutsHint',
-    comingSoon: true,
+    comingSoon: false,
     accent: 'accent',
   },
 ];
 
 /**
  * Records tab — entry point for the three logging flows (weight / meals /
- * workouts). PF-3 wires the weight route up; meals + workouts route to
- * a placeholder card so navigation doesn't dead-end before PF-4/5 land.
+ * workouts). PF-3 + PF-4 + PF-5 wire up the routes, so every card points
+ * at a real page.
  */
 export function RecordsPage() {
   const { t } = useTranslation();

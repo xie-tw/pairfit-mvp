@@ -5,6 +5,8 @@ import { AppShell } from './components/layout/AppShell';
 import { HomePage } from './pages/Home';
 import { RecordsPage } from './pages/Records';
 import { RecordWeightPage } from './pages/RecordWeight';
+import { RecordFoodPage } from './pages/RecordFood';
+import { RecordExercisePage } from './pages/RecordExercise';
 import { CouplePage } from './pages/Couple';
 import { TrendsPage } from './pages/Trends';
 import { MePage } from './pages/Me';
@@ -13,6 +15,8 @@ import { RegisterPage } from './pages/Register';
 import { ForgotPasswordPage } from './pages/ForgotPassword';
 import { ProfilePage } from './pages/Profile';
 import { OnboardingPage } from './pages/Onboarding';
+import { SettingsPage } from './pages/Settings';
+import { SubscriptionPage } from './pages/Subscription';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { ToastViewport } from './components/ui/Toast';
 import { bindSystemThemeListener, useThemeStore } from './store/theme';
@@ -21,14 +25,18 @@ import { bindSystemThemeListener, useThemeStore } from './store/theme';
  * App root. Sets up routing and binds a system-preference listener so the
  * resolved theme updates live when the user changes their OS settings.
  *
- * Routes (PF-1 + PF-2 + PF-3):
+ * Routes (PF-1 + PF-2 + PF-3 + PF-4 + PF-5 + PF-9):
  *   - `/` … `/me`            — public tabs (AppShell + tab bar)
  *   - `/login`               — public auth shell (no tab bar)
  *   - `/register`            — public auth shell (no tab bar)
  *   - `/forgot-password`     — public auth shell (no tab bar)
  *   - `/onboarding`          — public goal-setting flow (PF-3)
  *   - `/records/weight`      — protected (RequireAuth)
- *   - `/profile`             — protected (RequireAuth)
+ *   - `/records/food`        — protected (RequireAuth) — PF-4 meal log
+ *   - `/records/exercise`    — protected (RequireAuth) — PF-5
+ *   - `/profile`             — protected (RequireAuth) — avatar + name
+ *   - `/settings`            — protected (RequireAuth) — global prefs
+ *   - `/subscription`        — protected (RequireAuth) — Pro
  *
  * The ToastViewport is mounted at the very top of the tree so any page
  * can push toasts without owning the layout.
@@ -51,13 +59,33 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
 
-        {/* Protected route — same chrome but auth-guarded. */}
+        {/* Protected routes — same chrome but auth-guarded. */}
         <Route
           path="/profile"
           element={
             <RequireAuth>
               <AppShell>
                 <ProfilePage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <SettingsPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/subscription"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <SubscriptionPage />
               </AppShell>
             </RequireAuth>
           }
@@ -70,6 +98,30 @@ export default function App() {
             <RequireAuth>
               <AppShell>
                 <RecordWeightPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+
+        {/* Protected food-logging sub-route — PF-4. */}
+        <Route
+          path="/records/food"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <RecordFoodPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+
+        {/* Protected exercise-logging sub-route — PF-5. */}
+        <Route
+          path="/records/exercise"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <RecordExercisePage />
               </AppShell>
             </RequireAuth>
           }

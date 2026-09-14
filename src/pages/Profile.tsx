@@ -1,25 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { LogOut, Scale } from 'lucide-react';
+import { ChevronRight, Cog } from 'lucide-react';
 import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { AvatarPicker } from '../components/ui/AvatarPicker';
 import { PageHeader } from '../components/ui/PageHeader';
-import { useAuthStore, useCurrentUser, type LocalePref, type Unit, signOut } from '../store/auth';
-import { useLocaleStore } from '../store/locale';
+import { useAuthStore, useCurrentUser } from '../store/auth';
 import { cn } from '../lib/utils';
 
 /**
  * Profile page — the "Me" tab's deep view.
  *
- * Wires together:
- *   - Avatar picker (emoji swatch + initial fallback)
- *   - Display name editing (live)
- *   - Unit toggle (kg ⇄ lb)
- *   - Language toggle (EN ⇄ ZH) — syncs both auth store and i18next
- *   - Sign-out button (clears current user pointer)
+ * PF-9 scope shrink: Profile now owns *identity* only (avatar + display
+ * name). Unit / language / notifications / sign-out / data management
+ * moved to `/settings`. Two cards here link into that page so the user
+ * always has a path forward.
  *
  * Profile is auth-guarded via `RequireAuth` in the router, so by the time
  * this component mounts `useCurrentUser` is guaranteed non-null.
@@ -29,7 +25,6 @@ export function ProfilePage() {
   const navigate = useNavigate();
   const user = useCurrentUser();
   const updateProfile = useAuthStore((s) => s.updateProfile);
-  const setLocaleGlobal = useLocaleStore((s) => s.setLocale);
 
   const [displayName, setDisplayName] = useState(user?.displayName ?? '');
   const [nameSaved, setNameSaved] = useState(false);
@@ -65,22 +60,8 @@ export function ProfilePage() {
     return null;
   }
 
-  const onUnitChange = (next: Unit) => {
-    updateProfile({ unit: next });
-  };
-
-  const onLocaleChange = (next: LocalePref) => {
-    updateProfile({ locale: next });
-    setLocaleGlobal(next);
-  };
-
   const onAvatarChange = (next: string) => {
     updateProfile({ avatar: next });
-  };
-
-  const onSignOut = () => {
-    signOut();
-    navigate('/login', { replace: true });
   };
 
   const initial = (user.displayName.trim()[0] ?? 'P').toUpperCase();
@@ -108,7 +89,9 @@ export function ProfilePage() {
               {t('profile.signedInAs', { email: user.email })}
             </p>
           </div>
-          <span className="pf-chip">{t('me.freeTier')}</span>
+          <span className={user.isPro ? 'pf-chip pf-chip-pro' : 'pf-chip'}>
+            {user.isPro ? t('me.proBadge') : t('me.freeTier')}
+          </span>
         </div>
       </Card>
 
@@ -150,84 +133,34 @@ export function ProfilePage() {
         <p className="mt-2 text-xs text-[rgb(var(--fg-subtle))]">{user.email}</p>
       </Card>
 
-      {/* Unit toggle */}
-      <Card className="mt-4">
-        <div className="mb-3 flex items-center gap-2">
-          <Scale className="size-4 text-[rgb(var(--fg-secondary))]" aria-hidden />
-          <h3 className="pf-section-title">{t('profile.unit')}</h3>
+      {/* Link row into Settings — surfaces where the moved controls live. */}
+      <Link
+        to="/settings"
+        className="mt-4 block rounded-xl border border-[rgb(var(--border-default))] bg-[rgb(var(--bg-surface))] transition-shadow hover:shadow-sm pf-press"
+      >
+        <div className="flex items-center gap-3 px-4 py-3.5">
+          <Cog className="size-5 text-[rgb(var(--fg-secondary))]" aria-hidden />
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-medium text-[rgb(var(--fg-primary))]">
+              {t('me.settings')}
+            </p>
+            <p className="text-xs text-[rgb(var(--fg-secondary))]">
+              {t('profile.settingsHint')}
+            </p>
+          </div>
+          <ChevronRight className="size-4 text-[rgb(var(--fg-subtle))]" aria-hidden />
         </div>
-        <SegmentedControl<Unit>
-          value={user.unit}
-          onChange={onUnitChange}
-          options={[
-            { value: 'kg', label: t('profile.unitKg') },
-            { value: 'lb', label: t('profile.unitLb') },
-          ]}
-        />
-      </Card>
+      </Link>
 
-      {/* Language toggle */}
-      <Card className="mt-4">
-        <h3 className="pf-section-title mb-3">{t('profile.language')}</h3>
-        <SegmentedControl<LocalePref>
-          value={user.locale}
-          onChange={onLocaleChange}
-          options={[
-            { value: 'en', label: 'English' },
-            { value: 'zh', label: '中文' },
-          ]}
-        />
-      </Card>
-
-      {/* Sign-out */}
-      <div className="mt-6">
-        <Button
-          variant="danger"
-          size="lg"
-          block
-          leadingIcon={<LogOut className="size-4" aria-hidden />}
-          onClick={onSignOut}
-        >
-          {t('auth.signOut')}
-        </Button>
-        <p className="mt-2 text-center text-[11px] text-[rgb(var(--fg-subtle))]">
-          {t('profile.signOutHint')}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-interface SegmentedControlProps<T extends string> {
-  value: T;
-  onChange: (next: T) => void;
-  options: Array<{ value: T; label: string }>;
-}
-
-function SegmentedControl<T extends string>({ value, onChange, options }: SegmentedControlProps<T>) {
-  return (
-    <div role="radiogroup" className="inline-flex w-full rounded-lg bg-[rgb(var(--bg-sunken))] p-1">
-      {options.map((opt) => {
-        const active = opt.value === value;
-        return (
-          <button
-            key={opt.value}
-            type="button"
-            role="radio"
-            aria-checked={active}
-            onClick={() => onChange(opt.value)}
-            className={cn(
-              'flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60',
-              active
-                ? 'bg-[rgb(var(--bg-surface))] text-[rgb(var(--fg-primary))] shadow-sm'
-                : 'text-[rgb(var(--fg-secondary))] hover:text-[rgb(var(--fg-primary))]',
-            )}
-          >
-            {opt.label}
-          </button>
-        );
-      })}
+      {/* Defensive: Profile can be reached without auth-state recovery
+          in some flows; render a minimal return-home escape hatch. */}
+      <button
+        type="button"
+        onClick={() => navigate('/')}
+        className="mt-6 text-xs text-[rgb(var(--fg-subtle))] underline-offset-2 hover:underline"
+      >
+        {t('auth.skipToHome')}
+      </button>
     </div>
   );
 }

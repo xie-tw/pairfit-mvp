@@ -26,6 +26,7 @@ import { constantTimeEqual, generateSalt, hashPassword, uuid } from '../lib/cryp
 
 export type Unit = 'kg' | 'lb';
 export type LocalePref = 'en' | 'zh';
+export type ProPlan = 'monthly' | 'yearly';
 
 export interface UserRecord {
   id: string;
@@ -39,6 +40,20 @@ export interface UserRecord {
   locale: LocalePref;
   avatar: string;
   createdAt: number;
+  // ---- PF-9: Pro + couple subscription ---------------------------------
+  /** True when the user (or their partner) has an active Pro plan. */
+  isPro: boolean;
+  /** Which plan the user is on; null on free. */
+  proPlan: ProPlan | null;
+  /** Timestamp the Pro benefits activated on this account. */
+  proSince: number | null;
+  /**
+   * If Pro was unlocked via a partner's subscription, the partner's user id.
+   * Cleared on unbind so we know to recompute `isPro` from self only.
+   */
+  proViaPartner: string | null;
+  /** Optional couple binding — `null` when single. */
+  partnerId: string | null;
 }
 
 /** What `register` / `login` actually return on the happy path. */
@@ -66,7 +81,18 @@ interface AuthState {
   /** Find an existing account by lowercased email — used for duplicate checks. */
   findByEmail: (email: string) => UserRecord | undefined;
   currentUser: () => UserRecord | null;
+  // ---- PF-9: Pro subscription ----------------------------------------
+  /** Activate Pro on the current user; partner gets auto-unlocked. */
+  activatePro: (plan: ProPlan) => ProActivationResult;
+  /** Cancel Pro on the current user; their partner (if unlocked via them) also drops. */
+  cancelPro: () => void;
+  /** Couple-binding helper: patch `partnerId` on a user record directly. */
+  setPartner: (userId: string, partnerId: string | null) => void;
 }
+
+export type ProActivationResult =
+  | { ok: true; partnerUnlocked: boolean; partnerId: string | null }
+  | { ok: false; code: 'noCurrentUser' };
 
 const USERS_KEY = 'pairfit:users';
 const AUTH_KEY = 'pairfit:auth';
@@ -144,6 +170,11 @@ export const useAuthStore = create<AuthState>()(
           locale: 'en',
           avatar: '',
           createdAt: Date.now(),
+          isPro: false,
+          proPlan: null,
+          proSince: null,
+          proViaPartner: null,
+          partnerId: null,
         };
         set((state) => ({ users: [...state.users, user], currentUserId: user.id }));
         // Mirror to the persisted pointer so the session survives reload.
@@ -196,6 +227,101 @@ export const useAuthStore = create<AuthState>()(
       findByEmail: (email) => {
         const norm = normalizeEmail(email);
         return get().users.find((u) => u.email === norm);
+      },
+
+      /**
+       * Activate Pro on the current user. If they're bound to a partner, the
+       * partner is auto-unlocked (with `proViaPartner` pointing back here).
+       *
+       * Re-activation: clears any previous `proViaPartner` on the partner so
+       * the "unlocked by X" attribution is always fresh — protects against
+       * the partner having multiple prior unlocks stacking up.
+       */
+      activatePro: (plan) => {
+        const { currentUserId, users } = get();
+        if (!currentUserId) return { ok: false, code: 'noCurrentUser' };
+        const now = Date.now();
+        let partnerUnlocked = false;
+        const next = users.map((u) => {
+          if (u.id === currentUserId) {
+            return {
+              ...u,
+              isPro: true,
+              proPlan: plan,
+              proSince: now,
+              proViaPartner: null,
+            };
+          }
+          if (u.partnerId === currentUserId) {
+            partnerUnlocked = true;
+            return {
+              ...u,
+              isPro: true,
+              proPlan: null,
+              proSince: now,
+              proViaPartner: currentUserId,
+            };
+          }
+          return u;
+        });
+        set({ users: next });
+        const self = next.find((u) => u.id === currentUserId);
+        return {
+          ok: true,
+          partnerUnlocked,
+          partnerId: self?.partnerId ?? null,
+        };
+      },
+
+      /**
+       * Cancel Pro. The current user's plan drops immediately; if their
+       * partner was riding on this subscription (`proViaPartner === self.id`)
+       * the partner also falls back to free. Other partners who paid for
+       * their own Pro are unaffected.
+       */
+      cancelPro: () => {
+        const { currentUserId, users } = get();
+        if (!currentUserId) return;
+        const next = users.map((u) => {
+          if (u.id === currentUserId) {
+            return {
+              ...u,
+              isPro: false,
+              proPlan: null,
+              proSince: null,
+              proViaPartner: null,
+            };
+          }
+          if (u.proViaPartner === currentUserId) {
+            return {
+              ...u,
+              isPro: false,
+              proPlan: null,
+              proSince: null,
+              proViaPartner: null,
+            };
+          }
+          return u;
+        });
+        set({ users: next });
+      },
+
+      /**
+       * Couple-binding helper — set or clear `partnerId` on a user record.
+       * Also clears `proViaPartner` on unbind so the partner's `isPro`
+       * fallback doesn't get stuck pointing at a now-unbound id.
+       */
+      setPartner: (userId, partnerId) => {
+        const next = get().users.map((u) => {
+          if (u.id !== userId) return u;
+          return {
+            ...u,
+            partnerId,
+            // If we just unbound, drop any subscription attribution too.
+            ...(partnerId === null ? { proViaPartner: null } : null),
+          };
+        });
+        set({ users: next });
       },
 
       currentUser: () => {

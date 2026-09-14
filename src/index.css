@@ -109,6 +109,12 @@
       text-[rgb(var(--fg-secondary))] border border-[rgb(var(--border-default))];
   }
 
+  /* Pro tier accent — gradient pill so the chip reads "premium" at a glance. */
+  .pf-chip-pro {
+    @apply border-transparent text-white;
+    background-image: linear-gradient(135deg, rgb(var(--brand-rgb)), rgb(var(--accent-rgb)));
+  }
+
   /* Section title used inside pages. */
   .pf-section-title {
     @apply text-xs font-semibold uppercase tracking-[0.08em] text-[rgb(var(--fg-secondary))];
