@@ -1,19 +1,20 @@
-import { Globe, Moon, Monitor, Sun } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Globe, LogOut, Moon, Monitor, Sun, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useThemeStore } from '../../store/theme';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthStore, useCurrentUser, signOut } from '../../store/auth';
 import { useLocaleStore, type LocaleCode } from '../../store/locale';
+import { useThemeStore } from '../../store/theme';
 import { cn } from '../../lib/utils';
 
 /**
  * Top navigation bar shown above every page.
  *
- * Responsibilities (PF-1 scope):
- *   - Show brand identity (`PairFit`)
- *   - Language switcher (EN ⇄ ZH)
- *   - Theme switcher (light ⇄ dark ⇄ system)
- *
- * Real account / settings UI lands in PF-2 (account module) and PF-9
- * (settings), so this bar stays minimal.
+ * PF-2 additions:
+ *   - Auth-aware right-side cluster: a small avatar button opens a
+ *     dropdown with "Profile" + "Sign out" when signed in; when signed
+ *     out, an inline "Sign in" pill is shown instead.
+ *   - The brand locale/theme toggles stay where they were.
  */
 export function TopBar() {
   const { t } = useTranslation();
@@ -21,6 +22,8 @@ export function TopBar() {
   const setMode = useThemeStore((s) => s.setMode);
   const locale = useLocaleStore((s) => s.locale);
   const setLocale = useLocaleStore((s) => s.setLocale);
+  const user = useCurrentUser();
+  const currentUserId = useAuthStore((s) => s.currentUserId);
 
   const themeIcon =
     mode === 'dark' ? <Moon className="size-4" aria-hidden /> :
@@ -64,6 +67,8 @@ export function TopBar() {
           label={`${t('common.theme')}: ${mode}`}
           icon={themeIcon}
         />
+        <div className="ml-1 h-6 w-px bg-[rgb(var(--border-default))]" aria-hidden />
+        {currentUserId && user ? <UserMenu user={user} /> : <SignInPill />}
       </div>
     </header>
   );
@@ -71,7 +76,7 @@ export function TopBar() {
 
 function Brand() {
   return (
-    <div className="flex items-center gap-2">
+    <Link to="/" className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 rounded-md">
       <div
         className={cn(
           'flex size-8 items-center justify-center rounded-full',
@@ -89,6 +94,128 @@ function Brand() {
           Move together · 一起动
         </div>
       </div>
+    </Link>
+  );
+}
+
+function SignInPill() {
+  const { t } = useTranslation();
+  return (
+    <Link
+      to="/login"
+      className={cn(
+        'inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-xs font-semibold',
+        'bg-brand-500 text-white shadow-sm hover:bg-brand-600',
+        'pf-press focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60',
+      )}
+    >
+      {t('auth.signIn')}
+    </Link>
+  );
+}
+
+function UserMenu({ user }: { user: { displayName: string; avatar: string; email: string } }) {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const initial = (user.displayName.trim()[0] ?? 'P').toUpperCase();
+
+  // Close on outside click or Esc.
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const onProfile = () => {
+    setOpen(false);
+    navigate('/profile');
+  };
+
+  const onSignOut = () => {
+    setOpen(false);
+    signOut();
+    navigate('/login', { replace: true });
+  };
+
+  return (
+    <div className="relative" ref={menuRef}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label={t('profile.userMenu', { name: user.displayName })}
+        className={cn(
+          'flex size-9 items-center justify-center rounded-full text-sm font-semibold',
+          'border border-[rgb(var(--border-default))] bg-[rgb(var(--bg-surface))]',
+          'text-[rgb(var(--fg-primary))]',
+          'hover:bg-[rgb(var(--bg-sunken))]',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60',
+          'pf-press transition-colors',
+        )}
+      >
+        {user.avatar ? (
+          <span className="text-lg" aria-hidden>{user.avatar}</span>
+        ) : (
+          <span aria-hidden>{initial}</span>
+        )}
+      </button>
+
+      {open ? (
+        <div
+          role="menu"
+          aria-label={t('profile.userMenu', { name: user.displayName })}
+          className={cn(
+            'absolute right-0 mt-2 w-56 origin-top-right rounded-xl border',
+            'border-[rgb(var(--border-default))] bg-[rgb(var(--bg-surface))]',
+            'shadow-lg animate-fade-in z-40',
+          )}
+        >
+          <div className="px-3 py-3">
+            <p className="truncate text-sm font-semibold text-[rgb(var(--fg-primary))]">
+              {user.displayName}
+            </p>
+            <p className="truncate text-xs text-[rgb(var(--fg-secondary))]">{user.email}</p>
+          </div>
+          <div className="h-px bg-[rgb(var(--border-default))]" aria-hidden />
+          <button
+            type="button"
+            role="menuitem"
+            onClick={onProfile}
+            className={cn(
+              'flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm font-medium',
+              'text-[rgb(var(--fg-primary))] hover:bg-[rgb(var(--bg-sunken))]',
+            )}
+          >
+            <UserIcon className="size-4" aria-hidden />
+            {t('profile.title')}
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={onSignOut}
+            className={cn(
+              'flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm font-medium',
+              'text-danger hover:bg-danger-soft dark:hover:bg-danger/15',
+            )}
+          >
+            <LogOut className="size-4" aria-hidden />
+            {t('auth.signOut')}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 /**
@@ -7,7 +8,7 @@ import { cn } from '../../lib/utils';
  * the goal is a "good enough" Button that every later feature can rely on
  * without each PF reinventing its own.
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'accent';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'accent' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
@@ -21,6 +22,8 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
     'bg-transparent text-[rgb(var(--fg-primary))] border border-[rgb(var(--border-strong))] hover:bg-[rgb(var(--bg-sunken))]',
   accent:
     'bg-accent-500 text-white shadow-sm hover:bg-accent-600 active:bg-accent-700 disabled:bg-accent-300',
+  danger:
+    'bg-danger text-white shadow-sm hover:bg-danger/90 active:bg-danger/80 disabled:bg-danger/60',
 };
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
@@ -35,6 +38,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
   block?: boolean;
+  /** Show a spinner and disable interaction — useful for async form submits. */
+  loading?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -44,6 +49,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     leadingIcon,
     trailingIcon,
     block = false,
+    loading = false,
+    disabled,
     className,
     children,
     type = 'button',
@@ -51,10 +58,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   },
   ref,
 ) {
+  const isDisabled = disabled || loading;
   return (
     <button
       ref={ref}
       type={type}
+      disabled={isDisabled}
+      aria-busy={loading || undefined}
       className={cn(
         'inline-flex items-center justify-center font-medium',
         'transition-colors duration-200 ease-out-quart',
@@ -69,9 +79,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       )}
       {...rest}
     >
-      {leadingIcon ? <span className="-ml-0.5 inline-flex">{leadingIcon}</span> : null}
+      {loading ? (
+        <Loader2 className="size-4 animate-spin" aria-hidden />
+      ) : leadingIcon ? (
+        <span className="-ml-0.5 inline-flex">{leadingIcon}</span>
+      ) : null}
       {children}
-      {trailingIcon ? <span className="-mr-0.5 inline-flex">{trailingIcon}</span> : null}
+      {!loading && trailingIcon ? <span className="-mr-0.5 inline-flex">{trailingIcon}</span> : null}
     </button>
   );
 });

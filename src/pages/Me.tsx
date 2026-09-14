@@ -1,48 +1,107 @@
-import { ChevronRight, Cog, Crown, Languages, Sparkles, User } from 'lucide-react';
+import { ChevronRight, Cog, Crown, Globe, Languages, LogIn, Moon, Sparkles, Sun, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
 import { PageHeader } from '../components/ui/PageHeader';
-import { useLocaleStore } from '../store/locale';
+import { useAuthStore, useCurrentUser, type LocalePref } from '../store/auth';
+import { useLocaleStore, type LocaleCode } from '../store/locale';
 import { useThemeStore } from '../store/theme';
 import { cn } from '../lib/utils';
 
 /**
- * "Me" tab — profile, settings, subscription entry points.
+ * "Me" tab — entry point for the user-centric surface.
  *
- * PF-1 ships the navigation rows only. Auth, profile editing, and the real
- * subscription flow arrive in PF-2 (account) and PF-9 (settings).
+ * PF-1: navigation rows only.
+ * PF-2: real account state (avatar, name, email, tier chip) + a quick CTA
+ *       to either sign in (when signed out) or open the full profile
+ *       (when signed in). Settings rows remain placeholders until PF-9.
  */
 export function MePage() {
   const { t } = useTranslation();
+  const user = useCurrentUser();
   const locale = useLocaleStore((s) => s.locale);
   const setLocale = useLocaleStore((s) => s.setLocale);
   const mode = useThemeStore((s) => s.mode);
   const setMode = useThemeStore((s) => s.setMode);
+  const updateProfile = useAuthStore((s) => s.updateProfile);
+
+  const initial = (user?.displayName.trim()[0] ?? 'P').toUpperCase();
+
+  // When signed in, mirror the locale choice into the user record so the
+  // Profile screen always reflects the live setting.
+  const onLocaleChange = (next: LocaleCode) => {
+    setLocale(next);
+    if (user) updateProfile({ locale: next as LocalePref });
+  };
 
   return (
     <div className="animate-fade-in">
       <PageHeader title={t('me.title')} subtitle={t('me.subtitle')} />
 
-      <Card raised>
-        <div className="flex items-center gap-4">
-          <div
-            className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-accent-400 text-white shadow-sm"
-            aria-hidden
-          >
-            <User className="size-7" />
+      {/* Account card — the centerpiece. Different content when signed out. */}
+      {user ? (
+        <Link to="/profile" className="block">
+          <Card raised className="pf-press transition-shadow hover:shadow-md">
+            <div className="flex items-center gap-4">
+              <div
+                className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-accent-400 text-2xl shadow-sm"
+                aria-hidden
+              >
+                {user.avatar || <span className="text-base font-semibold text-white">{initial}</span>}
+              </div>
+              <div className="min-w-0 flex-1">
+                <h2 className="truncate text-base font-semibold text-[rgb(var(--fg-primary))]">
+                  {user.displayName}
+                </h2>
+                <p className="truncate text-sm text-[rgb(var(--fg-secondary))]">{user.email}</p>
+              </div>
+              <div className="flex flex-col items-end gap-1">
+                <span className="pf-chip">{t('me.freeTier')}</span>
+                <ChevronRight className="size-4 text-[rgb(var(--fg-subtle))]" aria-hidden />
+              </div>
+            </div>
+          </Card>
+        </Link>
+      ) : (
+        <Card raised>
+          <div className="flex items-center gap-4">
+            <div
+              className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-accent-400 text-white shadow-sm"
+              aria-hidden
+            >
+              <UserIcon className="size-7" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h2 className="text-base font-semibold text-[rgb(var(--fg-primary))]">
+                {t('me.signedOutTitle')}
+              </h2>
+              <p className="text-sm text-[rgb(var(--fg-secondary))]">
+                {t('me.signedOutBody')}
+              </p>
+            </div>
+            <Link
+              to="/login"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-brand-500 px-3 text-xs font-semibold text-white shadow-sm hover:bg-brand-600"
+            >
+              <LogIn className="size-3.5" aria-hidden />
+              {t('auth.signIn')}
+            </Link>
           </div>
-          <div className="min-w-0 flex-1">
-            <h2 className="text-base font-semibold text-[rgb(var(--fg-primary))]">Guest</h2>
-            <p className="text-sm text-[rgb(var(--fg-secondary))]">
-              Sign in to sync across devices — wired in PF-2.
-            </p>
-          </div>
-          <span className="pf-chip">Free tier</span>
-        </div>
-      </Card>
+        </Card>
+      )}
 
+      {/* Theme */}
       <Card className="mt-4">
-        <h3 className="pf-section-title mb-3">{t('common.theme')}</h3>
+        <div className="mb-3 flex items-center gap-2">
+          {mode === 'dark' ? (
+            <Moon className="size-4 text-[rgb(var(--fg-secondary))]" aria-hidden />
+          ) : mode === 'light' ? (
+            <Sun className="size-4 text-[rgb(var(--fg-secondary))]" aria-hidden />
+          ) : (
+            <Sparkles className="size-4 text-[rgb(var(--fg-secondary))]" aria-hidden />
+          )}
+          <h3 className="pf-section-title">{t('common.theme')}</h3>
+        </div>
         <SegmentedControl<typeof mode>
           value={mode}
           onChange={setMode}
@@ -54,11 +113,15 @@ export function MePage() {
         />
       </Card>
 
+      {/* Language */}
       <Card className="mt-4">
-        <h3 className="pf-section-title mb-3">{t('common.language')}</h3>
-        <SegmentedControl<'en' | 'zh'>
+        <div className="mb-3 flex items-center gap-2">
+          <Globe className="size-4 text-[rgb(var(--fg-secondary))]" aria-hidden />
+          <h3 className="pf-section-title">{t('common.language')}</h3>
+        </div>
+        <SegmentedControl<LocaleCode>
           value={locale}
-          onChange={setLocale}
+          onChange={onLocaleChange}
           options={[
             { value: 'en', label: 'English' },
             { value: 'zh', label: '中文' },
@@ -66,12 +129,12 @@ export function MePage() {
         />
       </Card>
 
+      {/* Other rows */}
       <nav className="mt-4 pf-surface divide-y divide-[rgb(var(--border-default))] rounded-xl" aria-label="Settings">
         <Row icon={<Crown className="size-5 text-brand-500" />} title={t('me.subscription')} trailing={<Badge>Pro</Badge>} />
-        <Row icon={<User className="size-5" />} title={t('me.profile')} />
         <Row icon={<Cog className="size-5" />} title={t('me.settings')} />
-        <Row icon={<Sparkles className="size-5" />} title="What's new" />
-        <Row icon={<Languages className="size-5" />} title="Help & feedback" />
+        <Row icon={<Sparkles className="size-5" />} title={t('me.whatsNew')} />
+        <Row icon={<Languages className="size-5" />} title={t('me.help')} />
       </nav>
     </div>
   );
@@ -116,10 +179,7 @@ interface SegmentedControlProps<T extends string> {
 
 function SegmentedControl<T extends string>({ value, onChange, options }: SegmentedControlProps<T>) {
   return (
-    <div
-      role="radiogroup"
-      className="inline-flex w-full rounded-lg bg-[rgb(var(--bg-sunken))] p-1"
-    >
+    <div role="radiogroup" className="inline-flex w-full rounded-lg bg-[rgb(var(--bg-sunken))] p-1">
       {options.map((opt) => {
         const active = opt.value === value;
         return (

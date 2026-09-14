@@ -49,9 +49,105 @@
     "subtitle": "Profile, settings and subscription.",
     "profile": "Profile",
     "settings": "Settings",
-    "subscription": "Subscription"
+    "subscription": "Subscription",
+    "freeTier": "Free tier",
+    "signedOutTitle": "You're signed out",
+    "signedOutBody": "Sign in to sync your data across devices.",
+    "whatsNew": "What's new",
+    "help": "Help & feedback"
   },
   "tabs": {
     "a11y": "{{name}} tab"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Nickname",
+    "confirmPassword": "Confirm password",
+    "forgot": "Forgot?",
+    "passwordHint": "At least 8 characters, with a letter and a digit.",
+    "avatarOptional": "Pick an avatar (optional)",
+    "placeholders": {
+      "email": "you@example.com",
+      "password": "8+ characters",
+      "confirmPassword": "Type the password again",
+      "displayName": "What should we call you?"
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to keep your streak going.",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "noAccount": "No account yet?",
+      "signUpLink": "Create one"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Three steps and you're set.",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in"
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "We'll email you a reset link.",
+      "body": "Enter the email you used at signup. If an account exists, we'll send a reset link to your inbox.",
+      "submit": "Send reset link",
+      "submitting": "Sending…",
+      "sentTitle": "Check your inbox",
+      "sentBody": "If {{email}} matches an account, a reset link is on its way. (MVP: this is a mock — no email is actually sent.)",
+      "backToLogin": "Back to sign in"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "invalid": "Please enter a valid email address.",
+      "email": {
+        "required": "Please enter your email.",
+        "invalid": "That email address doesn't look right."
+      },
+      "password": {
+        "required": "Please choose a password.",
+        "tooShort": "Use at least 8 characters.",
+        "noLetter": "Add at least one letter.",
+        "noDigit": "Add at least one digit."
+      },
+      "confirmPassword": {
+        "required": "Please re-enter your password.",
+        "mismatch": "Passwords don't match."
+      },
+      "displayName": {
+        "required": "Pick a nickname so your partner can find you.",
+        "tooLong": "Keep it under 32 characters."
+      },
+      "emailTaken": "That email is already registered. Try signing in.",
+      "invalidCredentials": "Email or password is incorrect."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Avatar, units, language, sign out.",
+    "avatar": "Avatar",
+    "displayName": "Display name",
+    "displayNameLabel": "Your nickname",
+    "unit": "Weight unit",
+    "unitKg": "Kilograms (kg)",
+    "unitLb": "Pounds (lb)",
+    "language": "Language",
+    "saved": "Saved",
+    "signOutHint": "Sign out clears your session on this device. Your data stays on disk.",
+    "signedInAs": "Signed in as {{email}}",
+    "userMenu": "{{name}}'s account menu"
+  },
+  "onboarding": {
+    "title": "Welcome, {{name}}",
+    "subtitle": "Your account is ready. One more step and you're in.",
+    "heroTitle": "Account created 🎉",
+    "heroBody": "The full goal-setting flow ships in the next milestone. For now, poke around the app — you can always come back.",
+    "arrivesIn": "Full onboarding arrives in {{issue}}",
+    "exploreApp": "Explore the app",
+    "editProfile": "Edit my profile"
   }
 }
