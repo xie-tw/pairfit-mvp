@@ -46,6 +46,7 @@ import {
   usePartnerWeights,
 } from '../store/partnerData';
 import { toast } from '../store/toast';
+import { useDailyTaskSweep } from '../lib/useDailyTaskSweep';
 
 /**
  * Home — landing tab.
@@ -104,6 +105,12 @@ export function HomePage() {
   // Drain unseen received cheers into a one-shot toast. Using a ref
   // keeps the surfaced-id set stable across renders without forcing
   // a re-render when we add to it.
+
+  // PF-7: kick off the daily task sweep + coin auto-confirm sweep on
+  // every Home mount. The hook is idempotent so this is safe to call
+  // unconditionally; if today's entry already exists it short-circuits.
+  useDailyTaskSweep();
+
   return (
     <div className="animate-fade-in">
       <ReceivedCheersToaster userId={user?.id ?? null} />

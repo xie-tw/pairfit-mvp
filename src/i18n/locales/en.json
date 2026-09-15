@@ -398,23 +398,6 @@
       "partner": "Partner"
     }
   },
-  "me": {
-    "title": "Me",
-    "subtitle": "Profile, settings and subscription.",
-    "profile": "Profile",
-    "settings": "Settings",
-    "subscription": "Subscription",
-    "freeTier": "Free tier",
-    "signedOutTitle": "You're signed out",
-    "signedOutBody": "Sign in to sync your data across devices.",
-    "whatsNew": "What's new",
-    "help": "Help & feedback",
-    "editGoal": "Edit my goal",
-    "proBadge": "Pro",
-    "settingsAriaLabel": "Settings",
-    "aiReportCardTitle": "This week's AI report",
-    "aiReportCardHint": "Open the weekly recap of your weight, meals and workouts."
-  },
   "tabs": {
     "a11y": "{{name}} tab"
   },
@@ -461,6 +444,7 @@
   "auth": {
     "signIn": "Sign in",
     "signOut": "Sign out",
+    "signInRequired": "Sign in to use this.",
     "email": "Email",
     "password": "Password",
     "displayName": "Nickname",
@@ -642,5 +626,120 @@
     "directionLose": "Lose weight",
     "directionGain": "Gain weight",
     "notSet": "No goal set yet"
+  },
+  "coins": {
+    "title": "Coins",
+    "subtitle": "Track your rewards and how your partner confirmed them.",
+    "balanceLabel": "Current balance",
+    "unit": "Coins",
+    "capHint": "Capped at {{cap}} — extra rewards won't push you over.",
+    "disclaimer": "Coins are virtual-only. They cannot be recharged with real money, redeemed for cash, or transferred to other users.",
+    "shopCta": "Open shop",
+    "historyTitle": "History",
+    "historyEmpty": "No coin activity yet. Complete today's plan to start earning.",
+    "todayHint": "{{delta}} for {{reason}} · {{status}} {{partner}}",
+    "reason": {
+      "taskComplete": "Daily plan complete",
+      "taskFail": "Daily plan missed",
+      "giftRedeem": "Cosmetic redeemed",
+      "giftReceived": "Gift received"
+    },
+    "status": {
+      "pending": "Waiting for {{name}} to confirm.",
+      "confirmed": "Confirmed by {{name}}.",
+      "declined": "Declined by {{name}}.",
+      "expired": "Auto-confirmed after 24h."
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Spend coins on cosmetic frames, themes and titles.",
+    "disclaimer": "Coins are virtual-only. Items here have no real-world value and cannot be exchanged for cash.",
+    "sections": {
+      "frames": "Avatar frames",
+      "themes": "Theme backgrounds",
+      "titles": "Titles"
+    },
+    "buy": "Buy · {{price}}",
+    "equip": "Equip",
+    "equipped": "Equipped",
+    "notEnough": "Not enough coins for that.",
+    "redeemSuccess": "Unlocked {{name}} — it's equipped now.",
+    "confirmTitle": "Buy {{name}}?",
+    "confirmBody": "Spend {{price}} Coins to unlock {{name}}. This can't be undone.",
+    "confirmBuy": "Spend {{price}}",
+    "defaultLocked": "Starter",
+    "items": {
+      "frame": {
+        "default": "Plain",
+        "gold": "Gold",
+        "rainbow": "Rainbow",
+        "flame": "Flame",
+        "ocean": "Ocean"
+      },
+      "theme": {
+        "default": "Plain",
+        "sunset": "Sunset",
+        "ocean": "Ocean",
+        "aurora": "Aurora",
+        "forest": "Forest"
+      },
+      "title": {
+        "newbie": "Newbie",
+        "fit_master": "Fit Master",
+        "weight_loss_hero": "Weight-Loss Hero",
+        "weight_gain_champ": "Weight-Gain Champ"
+      }
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Confirmations from your partner and other updates.",
+    "markAllRead": "Mark all read",
+    "empty": "No notifications yet. Partner confirmations show up here.",
+    "confirmPrompt": "{{partner}} {{delta}} Coins — confirm?",
+    "expiresIn": "Auto-confirms in {{hours}}h",
+    "balance": "Your balance: {{balance}}",
+    "confirm": "Confirm",
+    "decline": "Decline",
+    "confirmed": "Confirmed · {{delta}} Coins applied.",
+    "declined": "Declined.",
+    "coinResult": {
+      "confirmed": "Confirmed · {{delta}} Coins",
+      "declined": "Declined",
+      "expired": "Auto-confirmed after 24h · {{delta}} Coins"
+    },
+    "viewCoins": "See your coin history →"
+  },
+  "dailyTasks": {
+    "missing": {
+      "weight": "Log your weight for today.",
+      "meals": "Log 3 meals for today.",
+      "workoutLose": "Work out for at least 30 minutes.",
+      "workoutGain": "Work out for at least 20 minutes."
+    },
+    "complete": "Today's plan complete",
+    "fail": "Today's plan missed"
+  },
+  "me": {
+    "title": "Me",
+    "subtitle": "Profile, settings and subscription.",
+    "profile": "Profile",
+    "settings": "Settings",
+    "subscription": "Subscription",
+    "freeTier": "Free tier",
+    "signedOutTitle": "You're signed out",
+    "signedOutBody": "Sign in to sync your data across devices.",
+    "whatsNew": "What's new",
+    "help": "Help & feedback",
+    "editGoal": "Edit my goal",
+    "proBadge": "Pro",
+    "settingsAriaLabel": "Settings",
+    "aiReportCardTitle": "This week's AI report",
+    "aiReportCardHint": "Open the weekly recap of your weight, meals and workouts.",
+    "coins": "Coins",
+    "coinsSubtitle": "Balance: {{balance}} coins",
+    "shop": "Cosmetic shop",
+    "notifications": "Notifications"
   }
 }

@@ -17,6 +17,9 @@ import { ProfilePage } from './pages/Profile';
 import { OnboardingPage } from './pages/Onboarding';
 import { SettingsPage } from './pages/Settings';
 import { SubscriptionPage } from './pages/Subscription';
+import { CoinsPage } from './pages/Coins';
+import { ShopPage } from './pages/Shop';
+import { NotificationsPage } from './pages/Notifications';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { ToastViewport } from './components/ui/Toast';
 import { bindSystemThemeListener, useThemeStore } from './store/theme';
@@ -25,7 +28,7 @@ import { bindSystemThemeListener, useThemeStore } from './store/theme';
  * App root. Sets up routing and binds a system-preference listener so the
  * resolved theme updates live when the user changes their OS settings.
  *
- * Routes (PF-1 + PF-2 + PF-3 + PF-4 + PF-5 + PF-9):
+ * Routes (PF-1 + PF-2 + PF-3 + PF-4 + PF-5 + PF-7 + PF-9):
  *   - `/` … `/me`            — public tabs (AppShell + tab bar)
  *   - `/login`               — public auth shell (no tab bar)
  *   - `/register`            — public auth shell (no tab bar)
@@ -37,6 +40,9 @@ import { bindSystemThemeListener, useThemeStore } from './store/theme';
  *   - `/profile`             — protected (RequireAuth) — avatar + name
  *   - `/settings`            — protected (RequireAuth) — global prefs
  *   - `/subscription`        — protected (RequireAuth) — Pro
+ *   - `/coins`               — protected (RequireAuth) — PF-7 ledger
+ *   - `/shop`                — protected (RequireAuth) — PF-7 cosmetics
+ *   - `/notifications`       — protected (RequireAuth) — PF-7 inbox
  *
  * The ToastViewport is mounted at the very top of the tree so any page
  * can push toasts without owning the layout.
@@ -86,6 +92,38 @@ export default function App() {
             <RequireAuth>
               <AppShell>
                 <SubscriptionPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+
+        {/* PF-7: virtual coins + shop + notifications. */}
+        <Route
+          path="/coins"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <CoinsPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/shop"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <ShopPage />
+              </AppShell>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <RequireAuth>
+              <AppShell>
+                <NotificationsPage />
               </AppShell>
             </RequireAuth>
           }

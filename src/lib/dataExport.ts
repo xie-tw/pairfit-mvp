@@ -43,6 +43,9 @@ export const KNOWN_KEYS: readonly string[] = [
   'pairfit:cheers',
   'pairfit:weeklyReport',
   'pairfit:notifications',
+  'pairfit:coins',
+  'pairfit:cosmetics',
+  'pairfit:notificationCenter',
   'pairfit:i18nLng',
 ];
 

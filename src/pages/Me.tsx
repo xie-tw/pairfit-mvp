@@ -1,4 +1,4 @@
-import { ChevronRight, Cog, Crown, Globe, Languages, LogIn, Moon, Sparkles, Sun, Target, User as UserIcon } from 'lucide-react';
+import { Bell, ChevronRight, Coins as CoinsIcon, Cog, Crown, Globe, Languages, LogIn, Moon, ShoppingBag, Sparkles, Sun, Target, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
@@ -7,6 +7,8 @@ import { useAuthStore, useCurrentUser, type LocalePref } from '../store/auth';
 import { useLocaleStore, type LocaleCode } from '../store/locale';
 import { useThemeStore } from '../store/theme';
 import { useGoalStore } from '../store/goal';
+import { useCoinStore } from '../store/coins';
+import { useNotificationCenter } from '../store/notificationCenter';
 import { cn } from '../lib/utils';
 
 /**
@@ -26,6 +28,10 @@ export function MePage() {
   const setMode = useThemeStore((s) => s.setMode);
   const updateProfile = useAuthStore((s) => s.updateProfile);
   const goal = useGoalStore((s) => s.goal);
+  const coinBalance = useCoinStore((s) => (user ? s.balanceOf(user.id) : 0));
+  const unreadNotifications = useNotificationCenter((s) =>
+    user ? s.unreadCount(user.id) : 0,
+  );
 
   const initial = (user?.displayName.trim()[0] ?? 'P').toUpperCase();
 
@@ -154,6 +160,35 @@ export function MePage() {
             subtitle={t('me.aiReportCardHint')}
           />
         </Link>
+        {/* PF-7: Coins balance + Shop + Notifications. */}
+        {user ? (
+          <>
+            <Link to="/coins" className="block">
+              <Row
+                icon={<CoinsIcon className="size-5 text-amber-500" />}
+                title={t('me.coins')}
+                subtitle={t('me.coinsSubtitle', { balance: coinBalance.toLocaleString() })}
+                trailing={<span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-700 dark:bg-amber-500/15 dark:text-amber-300">{coinBalance.toLocaleString()}</span>}
+              />
+            </Link>
+            <Link to="/shop" className="block">
+              <Row icon={<ShoppingBag className="size-5" />} title={t('me.shop')} />
+            </Link>
+            <Link to="/notifications" className="block">
+              <Row
+                icon={<Bell className="size-5" />}
+                title={t('me.notifications')}
+                trailing={
+                  unreadNotifications > 0 ? (
+                    <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-500 px-1.5 text-[10px] font-semibold text-white">
+                      {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                    </span>
+                  ) : undefined
+                }
+              />
+            </Link>
+          </>
+        ) : null}
         <Link to="/subscription" className="block">
           <Row
             icon={<Crown className="size-5 text-accent-500" />}

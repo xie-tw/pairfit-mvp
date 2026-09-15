@@ -398,23 +398,6 @@
       "partner": "伙伴"
     }
   },
-  "me": {
-    "title": "我的",
-    "subtitle": "资料、设置与订阅。",
-    "profile": "个人资料",
-    "settings": "设置",
-    "subscription": "订阅",
-    "freeTier": "免费版",
-    "signedOutTitle": "尚未登录",
-    "signedOutBody": "登录后可在多设备同步你的数据。",
-    "whatsNew": "更新内容",
-    "help": "帮助与反馈",
-    "editGoal": "修改我的目标",
-    "proBadge": "Pro",
-    "settingsAriaLabel": "设置",
-    "aiReportCardTitle": "本周 AI 周报",
-    "aiReportCardHint": "体重、饮食、运动,一份本周摘要。"
-  },
   "tabs": {
     "a11y": "{{name}} 标签"
   },
@@ -461,6 +444,7 @@
   "auth": {
     "signIn": "登录",
     "signOut": "退出登录",
+    "signInRequired": "请先登录后再使用。",
     "email": "邮箱",
     "password": "密码",
     "displayName": "昵称",
@@ -642,5 +626,120 @@
     "directionLose": "减重",
     "directionGain": "增重",
     "notSet": "尚未设定目标"
+  },
+  "coins": {
+    "title": "虚拟币",
+    "subtitle": "查看奖励明细和对方的确认情况。",
+    "balanceLabel": "当前余额",
+    "unit": "Coins",
+    "capHint": "上限 {{cap}},再多也不会溢出。",
+    "disclaimer": "Coins 仅用于 App 内装扮,无法充值、无法提现、无法转赠。",
+    "shopCta": "进入商店",
+    "historyTitle": "流水",
+    "historyEmpty": "还没有记录。完成今日任务开始攒币。",
+    "todayHint": "{{delta}}({{reason}})· {{status}} {{partner}}",
+    "reason": {
+      "taskComplete": "今日任务达成",
+      "taskFail": "今日任务未达成",
+      "giftRedeem": "兑换装扮",
+      "giftReceived": "收到礼物"
+    },
+    "status": {
+      "pending": "等待 {{name}} 确认中。",
+      "confirmed": "已由 {{name}} 确认。",
+      "declined": "已被 {{name}} 拒绝。",
+      "expired": "24 小时未操作,系统自动通过。"
+    }
+  },
+  "shop": {
+    "title": "商店",
+    "subtitle": "用 Coins 兑换头像框、主题背景、称号。",
+    "disclaimer": "Coins 是虚拟币,兑换的装扮无现实价值,不能兑换现金。",
+    "sections": {
+      "frames": "头像框",
+      "themes": "主题背景",
+      "titles": "称号"
+    },
+    "buy": "购买 · {{price}}",
+    "equip": "使用",
+    "equipped": "已使用",
+    "notEnough": "余额不足。",
+    "redeemSuccess": "已解锁 {{name}},自动为你装上。",
+    "confirmTitle": "确认购买 {{name}}?",
+    "confirmBody": "将花费 {{price}} Coins 解锁 {{name}},此操作不可撤销。",
+    "confirmBuy": "花费 {{price}}",
+    "defaultLocked": "默认",
+    "items": {
+      "frame": {
+        "default": "默认",
+        "gold": "黄金",
+        "rainbow": "彩虹",
+        "flame": "烈焰",
+        "ocean": "海洋"
+      },
+      "theme": {
+        "default": "默认",
+        "sunset": "日落",
+        "ocean": "海洋",
+        "aurora": "极光",
+        "forest": "森林"
+      },
+      "title": {
+        "newbie": "新手",
+        "fit_master": "健身达人",
+        "weight_loss_hero": "减肥英雄",
+        "weight_gain_champ": "增重大使"
+      }
+    }
+  },
+  "notifications": {
+    "title": "通知中心",
+    "subtitle": "对方的确认请求和其他更新。",
+    "markAllRead": "全部标为已读",
+    "empty": "暂无通知。对方的确认请求会出现在这里。",
+    "confirmPrompt": "{{partner}} {{delta}} Coins,是否确认?",
+    "expiresIn": "{{hours}} 小时后自动通过",
+    "balance": "你的余额:{{balance}}",
+    "confirm": "确认",
+    "decline": "拒绝",
+    "confirmed": "已确认 · {{delta}} Coins 已生效",
+    "declined": "已拒绝。",
+    "coinResult": {
+      "confirmed": "已确认 · {{delta}} Coins",
+      "declined": "已拒绝",
+      "expired": "24 小时后自动通过 · {{delta}} Coins"
+    },
+    "viewCoins": "查看我的 Coins 流水 →"
+  },
+  "dailyTasks": {
+    "missing": {
+      "weight": "今日还没记体重。",
+      "meals": "今日还没记满 3 餐。",
+      "workoutLose": "今日运动不足 30 分钟。",
+      "workoutGain": "今日运动不足 20 分钟。"
+    },
+    "complete": "今日任务达成",
+    "fail": "今日任务未达成"
+  },
+  "me": {
+    "title": "我的",
+    "subtitle": "资料、设置与订阅。",
+    "profile": "个人资料",
+    "settings": "设置",
+    "subscription": "订阅",
+    "freeTier": "免费版",
+    "signedOutTitle": "尚未登录",
+    "signedOutBody": "登录后可在多设备同步你的数据。",
+    "whatsNew": "更新内容",
+    "help": "帮助与反馈",
+    "editGoal": "修改我的目标",
+    "proBadge": "Pro",
+    "settingsAriaLabel": "设置",
+    "aiReportCardTitle": "本周 AI 周报",
+    "aiReportCardHint": "体重、饮食、运动,一份本周摘要。",
+    "coins": "虚拟币",
+    "coinsSubtitle": "余额:{{balance}} 币",
+    "shop": "装扮商店",
+    "notifications": "通知中心"
   }
 }

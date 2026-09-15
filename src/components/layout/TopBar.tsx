@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Globe, LogOut, Moon, Monitor, Sun, User as UserIcon } from 'lucide-react';
+import { Bell, Globe, LogOut, Moon, Monitor, Sun, User as UserIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCurrentUser, signOut } from '../../store/auth';
 import { useLocaleStore, type LocaleCode } from '../../store/locale';
 import { useThemeStore } from '../../store/theme';
+import { useNotificationCenter } from '../../store/notificationCenter';
 import { cn } from '../../lib/utils';
 
 /**
@@ -31,6 +32,9 @@ export function TopBar() {
   const locale = useLocaleStore((s) => s.locale);
   const setLocale = useLocaleStore((s) => s.setLocale);
   const user = useCurrentUser();
+  const unread = useNotificationCenter((s) =>
+    user ? s.unreadCount(user.id) : 0,
+  );
 
   const themeIcon =
     mode === 'dark' ? <Moon className="size-4" aria-hidden /> :
@@ -74,6 +78,26 @@ export function TopBar() {
           label={`${t('common.theme')}: ${mode}`}
           icon={themeIcon}
         />
+        {user ? (
+          <Link
+            to="/notifications"
+            aria-label={t('notifications.title')}
+            className={cn(
+              'relative inline-flex h-9 items-center justify-center rounded-full px-2.5',
+              'text-[rgb(var(--fg-secondary))] hover:bg-[rgb(var(--bg-sunken))] hover:text-[rgb(var(--fg-primary))]',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60',
+              'pf-press transition-colors',
+            )}
+          >
+            <Bell className="size-4" aria-hidden />
+            {unread > 0 ? (
+              <span
+                aria-hidden
+                className="absolute right-1.5 top-1.5 inline-block size-2 rounded-full bg-brand-500 ring-2 ring-[rgb(var(--bg-surface))]"
+              />
+            ) : null}
+          </Link>
+        ) : null}
         <div className="ml-1 h-6 w-px bg-[rgb(var(--border-default))]" aria-hidden />
         {user ? <UserMenu user={user} /> : <SignInPill />}
       </div>
