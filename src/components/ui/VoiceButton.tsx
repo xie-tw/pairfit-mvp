@@ -153,9 +153,19 @@ export function VoiceButton({
       // Native `onend` fires for both success and error paths. We only
       // fire `onResult` if we have a transcript — error codes have already
       // been routed through `onError`.
+      //
+      // STICKY-DENIED rule (BUG-FIX-4): `denied` is intentionally preserved
+      // here so the "Mic blocked · Open settings" pill keeps showing after
+      // the recognizer ends. Everything else collapses to `idle` so the
+      // next press can re-enter the flow. The previous version only
+      // transitioned `requesting → idle`, which left the state stuck at
+      // `listening` whenever the recognizer ended without an `onerror`
+      // (browser auto-timeout, no-speech, internal end, etc.) — the next
+      // press was then ignored by the `permission !== 'idle'` guard in
+      // `handlePressStart`, which read to users as "the mic is broken".
       const transcript = finalTranscriptRef.current.trim();
       setPressed(false);
-      setPermission((prev) => (prev === 'requesting' ? 'idle' : prev));
+      setPermission((prev) => (prev === 'denied' ? 'denied' : 'idle'));
       if (!transcript) return;
       const parsed = type === 'weight' ? parseWeightFromTranscript(transcript) : null;
       onResult(transcript, parsed);
