@@ -113,23 +113,29 @@ export function createVoiceRecognition(options: { lang?: string } = {}): VoiceRe
   const endSubs = new Set<() => void>();
 
   instance.onresult = (event) => {
-    let final = '';
-    let interim = '';
-    let confidence = 0;
-    for (let i = event.resultIndex; i < event.results.length; i += 1) {
-      const res = event.results[i]!;
-      const alt = res[0];
-      if (!alt) continue;
-      confidence = alt.confidence;
-      if (res.isFinal) final += alt.transcript;
-      else interim += alt.transcript;
-    }
-    const text = (final || interim).trim();
+    // BUG-FIX-5: emit the *latest* recognized segment as the payload, not
+    // an accumulation across `event.results`. The W3C Web Speech API spec
+    // defines `resultIndex` as the first new entry; entries before it are
+    // stale references from earlier events. Concatenating across them
+    // double-counts transcripts and, when an `onresult` event carries more
+    // than one new interim index, can glue unrelated segments together.
+    //
+    // VoiceButton updates its own ref on every callback, so emitting a
+    // single transcript per event is enough — `interimResults: true`
+    // means the browser will keep firing this handler, overwriting the
+    // ref each time, until the final result lands.
+    const lastIndex = event.results.length - 1;
+    if (lastIndex < event.resultIndex) return;
+    const last = event.results[lastIndex];
+    if (!last) return;
+    const alt = last[0];
+    if (!alt) return;
+    const text = alt.transcript.trim();
     if (!text) return;
     const payload: VoiceResult = {
       transcript: text,
-      confidence,
-      isFinal: Boolean(final),
+      confidence: alt.confidence,
+      isFinal: Boolean(last.isFinal),
     };
     resultSubs.forEach((cb) => cb(payload));
   };

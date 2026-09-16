@@ -75,6 +75,16 @@ export function VoiceButton({
   const recognitionRef = useRef<VoiceRecognition | null>(null);
   const finalTranscriptRef = useRef<string>('');
   const timerRef = useRef<number | null>(null);
+  // BUG-FIX-5: tracks whether the final transcript has already been
+  // delivered to the parent via the `onresult` (isFinal) path. We don't
+  // want `onend` to fire a duplicate `onResult`, but we DO want it to
+  // pick up the slack when the browser fires `onend` without a paired
+  // `onresult` (Safari / older Chromium / network teardown).
+  const resultDeliveredRef = useRef(false);
+  // BUG-FIX-5: tracks whether an error toast has fired for this session
+  // so `onend` doesn't double-fire `no-speech` after `onerror('no-speech')`
+  // has already routed the message.
+  const errorFiredRef = useRef(false);
 
   // Spin the waveform while pressed. Cheap `setInterval` would be fine, but
   // we use a self-scheduling RAF so the bars animate at ~20fps with random
@@ -111,12 +121,15 @@ export function VoiceButton({
     // Re-arm the toast flag on every fresh request so a successful retry
     // (the user toggled browser permissions on) gets a fresh attempt.
     denialToastFiredRef.current = false;
+    resultDeliveredRef.current = false;
+    errorFiredRef.current = false;
     setPermission('requesting');
     const rec = createVoiceRecognition();
     if (!rec) {
       setPermission('denied');
       if (!denialToastFiredRef.current) {
         denialToastFiredRef.current = true;
+        errorFiredRef.current = true;
         onError?.('not-supported');
       }
       return;
@@ -125,11 +138,23 @@ export function VoiceButton({
     finalTranscriptRef.current = '';
 
     rec.onResult((event) => {
-      if (event.isFinal) {
-        finalTranscriptRef.current = event.transcript;
-      } else {
-        // Interim — keep updating so the user can see "yes it's hearing me"
-        finalTranscriptRef.current = event.transcript;
+      // Keep the ref updated with the latest transcript for both interim
+      // and final results. This serves as a fallback in case `onEnd` fires
+      // before a paired `onResult` arrives (some browsers — Safari, older
+      // Chromium builds, certain network teardowns — do exactly this).
+      finalTranscriptRef.current = event.transcript;
+
+      // BUG-FIX-5: deliver the FINAL result to the parent immediately,
+      // before `onEnd`. This avoids a race where `onEnd` fires without a
+      // preceding `onResult` event — the symptom was "I pressed, spoke,
+      // released, and nothing filled in". The resultDeliveredRef guard
+      // prevents `onEnd` from then double-delivering the same transcript.
+      if (event.isFinal && !resultDeliveredRef.current) {
+        const transcript = event.transcript.trim();
+        if (!transcript) return;
+        resultDeliveredRef.current = true;
+        const parsed = type === 'weight' ? parseWeightFromTranscript(transcript) : null;
+        onResult(transcript, parsed);
       }
     });
     rec.onError((code) => {
@@ -141,22 +166,55 @@ export function VoiceButton({
         setPressed(false);
         if (!denialToastFiredRef.current) {
           denialToastFiredRef.current = true;
+          errorFiredRef.current = true;
           onError?.('not-allowed');
         }
         return;
       }
       setPermission('idle');
       setPressed(false);
+      errorFiredRef.current = true;
       onError?.(code);
     });
     rec.onEnd(() => {
       // Native `onend` fires for both success and error paths. We only
       // fire `onResult` if we have a transcript — error codes have already
       // been routed through `onError`.
-      const transcript = finalTranscriptRef.current.trim();
+      //
+      // STICKY-DENIED rule (BUG-FIX-4): `denied` is intentionally preserved
+      // here so the "Mic blocked · Open settings" pill keeps showing after
+      // the recognizer ends. Everything else collapses to `idle` so the
+      // next press can re-enter the flow. The previous version only
+      // transitioned `requesting → idle`, which left the state stuck at
+      // `listening` whenever the recognizer ended without an `onerror`
+      // (browser auto-timeout, no-speech, internal end, etc.) — the next
+      // press was then ignored by the `permission !== 'idle'` guard in
+      // `handlePressStart`, which read to users as "the mic is broken".
+      //
+      // BUG-FIX-5: this is now a *fallback* delivery path. The primary
+      // path is `rec.onResult` above — when the browser fires a final
+      // result we deliver it immediately and flag it via
+      // `resultDeliveredRef`. This branch only kicks in when the browser
+      // ended without a paired final `onResult` (Safari / older Chromium
+      // / internal "no result" end). If we still have nothing AND no
+      // error has fired yet, surface `no-speech` so the user gets
+      // feedback instead of silence.
       setPressed(false);
-      setPermission((prev) => (prev === 'requesting' ? 'idle' : prev));
-      if (!transcript) return;
+      setPermission((prev) => (prev === 'denied' ? 'denied' : 'idle'));
+      if (resultDeliveredRef.current) return;
+
+      const transcript = finalTranscriptRef.current.trim();
+      if (!transcript) {
+        // Recognizer ended without producing a transcript. Browsers don't
+        // always route this through `onerror` (no-speech, internal end,
+        // network teardown), so we surface a no-speech error here — once.
+        if (!errorFiredRef.current) {
+          errorFiredRef.current = true;
+          onError?.('no-speech');
+        }
+        return;
+      }
+      resultDeliveredRef.current = true;
       const parsed = type === 'weight' ? parseWeightFromTranscript(transcript) : null;
       onResult(transcript, parsed);
     });
@@ -172,6 +230,7 @@ export function VoiceButton({
       setPermission('denied');
       if (!denialToastFiredRef.current) {
         denialToastFiredRef.current = true;
+        errorFiredRef.current = true;
         onError?.('not-allowed');
       }
     }
