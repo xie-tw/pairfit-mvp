@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "commit": "a7507cc",
   "base": "http://localhost:5173",
-  "startedAt": "2026-09-17T06:51:01.709Z",
-  "finishedAt": "2026-09-17T06:52:17.802Z",
+  "startedAt": "2026-09-17T07:17:02.511Z",
+  "finishedAt": "2026-09-17T07:18:19.120Z",
   "accountA": {
-    "email": "e2e+a-1789627856618@pairfit.local"
+    "email": "e2e+a-1789629415670@pairfit.local"
   },
   "accountB": {
-    "email": "e2e+b-1789627856619@pairfit.local"
+    "email": "e2e+b-1789629415671@pairfit.local"
   },
   "totals": {
     "total": 12,
@@ -25,7 +25,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us01-register-filled.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us01-after-submit.png"
       ],
-      "timestamp": "2026-09-17T06:51:01.709Z"
+      "timestamp": "2026-09-17T07:17:02.511Z"
     },
     {
       "storyId": "US-02",
@@ -36,7 +36,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us02-step2-weights.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us02-step3-preview.png"
       ],
-      "timestamp": "2026-09-17T06:51:06.577Z"
+      "timestamp": "2026-09-17T07:17:07.348Z"
     },
     {
       "storyId": "US-03",
@@ -47,7 +47,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us03-after-save.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us03-trends-after.png"
       ],
-      "timestamp": "2026-09-17T06:51:11.691Z"
+      "timestamp": "2026-09-17T07:17:12.539Z"
     },
     {
       "storyId": "US-04",
@@ -58,7 +58,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us04-transcript-pasted.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us04-after-save.png"
       ],
-      "timestamp": "2026-09-17T06:51:14.967Z"
+      "timestamp": "2026-09-17T07:17:15.838Z"
     },
     {
       "storyId": "US-05",
@@ -71,7 +71,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us05-food-estimate.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us05-food-saved.png"
       ],
-      "timestamp": "2026-09-17T06:51:21.259Z"
+      "timestamp": "2026-09-17T07:17:22.042Z"
     },
     {
       "storyId": "US-06",
@@ -82,17 +82,17 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us06-exercise-filled.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us06-exercise-saved.png"
       ],
-      "timestamp": "2026-09-17T06:51:25.071Z"
+      "timestamp": "2026-09-17T07:17:25.795Z"
     },
     {
       "storyId": "US-07",
       "ok": true,
-      "evidence": "generate clicked=true, code=M4KWNP, shape-ok=true, countdown=true",
+      "evidence": "generate clicked=true, code=PWDZS7, shape-ok=true, countdown=true",
       "shots": [
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us07-couple-page.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us07-invite-shown.png"
       ],
-      "timestamp": "2026-09-17T06:51:28.466Z"
+      "timestamp": "2026-09-17T07:17:29.217Z"
     },
     {
       "storyId": "US-08",
@@ -103,7 +103,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us08-couple-b-empty.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us08-couple-b-after-code.png"
       ],
-      "timestamp": "2026-09-17T06:51:36.791Z"
+      "timestamp": "2026-09-17T07:17:37.636Z"
     },
     {
       "storyId": "US-09",
@@ -113,7 +113,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us09-home-as-a.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us09-cheer-sent.png"
       ],
-      "timestamp": "2026-09-17T06:51:46.123Z"
+      "timestamp": "2026-09-17T07:17:47.089Z"
     },
     {
       "storyId": "US-10",
@@ -124,7 +124,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us10-b-confirm-clicked.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us10-b-coins.png"
       ],
-      "timestamp": "2026-09-17T06:52:10.594Z"
+      "timestamp": "2026-09-17T07:18:11.895Z"
     },
     {
       "storyId": "US-11",
@@ -136,7 +136,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us11-trends-30d.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us11-trends-90d.png"
       ],
-      "timestamp": "2026-09-17T06:52:14.312Z"
+      "timestamp": "2026-09-17T07:18:15.596Z"
     },
     {
       "storyId": "US-12",
@@ -146,7 +146,7 @@
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us12-subscription-page.png",
         "/Users/Admin/pairfit-mvp/docs/qa/screenshots/us12-after-upgrade.png"
       ],
-      "timestamp": "2026-09-17T06:52:17.800Z"
+      "timestamp": "2026-09-17T07:18:19.115Z"
     }
   ]
 }

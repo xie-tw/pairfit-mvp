@@ -2,13 +2,13 @@
 
 ## 元数据
 
-- **验收时间**: 2026-09-17 06:51:01.709 UTC → 2026-09-17 06:52:17.802 UTC
+- **验收时间**: 2026-09-17 07:17:02.511 UTC → 2026-09-17 07:18:19.120 UTC
 - **验收 commit**: a7507cc
 - **验收 URL(base)**: https://pairfit-mvp.vercel.app (本地对照: http://localhost:5173)
 - **验收脚本**: scripts/qa-e2e.mjs + scripts/qa-screenshots.mjs (零 npm 依赖,Node 22 内置)
 - **验收 E2E 账号**:
-  - A: e2e+a-1789627856618@pairfit.local
-  - B: e2e+b-1789627856619@pairfit.local
+  - A: e2e+a-1789629415670@pairfit.local
+  - B: e2e+b-1789629415671@pairfit.local
 
 ## 部署健康
 
@@ -34,7 +34,7 @@
 | **US-04** | ✅ | mic aria-label found=true, fallback transcript accepted+saved=true |
 | **US-05** | ✅ | switched to manual=true, text typed=true, estimate items=true, saved=true |
 | **US-06** | ✅ | type=true, duration=true, intensity=true, MET UI=true, saved=true |
-| **US-07** | ✅ | generate clicked=true, code=M4KWNP, shape-ok=true, countdown=true |
+| **US-07** | ✅ | generate clicked=true, code=PWDZS7, shape-ok=true, countdown=true |
 | **US-08** | ✅ | code typed=true, bound UI visible=true |
 | **US-09** | ✅ | partner card visible=true, cheer buttons rendered=5, tap=true |
 | **US-10** | ❌ | ⚠️  sweep-fired=true, notifications-has-confirm=false, confirm-click=false, B-balance=n/a |
